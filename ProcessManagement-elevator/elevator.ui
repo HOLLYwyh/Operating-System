@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1720</width>
-    <height>820</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -509,7 +509,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>  1号电梯内部</string>
+     <string>   1号电梯内部</string>
     </property>
    </widget>
    <widget class="QPushButton" name="f1UpButton">
@@ -1531,7 +1531,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>110</y>
+      <y>155</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -1545,8 +1545,8 @@
     </property>
     <property name="iconSize">
      <size>
-      <width>27</width>
-      <height>27</height>
+      <width>32</width>
+      <height>32</height>
      </size>
     </property>
     <property name="flat">
@@ -1556,8 +1556,8 @@
    <widget class="QPushButton" name="ele1F9Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>180</y>
+      <x>30</x>
+      <y>215</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -1565,525 +1565,935 @@
     <property name="text">
      <string/>
     </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F9.png</normaloff>:/images/F9.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
    </widget>
    <widget class="QPushButton" name="ele1F8Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>230</y>
-      <width>93</width>
+      <x>30</x>
+      <y>275</y>
+      <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F8.png</normaloff>:/images/F8.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F7Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>280</y>
-      <width>93</width>
+      <x>30</x>
+      <y>335</y>
+      <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F7.png</normaloff>:/images/F7.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F6Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>330</y>
-      <width>93</width>
+      <x>30</x>
+      <y>395</y>
+      <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F6.png</normaloff>:/images/F6.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F5Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>390</y>
-      <width>93</width>
+      <x>30</x>
+      <y>455</y>
+      <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F5.png</normaloff>:/images/F5.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F4Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>440</y>
-      <width>93</width>
+      <x>30</x>
+      <y>515</y>
+      <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F4.png</normaloff>:/images/F4.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F3Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>480</y>
-      <width>93</width>
+      <x>30</x>
+      <y>575</y>
+      <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F3.png</normaloff>:/images/F3.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F2Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>530</y>
-      <width>93</width>
+      <x>30</x>
+      <y>635</y>
+      <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F2.png</normaloff>:/images/F2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
    </widget>
    <widget class="QPushButton" name="ele1F1Button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>590</y>
-      <width>93</width>
-      <height>60</height>
+      <x>30</x>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F1.png</normaloff>:/images/F1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F20Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>155</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F20.png</normaloff>:/images/F20.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F19Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>180</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>215</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F19.png</normaloff>:/images/F19.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F18Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>230</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>275</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F18.png</normaloff>:/images/F18.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F17Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>280</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>335</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F17.png</normaloff>:/images/F17.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F16Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>330</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>395</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F16.png</normaloff>:/images/F16.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F15Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>390</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>455</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F15.png</normaloff>:/images/F15.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F14Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>440</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F14.png</normaloff>:/images/F14.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F13Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>480</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F13.png</normaloff>:/images/F13.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F12Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>530</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F12.png</normaloff>:/images/F12.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F11Button">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>590</y>
-      <width>93</width>
-      <height>28</height>
+      <x>110</x>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F11.png</normaloff>:/images/F11.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F10Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>155</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F10.png</normaloff>:/images/F10.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F9Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>180</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>215</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F9.png</normaloff>:/images/F9.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F8Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>230</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>275</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F8.png</normaloff>:/images/F8.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F7Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>270</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>335</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F7.png</normaloff>:/images/F7.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F6Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>310</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>395</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F6.png</normaloff>:/images/F6.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F5Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>350</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>455</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F5.png</normaloff>:/images/F5.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F4Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>390</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F4.png</normaloff>:/images/F4.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F3Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>430</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F3.png</normaloff>:/images/F3.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F2Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>470</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F2.png</normaloff>:/images/F2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F1Button">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <x>330</x>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F1.png</normaloff>:/images/F1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F20Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>155</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F20.png</normaloff>:/images/F20.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F19Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>180</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>215</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F19.png</normaloff>:/images/F19.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F18Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>230</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>275</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F18.png</normaloff>:/images/F18.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F17Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>280</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>335</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F17.png</normaloff>:/images/F17.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F16Button">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>310</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>395</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F16.png</normaloff>:/images/F16.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F15Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>360</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>455</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F15.png</normaloff>:/images/F15.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F14Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>400</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F14.png</normaloff>:/images/F14.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F13Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>440</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F13.png</normaloff>:/images/F13.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F12Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>480</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F12.png</normaloff>:/images/F12.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2F11Button">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <x>410</x>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F11.png</normaloff>:/images/F11.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F10Button">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>630</x>
       <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F10.png</normaloff>:/images/F10.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F9Button">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>630</x>
       <y>160</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F9.png</normaloff>:/images/F9.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F8Button">
@@ -2091,38 +2501,68 @@
      <rect>
       <x>630</x>
       <y>200</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F8.png</normaloff>:/images/F8.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F7Button">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>630</x>
       <y>240</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F7.png</normaloff>:/images/F7.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F6Button">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>630</x>
       <y>280</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F6.png</normaloff>:/images/F6.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F5Button">
@@ -2130,454 +2570,804 @@
      <rect>
       <x>630</x>
       <y>320</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F5.png</normaloff>:/images/F5.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F4Button">
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>360</y>
-      <width>93</width>
-      <height>28</height>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F4.png</normaloff>:/images/F4.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F3Button">
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>400</y>
-      <width>93</width>
-      <height>28</height>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F3.png</normaloff>:/images/F3.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F2Button">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>440</y>
-      <width>93</width>
-      <height>28</height>
+      <x>630</x>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F2.png</normaloff>:/images/F2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F1Button">
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>490</y>
-      <width>93</width>
-      <height>28</height>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F1.png</normaloff>:/images/F1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F20Button">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>710</x>
       <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <width>51</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F20.png</normaloff>:/images/F20.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F19Button">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>710</x>
       <y>170</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F19.png</normaloff>:/images/F19.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F18Button">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>710</x>
       <y>200</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F18.png</normaloff>:/images/F18.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F17Button">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>710</x>
       <y>240</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F17.png</normaloff>:/images/F17.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F16Button">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>710</x>
       <y>280</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F16.png</normaloff>:/images/F16.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F15Button">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>710</x>
       <y>320</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F15.png</normaloff>:/images/F15.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F14Button">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>360</y>
-      <width>93</width>
-      <height>28</height>
+      <x>710</x>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F14.png</normaloff>:/images/F14.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F13Button">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>400</y>
-      <width>93</width>
-      <height>28</height>
+      <x>710</x>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F13.png</normaloff>:/images/F13.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F12Button">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>440</y>
-      <width>93</width>
-      <height>28</height>
+      <x>710</x>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F12.png</normaloff>:/images/F12.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3F11Button">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>490</y>
-      <width>93</width>
-      <height>28</height>
+      <x>710</x>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F11.png</normaloff>:/images/F11.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F10Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>930</x>
       <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F10.png</normaloff>:/images/F10.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F9Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>930</x>
       <y>170</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F9.png</normaloff>:/images/F9.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F8Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>930</x>
       <y>210</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F8.png</normaloff>:/images/F8.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F7Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>930</x>
       <y>250</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F7.png</normaloff>:/images/F7.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F6Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>930</x>
       <y>290</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F6.png</normaloff>:/images/F6.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F5Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>930</x>
       <y>330</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F5.png</normaloff>:/images/F5.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F4Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>370</y>
-      <width>93</width>
-      <height>28</height>
+      <x>930</x>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F4.png</normaloff>:/images/F4.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F3Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>410</y>
-      <width>93</width>
-      <height>28</height>
+      <x>930</x>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F3.png</normaloff>:/images/F3.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F2Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>450</y>
-      <width>93</width>
-      <height>28</height>
+      <x>930</x>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F2.png</normaloff>:/images/F2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F1Button">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>490</y>
-      <width>93</width>
-      <height>28</height>
+      <x>930</x>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F1.png</normaloff>:/images/F1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F20Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1010</x>
       <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F20.png</normaloff>:/images/F20.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F19Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1010</x>
       <y>170</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F19.png</normaloff>:/images/F19.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F18Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1010</x>
       <y>210</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F18.png</normaloff>:/images/F18.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F17Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1010</x>
       <y>250</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F17.png</normaloff>:/images/F17.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F16Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1010</x>
       <y>290</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F16.png</normaloff>:/images/F16.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F15Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1010</x>
       <y>340</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F15.png</normaloff>:/images/F15.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F14Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>380</y>
-      <width>93</width>
-      <height>28</height>
+      <x>1010</x>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F14.png</normaloff>:/images/F14.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F13Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>410</y>
-      <width>93</width>
-      <height>28</height>
+      <x>1010</x>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F13.png</normaloff>:/images/F13.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F12Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>460</y>
-      <width>93</width>
-      <height>28</height>
+      <x>1010</x>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F12.png</normaloff>:/images/F12.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4F11Button">
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>500</y>
-      <width>93</width>
-      <height>28</height>
+      <x>1010</x>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F11.png</normaloff>:/images/F11.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F10Button">
@@ -2585,12 +3375,22 @@
      <rect>
       <x>1220</x>
       <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F10.png</normaloff>:/images/F10.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F9Button">
@@ -2598,12 +3398,22 @@
      <rect>
       <x>1220</x>
       <y>170</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F9.png</normaloff>:/images/F9.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F8Button">
@@ -2611,12 +3421,22 @@
      <rect>
       <x>1220</x>
       <y>210</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F8.png</normaloff>:/images/F8.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F7Button">
@@ -2624,12 +3444,22 @@
      <rect>
       <x>1220</x>
       <y>260</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F7.png</normaloff>:/images/F7.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F6Button">
@@ -2637,12 +3467,22 @@
      <rect>
       <x>1220</x>
       <y>310</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F6.png</normaloff>:/images/F6.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F5Button">
@@ -2650,64 +3490,114 @@
      <rect>
       <x>1220</x>
       <y>350</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F5.png</normaloff>:/images/F5.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F4Button">
     <property name="geometry">
      <rect>
       <x>1220</x>
-      <y>400</y>
-      <width>93</width>
-      <height>28</height>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F4.png</normaloff>:/images/F4.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F3Button">
     <property name="geometry">
      <rect>
       <x>1220</x>
-      <y>430</y>
-      <width>93</width>
-      <height>28</height>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F3.png</normaloff>:/images/F3.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F2Button">
     <property name="geometry">
      <rect>
       <x>1220</x>
-      <y>480</y>
-      <width>93</width>
-      <height>28</height>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F2.png</normaloff>:/images/F2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F1Button">
     <property name="geometry">
      <rect>
       <x>1220</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F1.png</normaloff>:/images/F1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F20Button">
@@ -2715,12 +3605,22 @@
      <rect>
       <x>1340</x>
       <y>130</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F20.png</normaloff>:/images/F20.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F19Button">
@@ -2728,12 +3628,22 @@
      <rect>
       <x>1340</x>
       <y>170</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F19.png</normaloff>:/images/F19.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F18Button">
@@ -2741,12 +3651,22 @@
      <rect>
       <x>1340</x>
       <y>210</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F18.png</normaloff>:/images/F18.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F17Button">
@@ -2754,12 +3674,22 @@
      <rect>
       <x>1340</x>
       <y>260</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F17.png</normaloff>:/images/F17.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F16Button">
@@ -2767,12 +3697,22 @@
      <rect>
       <x>1340</x>
       <y>310</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F16.png</normaloff>:/images/F16.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F15Button">
@@ -2780,64 +3720,153 @@
      <rect>
       <x>1340</x>
       <y>350</y>
-      <width>93</width>
-      <height>28</height>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F15.png</normaloff>:/images/F15.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F14Button">
     <property name="geometry">
      <rect>
       <x>1340</x>
-      <y>400</y>
-      <width>93</width>
-      <height>28</height>
+      <y>515</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F14.png</normaloff>:/images/F14.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F13Button">
     <property name="geometry">
      <rect>
       <x>1340</x>
-      <y>440</y>
-      <width>93</width>
-      <height>28</height>
+      <y>575</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F13.png</normaloff>:/images/F13.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F12Button">
     <property name="geometry">
      <rect>
       <x>1340</x>
-      <y>480</y>
-      <width>93</width>
-      <height>28</height>
+      <y>635</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F12.png</normaloff>:/images/F12.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5F11Button">
     <property name="geometry">
      <rect>
       <x>1340</x>
-      <y>530</y>
-      <width>93</width>
-      <height>28</height>
+      <y>690</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource.qrc">
+      <normaloff>:/images/F11.png</normaloff>:/images/F11.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>100</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>765</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>765</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
     </property>
    </widget>
   </widget>
