@@ -6,15 +6,363 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1711</width>
+    <height>813</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Elevator</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="Line" name="boundaryLine1">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>0</y>
+      <width>16</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="boundaryLine2">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>0</y>
+      <width>16</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="boundaryLine3">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>0</y>
+      <width>16</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="boundaryLine4">
+    <property name="geometry">
+     <rect>
+      <x>1200</x>
+      <y>0</y>
+      <width>16</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="boundaryLine5">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>0</y>
+      <width>16</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOutdoor">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>10</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>  电梯外按钮</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F1">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>740</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F2">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>705</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F3">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>670</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F3</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F4">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>635</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F4</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F5">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>600</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F5</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F6">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>565</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F6</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F7">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>530</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F7</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F8">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>495</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F8</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F9">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>460</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F9</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F10">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>425</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F10</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F11">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>390</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F11</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F12">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>355</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F12</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F13">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>320</y>
+      <width>72</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F13</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F14">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>285</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F14</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F15">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>250</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F15</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F16">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>215</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F16</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F17">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>180</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F17</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F18">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>145</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F18</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F19">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>110</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F19</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F20">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>75</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F20</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1711</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
