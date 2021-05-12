@@ -1,6 +1,7 @@
 <RCC>
     <qresource>
 	<file>images/up.png</file>
+	<file>images/alert.png</file>
 	<file>images/down.png</file>
 	<file>images/elevator.ico</file>
 	<file>images/F1.png</file>
@@ -23,5 +24,7 @@
 	<file>images/F18.png</file>
 	<file>images/F19.png</file>
 	<file>images/F20.png</file>
+	<file>images/openDoor.png</file>
+	<file>images/closeDoor.png</file>
     </qresource>
 </RCC>
