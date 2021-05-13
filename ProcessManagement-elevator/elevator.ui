@@ -390,7 +390,7 @@
      <number>5</number>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdOne">
+   <widget class="QLCDNumber" name="lcdThree">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -428,7 +428,7 @@
      <number>5</number>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdThree">
+   <widget class="QLCDNumber" name="lcdOne">
     <property name="geometry">
      <rect>
       <x>30</x>
