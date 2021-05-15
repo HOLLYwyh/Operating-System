@@ -6,5 +6,6 @@
 #define TWO 1
 #define THREE 2
 #define FOUR 3
+#define FIVE 4
 
 #endif // CONSTANT_H
