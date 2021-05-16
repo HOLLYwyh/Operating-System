@@ -182,12 +182,17 @@ void Elevator::on_ele1F1Button_clicked()
 {
     if(!elevator[0]->checkFloor(1))
     {
+        elevator[0]->addFloor(1);
         ui->ele1F1Button->setStyleSheet("background-color: red");
     }
 }
 void Elevator::on_ele1F2Button_clicked()
 {
-
+    if(!elevator[1]->checkFloor(2))
+    {
+        elevator[0]->addFloor(2);
+        ui->ele1F2Button->setStyleSheet("background-color: red");
+    }
 }
 void Elevator::on_ele1F3Button_clicked()
 {
@@ -266,6 +271,645 @@ void Elevator::on_ele1OpenButton_clicked()
 
 }
 void Elevator::on_ele1CloseButton_clicked()
+{
+
+}
+
+//2号电梯相关
+void Elevator::on_ele2F1Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F2Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F3Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F4Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F5Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F6Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F7Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F8Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F9Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F10Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F11Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F12Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F13Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F14Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F15Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F16Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F17Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F18Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F19Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2F20Button_clicked()
+{
+
+}
+
+void Elevator::on_ele2OpenButton_clicked()
+{
+
+}
+
+void Elevator::on_ele2CloseButton_clicked()
+{
+
+}
+
+//3号电梯相关
+
+void Elevator::on_ele3F1Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F2Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F3Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F4Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F5Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F6Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F7Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F8Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F9Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F10Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F11Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F12Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F13Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F14Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F15Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F16Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F17Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F18Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F19Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3F20Button_clicked()
+{
+
+}
+
+void Elevator::on_ele3OpenButton_clicked()
+{
+
+}
+
+void Elevator::on_ele3CloseButton_clicked()
+{
+
+}
+
+//4号电梯相关
+
+void Elevator::on_ele4F1Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F2Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F3Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F4Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F5Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F6Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F7Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F8Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F9Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F10Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F11Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F12Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F13Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F14Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F15Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F16Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F17Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F18Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F19Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4F20Button_clicked()
+{
+
+}
+
+void Elevator::on_ele4OpenButton_clicked()
+{
+
+}
+
+void Elevator::on_ele4CloseButton_clicked()
+{
+
+}
+
+//5号电梯相关
+
+void Elevator::on_ele5F1Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F2Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F3Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F4Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F5Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F6Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F7Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F8Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F9Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F10Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F11Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F12Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F13Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F14Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F15Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F16Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F17Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F18Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F19Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5F20Button_clicked()
+{
+
+}
+
+void Elevator::on_ele5OpenButton_clicked()
+{
+
+}
+
+void Elevator::on_ele5CloseButton_clicked()
+{
+
+}
+
+//电梯外按钮
+
+void Elevator::on_f1UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f2UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f2DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f3UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f3DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f4UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f4DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f5UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f5DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f6UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f6DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f7UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f7DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f8UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f8DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f9UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f9DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f10UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f10DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f11UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f11DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f12UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f12DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f13UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f13DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f14UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f14DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f15UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f15DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f16UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f16DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f17UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f17DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f18UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f18DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f19UpButton_clicked()
+{
+
+}
+
+void Elevator::on_f19DownButton_clicked()
+{
+
+}
+
+void Elevator::on_f20DownButton_clicked()
 {
 
 }
