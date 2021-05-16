@@ -22,8 +22,10 @@ Elevator::Elevator(QWidget *parent)
     //初始化电梯
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
-        elevator[i]=new Container();
+        _elevator[i]=new Container();
     }
+    //初始化楼外的按钮
+    memset(_waitFloors,false,sizeof(_waitFloors));
 }
 
 Elevator::~Elevator()
@@ -32,15 +34,27 @@ Elevator::~Elevator()
     //释放电梯
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
-        delete elevator[i];
+        delete _elevator[i];
     }
 }
+
+//优先写当前类的public函数
+void Elevator::addWaitFloors(int floor)
+{
+    _waitFloors[floor]=true;
+}
+
+bool Elevator::checkWaitFloors(int floor)
+{
+    return _waitFloors[floor];
+}
+
 
 //一号电梯按下报警键
 void Elevator::on_ele1AertButton_clicked()
 {
-    bool flag=isDamage[ONE];
-    isDamage[ONE]^=1;  //更改电梯状态
+    bool flag=_isDamage[ONE];
+    _isDamage[ONE]^=1;  //更改电梯状态
     ui->ele1F1Button->setEnabled(flag);
     ui->ele1F2Button->setEnabled(flag);
     ui->ele1F3Button->setEnabled(flag);
@@ -67,8 +81,8 @@ void Elevator::on_ele1AertButton_clicked()
 //二号电梯按下报警键
 void Elevator::on_ele2AlertButton_clicked()
 {
-    bool flag =isDamage[TWO];
-    isDamage[TWO]^=1;  //更改运行状态
+    bool flag =_isDamage[TWO];
+    _isDamage[TWO]^=1;  //更改运行状态
     ui->ele2F1Button->setEnabled(flag);
     ui->ele2F2Button->setEnabled(flag);
     ui->ele2F3Button->setEnabled(flag);
@@ -95,8 +109,8 @@ void Elevator::on_ele2AlertButton_clicked()
 //三号电梯按下报警键
 void Elevator::on_ele3AlertButton_clicked()
 {
-    bool flag=isDamage[THREE];
-    isDamage[THREE]^=1; //更改当前状态
+    bool flag=_isDamage[THREE];
+    _isDamage[THREE]^=1; //更改当前状态
     ui->ele3F1Button->setEnabled(flag);
     ui->ele3F2Button->setEnabled(flag);
     ui->ele3F3Button->setEnabled(flag);
@@ -123,8 +137,8 @@ void Elevator::on_ele3AlertButton_clicked()
 //四号电梯按下报警键
 void Elevator::on_ele4AlertButton_clicked()
 {
-    bool flag=isDamage[FOUR];
-    isDamage[FOUR]^=1;
+    bool flag=_isDamage[FOUR];
+    _isDamage[FOUR]^=1;
     ui->ele4F1Button->setEnabled(flag);
     ui->ele4F2Button->setEnabled(flag);
     ui->ele4F3Button->setEnabled(flag);
@@ -151,8 +165,8 @@ void Elevator::on_ele4AlertButton_clicked()
 //五号电梯按下报警键
 void Elevator::on_ele5AlertButton_clicked()
 {
-    bool flag=isDamage[FIVE];
-    isDamage[FIVE]^=1;
+    bool flag=_isDamage[FIVE];
+    _isDamage[FIVE]^=1;
     ui->ele5F1Button->setEnabled(flag);
     ui->ele5F2Button->setEnabled(flag);
     ui->ele5F3Button->setEnabled(flag);
@@ -180,17 +194,17 @@ void Elevator::on_ele5AlertButton_clicked()
 //一号电梯相关
 void Elevator::on_ele1F1Button_clicked()
 {
-    if(!elevator[0]->checkFloor(1))
+    if(!_elevator[0]->checkFloor(1))
     {
-        elevator[0]->addFloor(1);
+        _elevator[0]->addFloor(1);
         ui->ele1F1Button->setStyleSheet("background-color: red");
     }
 }
 void Elevator::on_ele1F2Button_clicked()
 {
-    if(!elevator[1]->checkFloor(2))
+    if(!_elevator[1]->checkFloor(2))
     {
-        elevator[0]->addFloor(2);
+        _elevator[0]->addFloor(2);
         ui->ele1F2Button->setStyleSheet("background-color: red");
     }
 }

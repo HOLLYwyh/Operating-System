@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "constant.h"
 #include "container.h"
+#include "string.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Elevator; }
@@ -15,13 +16,16 @@ class Elevator : public QMainWindow
 
 private:
     Ui::Elevator *ui;
-    bool loaded[ELEVATOR_NUM]{false};  //表示5部电梯的载人情况
-    bool isDamage[ELEVATOR_NUM]{false};     //表示5部电梯的损坏情况
-    Container* elevator[5];     //5部电梯
+    //bool loaded[ELEVATOR_NUM]{false};  //表示5部电梯的载人情况
+    bool _isDamage[ELEVATOR_NUM]{false};     //表示5部电梯的损坏情况
+    Container* _elevator[5];     //5部电梯
+    bool _waitFloors[21];        //当前正在等待的电梯
 
 public:
     Elevator(QWidget *parent = nullptr);
     ~Elevator();
+    void addWaitFloors(int floor);  //设置等待楼层
+    bool checkWaitFloors(int floor);  //获取当前电梯配置
 
 private slots:
     //按下报警键槽函数
