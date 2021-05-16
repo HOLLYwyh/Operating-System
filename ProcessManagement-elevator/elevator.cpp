@@ -19,12 +19,21 @@ Elevator::Elevator(QWidget *parent)
     ui->lcdFour->setPalette(Qt::red);
     ui->lcdFive->display(1);
     ui->lcdFive->setPalette(Qt::red);
-    //初始化按钮
+    //初始化电梯
+    for(int i=0;i<ELEVATOR_NUM;i++)
+    {
+        elevator[i]=new Container();
+    }
 }
 
 Elevator::~Elevator()
 {
     delete ui;
+    //释放电梯
+    for(int i=0;i<ELEVATOR_NUM;i++)
+    {
+        delete elevator[i];
+    }
 }
 
 //一号电梯按下报警键
@@ -166,4 +175,97 @@ void Elevator::on_ele5AlertButton_clicked()
     ui->ele5F20Button->setEnabled(flag);
     ui->ele5OpenButton->setEnabled(flag);
     ui->ele5CloseButton->setEnabled(flag);
+}
+
+//一号电梯相关
+void Elevator::on_ele1F1Button_clicked()
+{
+    if(!elevator[0]->checkFloor(1))
+    {
+        ui->ele1F1Button->setStyleSheet("background-color: red");
+    }
+}
+void Elevator::on_ele1F2Button_clicked()
+{
+
+}
+void Elevator::on_ele1F3Button_clicked()
+{
+
+}
+void Elevator::on_ele1F4Button_clicked()
+{
+
+}
+void Elevator::on_ele1F5Button_clicked()
+{
+
+}
+void Elevator::on_ele1F6Button_clicked()
+{
+
+}
+void Elevator::on_ele1F7Button_clicked()
+{
+
+}
+void Elevator::on_ele1F8Button_clicked()
+{
+
+}
+void Elevator::on_ele1F9Button_clicked()
+{
+
+}
+void Elevator::on_ele1F10Button_clicked()
+{
+
+}
+void Elevator::on_ele1F11Button_clicked()
+{
+
+}
+void Elevator::on_ele1F12Button_clicked()
+{
+
+}
+void Elevator::on_ele1F13Button_clicked()
+{
+
+}
+void Elevator::on_ele1F14Button_clicked()
+{
+
+}
+void Elevator::on_ele1F15Button_clicked()
+{
+
+}
+void Elevator::on_ele1F16Button_clicked()
+{
+
+}
+void Elevator::on_ele1F17Button_clicked()
+{
+
+}
+void Elevator::on_ele1F18Button_clicked()
+{
+
+}
+void Elevator::on_ele1F19Button_clicked()
+{
+
+}
+void Elevator::on_ele1F20Button_clicked()
+{
+
+}
+void Elevator::on_ele1OpenButton_clicked()
+{
+
+}
+void Elevator::on_ele1CloseButton_clicked()
+{
+
 }
