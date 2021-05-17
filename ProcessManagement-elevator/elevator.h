@@ -2,6 +2,8 @@
 #define ELEVATOR_H
 
 #include <QMainWindow>
+#include <QTimer>
+#include <cmath>
 #include "constant.h"
 #include "container.h"
 #include "string.h"
@@ -16,18 +18,23 @@ class Elevator : public QMainWindow
 
 private:
     Ui::Elevator *ui;
-    //bool loaded[ELEVATOR_NUM]{false};  //表示5部电梯的载人情况
     bool _isDamage[ELEVATOR_NUM]{false};     //表示5部电梯的损坏情况
-    Container* _elevator[5];     //5部电梯
-    bool _waitFloors[21];        //当前正在等待的电梯
+    Container* _elevator[ELEVATOR_NUM];     //5部电梯
+    bool _upWaitFloors[MAX_FLOORS];         //上升等待队列
+    bool _downWaitFloors[MAX_FLOORS];       //下降等待队列
+    QTimer *realTime;    //用于检查
+    QTimer *colorTime;   //调整按钮颜色
 
 public:
     Elevator(QWidget *parent = nullptr);
     ~Elevator();
-    void addWaitFloors(int floor);  //设置等待楼层
-    bool checkWaitFloors(int floor);  //获取当前电梯配置
+
+
 
 private slots:
+    //定时器槽函数
+    void checkState();
+    void checkColor();
     //按下报警键槽函数
     void on_ele1AertButton_clicked();
     void on_ele2AlertButton_clicked();
@@ -35,7 +42,7 @@ private slots:
     void on_ele4AlertButton_clicked();
     void on_ele5AlertButton_clicked();
 
-    //一号按钮相关
+    //一号电梯按钮相关
     void on_ele1F1Button_clicked();
     void on_ele1F2Button_clicked();
     void on_ele1F3Button_clicked();
@@ -58,6 +65,7 @@ private slots:
     void on_ele1F20Button_clicked();
     void on_ele1OpenButton_clicked();
     void on_ele1CloseButton_clicked();
+    //2号电梯相关
     void on_ele2F1Button_clicked();
     void on_ele2F2Button_clicked();
     void on_ele2F3Button_clicked();
@@ -80,6 +88,7 @@ private slots:
     void on_ele2F20Button_clicked();
     void on_ele2OpenButton_clicked();
     void on_ele2CloseButton_clicked();
+    //3号电梯相关
     void on_ele3F1Button_clicked();
     void on_ele3F2Button_clicked();
     void on_ele3F3Button_clicked();
@@ -102,6 +111,7 @@ private slots:
     void on_ele3F20Button_clicked();
     void on_ele3OpenButton_clicked();
     void on_ele3CloseButton_clicked();
+    //4号电梯相关
     void on_ele4F1Button_clicked();
     void on_ele4F2Button_clicked();
     void on_ele4F3Button_clicked();
@@ -124,6 +134,7 @@ private slots:
     void on_ele4F20Button_clicked();
     void on_ele4OpenButton_clicked();
     void on_ele4CloseButton_clicked();
+    //5号电梯相关
     void on_ele5F1Button_clicked();
     void on_ele5F2Button_clicked();
     void on_ele5F3Button_clicked();
@@ -146,6 +157,7 @@ private slots:
     void on_ele5F20Button_clicked();
     void on_ele5OpenButton_clicked();
     void on_ele5CloseButton_clicked();
+    //楼外按钮相关
     void on_f1UpButton_clicked();
     void on_f2UpButton_clicked();
     void on_f2DownButton_clicked();

@@ -24,8 +24,20 @@ Elevator::Elevator(QWidget *parent)
     {
         _elevator[i]=new Container();
     }
-    //初始化楼外的按钮
-    memset(_waitFloors,false,sizeof(_waitFloors));
+    //初始化上下等待电梯
+    memset(_upWaitFloors,false,sizeof(_upWaitFloors));
+    memset(_downWaitFloors,false,sizeof(_upWaitFloors));
+    //设置定时器
+    //check计时器
+    realTime = new QTimer();
+    connect(realTime,SIGNAL(timeout()),this,SLOT(checkState()));//定时器和更新函数建立联系
+    realTime->setTimerType(Qt::PreciseTimer);
+    realTime->start(1000);
+    //颜色计时器
+    colorTime=new QTimer();
+    connect(colorTime,SIGNAL(timeout()),this,SLOT(checkColor()));//定时器和更新函数建立联系
+    colorTime->setTimerType(Qt::PreciseTimer);
+    colorTime->start(100);
 }
 
 Elevator::~Elevator()
@@ -36,17 +48,203 @@ Elevator::~Elevator()
     {
         delete _elevator[i];
     }
+    delete realTime;  //删除定时器
+    delete colorTime;  //删除颜色定时器
 }
 
-//优先写当前类的public函数
-void Elevator::addWaitFloors(int floor)
+
+
+
+/*槽函数相关*/
+//定时器槽函数
+void Elevator::checkState()
 {
-    _waitFloors[floor]=true;
+    for(int i=0;i<ELEVATOR_NUM;i++)
+    {
+        if(_elevator[i]->getStatus()==UP)
+        {
+            if(_upWaitFloors[_elevator[i]->getFloor()]) //到达当前楼层
+            {
+              //开门，需要重新写
+                _upWaitFloors[_elevator[i]->getFloor()]=false;
+                return;
+            }
+        }
+        else if(_elevator[i]->getStatus()==DOWN)
+        {
+            if(_downWaitFloors[_elevator[i]->getFloor()]) //到达当前楼层
+            {
+              //开门，需要重新写
+                _downWaitFloors[_elevator[i]->getFloor()]=false;
+                return;
+            }
+        }
+    }
 }
 
-bool Elevator::checkWaitFloors(int floor)
+//调整电梯按钮
+void Elevator::checkColor()
 {
-    return _waitFloors[floor];
+    //处理楼外上升按钮
+    if(_upWaitFloors[1])
+        ui->f1UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f1UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[2])
+        ui->f2UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f2UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[3])
+        ui->f3UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f3UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[4])
+        ui->f4UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f4UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[5])
+        ui->f5UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f5UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[6])
+        ui->f6UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f6UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[7])
+        ui->f7UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f7UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[8])
+        ui->f8UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f8UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[9])
+        ui->f9UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f9UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[10])
+        ui->f10UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f10UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[11])
+        ui->f11UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f11UpButton->setStyleSheet("background-color:rgb(225,225,225)");
+    if(_upWaitFloors[12])
+        ui->f12UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f12UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[13])
+        ui->f13UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f13UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[14])
+        ui->f14UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f14UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[15])
+        ui->f15UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f15UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[16])
+        ui->f16UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f16UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[17])
+        ui->f17UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f17UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[18])
+        ui->f18UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f18UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_upWaitFloors[19])
+        ui->f19UpButton->setStyleSheet("background-color: red");
+    else
+        ui->f19UpButton->setStyleSheet("background-color: rgb(225,225,225)");
+
+    //处理楼外下降按钮
+    if(_downWaitFloors[2])
+        ui->f2DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f2DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[3])
+        ui->f3DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f3DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[4])
+        ui->f4DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f4DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[5])
+        ui->f5DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f5DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[6])
+        ui->f6DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f6DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[7])
+        ui->f7DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f7DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[8])
+        ui->f8DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f8DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[9])
+        ui->f9DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f9DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[10])
+        ui->f10DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f10DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[11])
+        ui->f11DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f11DownButton->setStyleSheet("background-color:rgb(225,225,225)");
+    if(_downWaitFloors[12])
+        ui->f12DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f12DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[13])
+        ui->f13DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f13DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[14])
+        ui->f14DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f14DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[15])
+        ui->f15DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f15DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[16])
+        ui->f16DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f16DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[17])
+        ui->f17DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f17DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[18])
+        ui->f18DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f18DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[19])
+        ui->f19DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f19DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_downWaitFloors[20])
+        ui->f20DownButton->setStyleSheet("background-color: red");
+    else
+        ui->f20DownButton->setStyleSheet("background-color: rgb(225,225,225)");
+    //处理一号电梯
+    //处理二号电梯
+    //处理三号电梯
+    //处理四号电梯
+    //处理五号电梯
 }
 
 
@@ -194,91 +392,83 @@ void Elevator::on_ele5AlertButton_clicked()
 //一号电梯相关
 void Elevator::on_ele1F1Button_clicked()
 {
-    if(!_elevator[0]->checkFloor(1))
-    {
-        _elevator[0]->addFloor(1);
-        ui->ele1F1Button->setStyleSheet("background-color: red");
-    }
+    _elevator[0]->addFloor(1);
 }
 void Elevator::on_ele1F2Button_clicked()
 {
-    if(!_elevator[1]->checkFloor(2))
-    {
-        _elevator[0]->addFloor(2);
-        ui->ele1F2Button->setStyleSheet("background-color: red");
-    }
+    _elevator[0]->addFloor(2);
 }
 void Elevator::on_ele1F3Button_clicked()
 {
-
+    _elevator[0]->addFloor(3);
 }
 void Elevator::on_ele1F4Button_clicked()
 {
-
+    _elevator[0]->addFloor(4);
 }
 void Elevator::on_ele1F5Button_clicked()
 {
-
+    _elevator[0]->addFloor(5);
 }
 void Elevator::on_ele1F6Button_clicked()
 {
-
+    _elevator[0]->addFloor(6);
 }
 void Elevator::on_ele1F7Button_clicked()
 {
-
+    _elevator[0]->addFloor(7);
 }
 void Elevator::on_ele1F8Button_clicked()
 {
-
+    _elevator[0]->addFloor(8);
 }
 void Elevator::on_ele1F9Button_clicked()
 {
-
+    _elevator[0]->addFloor(9);
 }
 void Elevator::on_ele1F10Button_clicked()
 {
-
+    _elevator[0]->addFloor(10);
 }
 void Elevator::on_ele1F11Button_clicked()
 {
-
+    _elevator[0]->addFloor(11);
 }
 void Elevator::on_ele1F12Button_clicked()
 {
-
+    _elevator[0]->addFloor(12);
 }
 void Elevator::on_ele1F13Button_clicked()
 {
-
+    _elevator[0]->addFloor(13);
 }
 void Elevator::on_ele1F14Button_clicked()
 {
-
+    _elevator[0]->addFloor(14);
 }
 void Elevator::on_ele1F15Button_clicked()
 {
-
+    _elevator[0]->addFloor(15);
 }
 void Elevator::on_ele1F16Button_clicked()
 {
-
+    _elevator[0]->addFloor(16);
 }
 void Elevator::on_ele1F17Button_clicked()
 {
-
+    _elevator[0]->addFloor(17);
 }
 void Elevator::on_ele1F18Button_clicked()
 {
-
+    _elevator[0]->addFloor(18);
 }
 void Elevator::on_ele1F19Button_clicked()
 {
-
+    _elevator[0]->addFloor(19);
 }
 void Elevator::on_ele1F20Button_clicked()
 {
-
+    _elevator[0]->addFloor(20);
 }
 void Elevator::on_ele1OpenButton_clicked()
 {
@@ -292,102 +482,102 @@ void Elevator::on_ele1CloseButton_clicked()
 //2号电梯相关
 void Elevator::on_ele2F1Button_clicked()
 {
-
+    _elevator[1]->addFloor(1);
 }
 
 void Elevator::on_ele2F2Button_clicked()
 {
-
+    _elevator[1]->addFloor(2);
 }
 
 void Elevator::on_ele2F3Button_clicked()
 {
-
+    _elevator[1]->addFloor(3);
 }
 
 void Elevator::on_ele2F4Button_clicked()
 {
-
+    _elevator[1]->addFloor(4);
 }
 
 void Elevator::on_ele2F5Button_clicked()
 {
-
+    _elevator[1]->addFloor(5);
 }
 
 void Elevator::on_ele2F6Button_clicked()
 {
-
+    _elevator[1]->addFloor(6);
 }
 
 void Elevator::on_ele2F7Button_clicked()
 {
-
+    _elevator[1]->addFloor(7);
 }
 
 void Elevator::on_ele2F8Button_clicked()
 {
-
+    _elevator[1]->addFloor(8);
 }
 
 void Elevator::on_ele2F9Button_clicked()
 {
-
+    _elevator[1]->addFloor(9);
 }
 
 void Elevator::on_ele2F10Button_clicked()
 {
-
+    _elevator[1]->addFloor(10);
 }
 
 void Elevator::on_ele2F11Button_clicked()
 {
-
+    _elevator[1]->addFloor(11);
 }
 
 void Elevator::on_ele2F12Button_clicked()
 {
-
+    _elevator[1]->addFloor(12);
 }
 
 void Elevator::on_ele2F13Button_clicked()
 {
-
+    _elevator[1]->addFloor(13);
 }
 
 void Elevator::on_ele2F14Button_clicked()
 {
-
+    _elevator[1]->addFloor(14);
 }
 
 void Elevator::on_ele2F15Button_clicked()
 {
-
+    _elevator[1]->addFloor(15);
 }
 
 void Elevator::on_ele2F16Button_clicked()
 {
-
+    _elevator[1]->addFloor(16);
 }
 
 void Elevator::on_ele2F17Button_clicked()
 {
-
+    _elevator[1]->addFloor(17);
 }
 
 void Elevator::on_ele2F18Button_clicked()
 {
-
+    _elevator[1]->addFloor(18);
 }
 
 void Elevator::on_ele2F19Button_clicked()
 {
-
+    _elevator[1]->addFloor(19);
 }
 
 void Elevator::on_ele2F20Button_clicked()
 {
-
+    _elevator[1]->addFloor(20);
 }
 
 void Elevator::on_ele2OpenButton_clicked()
@@ -404,102 +594,102 @@ void Elevator::on_ele2CloseButton_clicked()
 
 void Elevator::on_ele3F1Button_clicked()
 {
-
+    _elevator[2]->addFloor(1);
 }
 
 void Elevator::on_ele3F2Button_clicked()
 {
-
+    _elevator[2]->addFloor(2);
 }
 
 void Elevator::on_ele3F3Button_clicked()
 {
-
+    _elevator[2]->addFloor(3);
 }
 
 void Elevator::on_ele3F4Button_clicked()
 {
-
+    _elevator[2]->addFloor(4);
 }
 
 void Elevator::on_ele3F5Button_clicked()
 {
-
+    _elevator[2]->addFloor(5);
 }
 
 void Elevator::on_ele3F6Button_clicked()
 {
-
+    _elevator[2]->addFloor(6);
 }
 
 void Elevator::on_ele3F7Button_clicked()
 {
-
+    _elevator[2]->addFloor(7);
 }
 
 void Elevator::on_ele3F8Button_clicked()
 {
-
+    _elevator[2]->addFloor(8);
 }
 
 void Elevator::on_ele3F9Button_clicked()
 {
-
+    _elevator[2]->addFloor(9);
 }
 
 void Elevator::on_ele3F10Button_clicked()
 {
-
+    _elevator[2]->addFloor(10);
 }
 
 void Elevator::on_ele3F11Button_clicked()
 {
-
+    _elevator[2]->addFloor(11);
 }
 
 void Elevator::on_ele3F12Button_clicked()
 {
-
+    _elevator[2]->addFloor(12);
 }
 
 void Elevator::on_ele3F13Button_clicked()
 {
-
+    _elevator[2]->addFloor(13);
 }
 
 void Elevator::on_ele3F14Button_clicked()
 {
-
+    _elevator[2]->addFloor(14);
 }
 
 void Elevator::on_ele3F15Button_clicked()
 {
-
+    _elevator[2]->addFloor(15);
 }
 
 void Elevator::on_ele3F16Button_clicked()
 {
-
+    _elevator[2]->addFloor(16);
 }
 
 void Elevator::on_ele3F17Button_clicked()
 {
-
+    _elevator[2]->addFloor(17);
 }
 
 void Elevator::on_ele3F18Button_clicked()
 {
-
+    _elevator[2]->addFloor(18);
 }
 
 void Elevator::on_ele3F19Button_clicked()
 {
-
+    _elevator[2]->addFloor(19);
 }
 
 void Elevator::on_ele3F20Button_clicked()
 {
-
+    _elevator[2]->addFloor(20);
 }
 
 void Elevator::on_ele3OpenButton_clicked()
@@ -516,102 +706,102 @@ void Elevator::on_ele3CloseButton_clicked()
 
 void Elevator::on_ele4F1Button_clicked()
 {
-
+    _elevator[3]->addFloor(1);
 }
 
 void Elevator::on_ele4F2Button_clicked()
 {
-
+    _elevator[3]->addFloor(2);
 }
 
 void Elevator::on_ele4F3Button_clicked()
 {
-
+    _elevator[3]->addFloor(3);
 }
 
 void Elevator::on_ele4F4Button_clicked()
 {
-
+    _elevator[3]->addFloor(4);
 }
 
 void Elevator::on_ele4F5Button_clicked()
 {
-
+    _elevator[3]->addFloor(5);
 }
 
 void Elevator::on_ele4F6Button_clicked()
 {
-
+    _elevator[3]->addFloor(6);
 }
 
 void Elevator::on_ele4F7Button_clicked()
 {
-
+    _elevator[3]->addFloor(7);
 }
 
 void Elevator::on_ele4F8Button_clicked()
 {
-
+    _elevator[3]->addFloor(8);
 }
 
 void Elevator::on_ele4F9Button_clicked()
 {
-
+    _elevator[3]->addFloor(9);
 }
 
 void Elevator::on_ele4F10Button_clicked()
 {
-
+    _elevator[3]->addFloor(10);
 }
 
 void Elevator::on_ele4F11Button_clicked()
 {
-
+    _elevator[3]->addFloor(11);
 }
 
 void Elevator::on_ele4F12Button_clicked()
 {
-
+    _elevator[3]->addFloor(12);
 }
 
 void Elevator::on_ele4F13Button_clicked()
 {
-
+    _elevator[3]->addFloor(13);
 }
 
 void Elevator::on_ele4F14Button_clicked()
 {
-
+    _elevator[3]->addFloor(14);
 }
 
 void Elevator::on_ele4F15Button_clicked()
 {
-
+    _elevator[3]->addFloor(15);
 }
 
 void Elevator::on_ele4F16Button_clicked()
 {
-
+    _elevator[3]->addFloor(16);
 }
 
 void Elevator::on_ele4F17Button_clicked()
 {
-
+    _elevator[3]->addFloor(17);
 }
 
 void Elevator::on_ele4F18Button_clicked()
 {
-
+    _elevator[3]->addFloor(18);
 }
 
 void Elevator::on_ele4F19Button_clicked()
 {
-
+    _elevator[3]->addFloor(19);
 }
 
 void Elevator::on_ele4F20Button_clicked()
 {
-
+    _elevator[3]->addFloor(20);
 }
 
 void Elevator::on_ele4OpenButton_clicked()
@@ -628,102 +818,102 @@ void Elevator::on_ele4CloseButton_clicked()
 
 void Elevator::on_ele5F1Button_clicked()
 {
-
+    _elevator[4]->addFloor(1);
 }
 
 void Elevator::on_ele5F2Button_clicked()
 {
-
+    _elevator[4]->addFloor(2);
 }
 
 void Elevator::on_ele5F3Button_clicked()
 {
-
+    _elevator[4]->addFloor(3);
 }
 
 void Elevator::on_ele5F4Button_clicked()
 {
-
+    _elevator[4]->addFloor(4);
 }
 
 void Elevator::on_ele5F5Button_clicked()
 {
-
+    _elevator[4]->addFloor(5);
 }
 
 void Elevator::on_ele5F6Button_clicked()
 {
-
+    _elevator[4]->addFloor(6);
 }
 
 void Elevator::on_ele5F7Button_clicked()
 {
-
+    _elevator[4]->addFloor(7);
 }
 
 void Elevator::on_ele5F8Button_clicked()
 {
-
+    _elevator[4]->addFloor(8);
 }
 
 void Elevator::on_ele5F9Button_clicked()
 {
-
+    _elevator[4]->addFloor(9);
 }
 
 void Elevator::on_ele5F10Button_clicked()
 {
-
+    _elevator[4]->addFloor(10);
 }
 
 void Elevator::on_ele5F11Button_clicked()
 {
-
+    _elevator[4]->addFloor(11);
 }
 
 void Elevator::on_ele5F12Button_clicked()
 {
-
+    _elevator[4]->addFloor(12);
 }
 
 void Elevator::on_ele5F13Button_clicked()
 {
-
+    _elevator[4]->addFloor(13);
 }
 
 void Elevator::on_ele5F14Button_clicked()
 {
-
+    _elevator[4]->addFloor(14);
 }
 
 void Elevator::on_ele5F15Button_clicked()
 {
-
+    _elevator[4]->addFloor(15);
 }
 
 void Elevator::on_ele5F16Button_clicked()
 {
-
+    _elevator[4]->addFloor(16);
 }
 
 void Elevator::on_ele5F17Button_clicked()
 {
-
+    _elevator[4]->addFloor(17);
 }
 
 void Elevator::on_ele5F18Button_clicked()
 {
-
+    _elevator[4]->addFloor(18);
 }
 
 void Elevator::on_ele5F19Button_clicked()
 {
-
+    _elevator[4]->addFloor(19);
 }
 
 void Elevator::on_ele5F20Button_clicked()
 {
-
+    _elevator[4]->addFloor(20);
 }
 
 void Elevator::on_ele5OpenButton_clicked()
@@ -740,190 +930,190 @@ void Elevator::on_ele5CloseButton_clicked()
 
 void Elevator::on_f1UpButton_clicked()
 {
-
+   _upWaitFloors[1]=true;
 }
 
 void Elevator::on_f2UpButton_clicked()
 {
-
+    _upWaitFloors[2]=true;
 }
 
 void Elevator::on_f2DownButton_clicked()
 {
-
+    _downWaitFloors[2]=true;
 }
 
 void Elevator::on_f3UpButton_clicked()
 {
-
+    _upWaitFloors[3]=true;
 }
 
 void Elevator::on_f3DownButton_clicked()
 {
-
+    _downWaitFloors[3]=true;
 }
 
 void Elevator::on_f4UpButton_clicked()
 {
-
+    _upWaitFloors[4]=true;
 }
 
 void Elevator::on_f4DownButton_clicked()
 {
-
+    _downWaitFloors[4]=true;
 }
 
 void Elevator::on_f5UpButton_clicked()
 {
-
+    _upWaitFloors[5]=true;
 }
 
 void Elevator::on_f5DownButton_clicked()
 {
-
+    _downWaitFloors[5]=true;
 }
 
 void Elevator::on_f6UpButton_clicked()
 {
-
+    _upWaitFloors[6]=true;
 }
 
 void Elevator::on_f6DownButton_clicked()
 {
-
+    _downWaitFloors[6]=true;
 }
 
 void Elevator::on_f7UpButton_clicked()
 {
-
+    _upWaitFloors[7]=true;
 }
 
 void Elevator::on_f7DownButton_clicked()
 {
-
+    _downWaitFloors[7]=true;
 }
 
 void Elevator::on_f8UpButton_clicked()
 {
-
+    _upWaitFloors[8]=true;
 }
 
 void Elevator::on_f8DownButton_clicked()
 {
-
+    _downWaitFloors[8]=true;
 }
 
 void Elevator::on_f9UpButton_clicked()
 {
-
+    _upWaitFloors[9]=true;
 }
 
 void Elevator::on_f9DownButton_clicked()
 {
-
+    _downWaitFloors[9]=true;
 }
 
 void Elevator::on_f10UpButton_clicked()
 {
-
+    _upWaitFloors[10]=true;
 }
 
 void Elevator::on_f10DownButton_clicked()
 {
-
+    _downWaitFloors[10]=true;
 }
 
 void Elevator::on_f11UpButton_clicked()
 {
-
+    _upWaitFloors[11]=true;
 }
 
 void Elevator::on_f11DownButton_clicked()
 {
-
+    _downWaitFloors[11]=true;
 }
 
 void Elevator::on_f12UpButton_clicked()
 {
-
+    _upWaitFloors[12]=true;
 }
 
 void Elevator::on_f12DownButton_clicked()
 {
-
+    _downWaitFloors[12]=true;
 }
 
 void Elevator::on_f13UpButton_clicked()
 {
-
+    _upWaitFloors[13]=true;
 }
 
 void Elevator::on_f13DownButton_clicked()
 {
-
+    _downWaitFloors[13]=true;
 }
 
 void Elevator::on_f14UpButton_clicked()
 {
-
+    _upWaitFloors[14]=true;
 }
 
 void Elevator::on_f14DownButton_clicked()
 {
-
+    _downWaitFloors[14]=true;
 }
 
 void Elevator::on_f15UpButton_clicked()
 {
-
+    _upWaitFloors[15]=true;
 }
 
 void Elevator::on_f15DownButton_clicked()
 {
-
+    _downWaitFloors[15]=true;
 }
 
 void Elevator::on_f16UpButton_clicked()
 {
-
+    _upWaitFloors[16]=true;
 }
 
 void Elevator::on_f16DownButton_clicked()
 {
-
+    _downWaitFloors[16]=true;
 }
 
 void Elevator::on_f17UpButton_clicked()
 {
-
+    _upWaitFloors[17]=true;
 }
 
 void Elevator::on_f17DownButton_clicked()
 {
-
+    _downWaitFloors[17]=true;
 }
 
 void Elevator::on_f18UpButton_clicked()
 {
-
+    _upWaitFloors[18]=true;
 }
 
 void Elevator::on_f18DownButton_clicked()
 {
-
+    _downWaitFloors[18]=true;
 }
 
 void Elevator::on_f19UpButton_clicked()
 {
-
+    _upWaitFloors[19]=true;
 }
 
 void Elevator::on_f19DownButton_clicked()
 {
-
+    _downWaitFloors[19]=true;
 }
 
 void Elevator::on_f20DownButton_clicked()
 {
-
+    _downWaitFloors[20]=true;
 }

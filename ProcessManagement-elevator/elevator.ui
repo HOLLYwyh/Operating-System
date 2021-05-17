@@ -534,8 +534,14 @@
       <height>50</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f2UpButton">
@@ -560,8 +566,11 @@
       <height>50</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f2DownButton">
@@ -586,8 +595,11 @@
       <height>50</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f3UpButton">
@@ -612,8 +624,11 @@
       <height>50</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f3DownButton">
@@ -638,8 +653,11 @@
       <height>50</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f4UpButton">
@@ -665,7 +683,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f4DownButton">
@@ -691,7 +709,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f5UpButton">
@@ -717,7 +735,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f5DownButton">
@@ -743,7 +761,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f6UpButton">
@@ -769,7 +787,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f6DownButton">
@@ -795,7 +813,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f7UpButton">
@@ -821,7 +839,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f7DownButton">
@@ -847,7 +865,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f8UpButton">
@@ -873,7 +891,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f8DownButton">
@@ -899,7 +917,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f9UpButton">
@@ -925,7 +943,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f9DownButton">
@@ -951,7 +969,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f10UpButton">
@@ -977,7 +995,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f10DownButton">
@@ -1003,7 +1021,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f11UpButton">
@@ -1029,7 +1047,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f11DownButton">
@@ -1055,7 +1073,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f12UpButton">
@@ -1081,7 +1099,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f12DownButton">
@@ -1107,7 +1125,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f13UpButton">
@@ -1133,7 +1151,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f13DownButton">
@@ -1159,7 +1177,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f14UpButton">
@@ -1185,7 +1203,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f14DownButton">
@@ -1211,7 +1229,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f15UpButton">
@@ -1237,7 +1255,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f15DownButton">
@@ -1263,7 +1281,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f16UpButton">
@@ -1289,7 +1307,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f16DownButton">
@@ -1315,7 +1333,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f17UpButton">
@@ -1341,7 +1359,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f17DownButton">
@@ -1367,7 +1385,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f18UpButton">
@@ -1393,7 +1411,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f18DownButton">
@@ -1419,7 +1437,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f19UpButton">
@@ -1457,7 +1475,7 @@
      <bool>false</bool>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f19DownButton">
@@ -1483,7 +1501,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="f20DownButton">
@@ -1524,7 +1542,7 @@
      <number>300</number>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1F10Button">
@@ -3599,6 +3617,9 @@
       <height>32</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="ele5F20Button">
     <property name="geometry">
@@ -3879,7 +3900,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele1CloseButton">
@@ -3905,7 +3926,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2OpenButton">
@@ -3931,7 +3952,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2CloseButton">
@@ -3957,7 +3978,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele2AlertButton">
@@ -4087,7 +4108,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele3CloseButton">
@@ -4113,7 +4134,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4OpenButton">
@@ -4139,7 +4160,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele4CloseButton">
@@ -4165,7 +4186,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5OpenButton">
@@ -4191,7 +4212,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="ele5CloseButton">
@@ -4217,7 +4238,7 @@
      </size>
     </property>
     <property name="flat">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QGraphicsView" name="ele1LeftDoor">

@@ -4,14 +4,15 @@ Container::Container()
 {
     _status = FREE;  //空闲
     _floor = 1;      //默认在1楼
-    memset(_floors,0,sizeof(_floors));
+    memset(_Floors,0,sizeof(_Floors));
 }
 
 //添加楼层数
 void Container::addFloor(int floor)
 {
-    _floors[floor]=true;
+    _Floors[floor]=true;
 }
+
 
 //电梯自动更新运行状态    ---之后还需要详细说明
 void Container::changeStatus()
@@ -40,5 +41,6 @@ int Container::getFloor()
 //获取楼层状态
 bool Container::checkFloor(int floor)
 {
-    return _floors[floor];
+    return _Floors[floor];
 }
+
