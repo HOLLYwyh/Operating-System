@@ -47,27 +47,27 @@ Elevator::Elevator(QWidget *parent)
     updateElevatorOne=new QTimer();
     connect(updateElevatorOne,SIGNAL(timeout()),this,SLOT(updateEle1()));//定时器和更新函数建立联系
     updateElevatorOne->setTimerType(Qt::PreciseTimer);
-    updateElevatorOne->start(1000);
+    updateElevatorOne->start(850);
 
    updateElevatorTwo=new QTimer();
     connect(updateElevatorTwo,SIGNAL(timeout()),this,SLOT(updateEle2()));//定时器和更新函数建立联系
     updateElevatorTwo->setTimerType(Qt::PreciseTimer);
-    updateElevatorTwo->start(1000);
+    updateElevatorTwo->start(850);
 
     updateElevatorThree=new QTimer();
     connect(updateElevatorThree,SIGNAL(timeout()),this,SLOT(updateEle3()));//定时器和更新函数建立联系
     updateElevatorThree->setTimerType(Qt::PreciseTimer);
-    updateElevatorThree->start(1000);
+    updateElevatorThree->start(850);
 
     updateElevatorFour=new QTimer();
     connect(updateElevatorFour,SIGNAL(timeout()),this,SLOT(updateELe4()));//定时器和更新函数建立联系
     updateElevatorFour->setTimerType(Qt::PreciseTimer);
-    updateElevatorFour->start(1000);
+    updateElevatorFour->start(850);
 
     updateElevatorFive=new QTimer();
     connect(updateElevatorFive,SIGNAL(timeout()),this,SLOT(updateEle5()));//定时器和更新函数建立联系
     updateElevatorFive->setTimerType(Qt::PreciseTimer);
-    updateElevatorFive->start(1000);
+    updateElevatorFive->start(850);
 
 }
 
@@ -98,6 +98,8 @@ void Elevator::updateWake()
     //电梯内以及同层楼
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
+        if(_isDamage[i])
+            continue;
         if(_elevator[i]->getStatus()==FREE)
         {
             //电梯内唤醒上行
@@ -124,17 +126,16 @@ void Elevator::updateWake()
         }
         if(_elevator[i]->getStatus()==FREE)
         {
-            //同层楼上行唤醒
+            //楼外同层上行唤醒
             if(_upWaitFloors[_elevator[i]->getFloor()])
             {
                _elevator[i]->setStatus(UP);
                break;
             }
         }
-
         if(_elevator[i]->getStatus()==FREE)
         {
-            //同层楼下行唤醒
+            //楼外同层下行唤醒
             if(_downWaitFloors[_elevator[i]->getFloor()])
             {
                _elevator[i]->setStatus(DOWN);
@@ -142,7 +143,6 @@ void Elevator::updateWake()
             }
         }
     }
-
     for(int j=1;j<MAX_FLOORS;j++)
     {
         int nearestElevator=0;
@@ -153,6 +153,10 @@ void Elevator::updateWake()
         {
             for(int k=0;k<ELEVATOR_NUM;k++)
             {
+                if(_isDamage[k])//如果电梯已经损坏
+                {
+                    continue;
+                }
                 if((_elevator[k]->getStatus()==UP)&&(_elevator[k]->getFloor()<j))//上行并且比当前楼层低
                 {
                     if(j-_elevator[k]->getFloor()<minFloor)
@@ -205,6 +209,10 @@ void Elevator::updateWake()
        {
           for(int k=0;k<ELEVATOR_NUM;k++)
           {
+              if(_isDamage[k])
+              {
+                  continue;
+              }
               if((_elevator[k]->getStatus()==DOWN)&&(_elevator[k]->getFloor()>j))
               {
                    if(_elevator[k]->getFloor()-j<minFloor)
@@ -249,6 +257,8 @@ void Elevator::updateWake()
 //更新电梯1
 void Elevator::updateEle1()
 {
+    if(_isDamage[0])
+        return;
     if(_elevator[0]->getStop())
     {
         //电梯停靠
@@ -359,6 +369,8 @@ void Elevator::updateEle1()
 //更新电梯2
 void Elevator::updateEle2()
 {
+    if(_isDamage[1])
+        return;
     if(_elevator[1]->getStop())
     {
         //电梯停靠
@@ -468,6 +480,8 @@ void Elevator::updateEle2()
 //更新电梯3
 void Elevator::updateEle3()
 {
+    if(_isDamage[2])
+        return;
     if(_elevator[2]->getStop())
     {
         //电梯停靠
@@ -577,6 +591,8 @@ void Elevator::updateEle3()
 //更新电梯4
 void Elevator::updateELe4()
 {
+    if(_isDamage[3])
+        return;
     if(_elevator[3]->getStop())
     {
         //电梯停靠
@@ -686,6 +702,8 @@ void Elevator::updateELe4()
 //更新电梯5
 void Elevator::updateEle5()
 {
+    if(_isDamage[4])
+        return;
     if(_elevator[4]->getStop())
     {
         //电梯停靠
@@ -979,15 +997,410 @@ void Elevator::checkColor()
     else
         ui->f20DownButton->setStyleSheet("background-color: rgb(225,225,225)");
     //处理一号电梯
-
+    if(_elevator[0]->checkFloor(1))
+        ui->ele1F1Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F1Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(2))
+        ui->ele1F2Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F2Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(3))
+        ui->ele1F3Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F3Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(4))
+        ui->ele1F4Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F4Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(5))
+        ui->ele1F5Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F5Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(6))
+        ui->ele1F6Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F6Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(7))
+        ui->ele1F7Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F7Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(8))
+        ui->ele1F8Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F8Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(9))
+        ui->ele1F9Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F9Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(10))
+        ui->ele1F10Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F10Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(11))
+        ui->ele1F11Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F11Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(12))
+        ui->ele1F12Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F12Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(13))
+        ui->ele1F13Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F13Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(14))
+        ui->ele1F14Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F14Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(15))
+        ui->ele1F15Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F15Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(16))
+        ui->ele1F16Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F16Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(17))
+        ui->ele1F17Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F17Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(18))
+        ui->ele1F18Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F18Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(19))
+        ui->ele1F19Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F19Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[0]->checkFloor(20))
+        ui->ele1F20Button->setStyleSheet("background-color: red");
+    else
+        ui->ele1F20Button->setStyleSheet("background-color: rgb(225,225,225)");
     //处理二号电梯
-
+    if(_elevator[1]->checkFloor(1))
+        ui->ele2F1Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F1Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(2))
+        ui->ele2F2Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F2Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(3))
+        ui->ele2F3Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F3Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(4))
+        ui->ele2F4Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F4Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(5))
+        ui->ele2F5Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F5Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(6))
+        ui->ele2F6Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F6Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(7))
+        ui->ele2F7Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F7Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(8))
+        ui->ele2F8Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F8Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(9))
+        ui->ele2F9Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F9Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(10))
+        ui->ele2F10Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F10Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(11))
+        ui->ele2F11Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F11Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(12))
+        ui->ele2F12Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F12Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(13))
+        ui->ele2F13Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F13Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(14))
+        ui->ele2F14Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F14Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(15))
+        ui->ele2F15Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F15Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(16))
+        ui->ele2F16Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F16Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(17))
+        ui->ele2F17Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F17Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(18))
+        ui->ele2F18Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F18Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(19))
+        ui->ele2F19Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F19Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[1]->checkFloor(20))
+        ui->ele2F20Button->setStyleSheet("background-color: red");
+    else
+        ui->ele2F20Button->setStyleSheet("background-color: rgb(225,225,225)");
     //处理三号电梯
-
+    if(_elevator[2]->checkFloor(1))
+        ui->ele3F1Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F1Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(2))
+        ui->ele3F2Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F2Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(3))
+        ui->ele3F3Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F3Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(4))
+        ui->ele3F4Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F4Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(5))
+        ui->ele3F5Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F5Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(6))
+        ui->ele3F6Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F6Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(7))
+        ui->ele3F7Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F7Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(8))
+        ui->ele3F8Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F8Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(9))
+        ui->ele3F9Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F9Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(10))
+        ui->ele3F10Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F10Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(11))
+        ui->ele3F11Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F11Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(12))
+        ui->ele3F12Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F12Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(13))
+        ui->ele3F13Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F13Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(14))
+        ui->ele3F14Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F14Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(15))
+        ui->ele3F15Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F15Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(16))
+        ui->ele3F16Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F16Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(17))
+        ui->ele3F17Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F17Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(18))
+        ui->ele3F18Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F18Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(19))
+        ui->ele3F19Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F19Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[2]->checkFloor(20))
+        ui->ele3F20Button->setStyleSheet("background-color: red");
+    else
+        ui->ele3F20Button->setStyleSheet("background-color: rgb(225,225,225)");
     //处理四号电梯
-
+    if(_elevator[3]->checkFloor(1))
+        ui->ele4F1Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F1Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(2))
+        ui->ele4F2Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F2Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(3))
+        ui->ele4F3Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F3Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(4))
+        ui->ele4F4Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F4Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(5))
+        ui->ele4F5Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F5Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(6))
+        ui->ele4F6Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F6Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(7))
+        ui->ele4F7Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F7Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(8))
+        ui->ele4F8Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F8Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(9))
+        ui->ele4F9Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F9Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(10))
+        ui->ele4F10Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F10Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(11))
+        ui->ele4F11Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F11Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(12))
+        ui->ele4F12Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F12Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(13))
+        ui->ele4F13Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F13Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(14))
+        ui->ele4F14Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F14Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(15))
+        ui->ele4F15Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F15Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(16))
+        ui->ele4F16Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F16Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(17))
+        ui->ele4F17Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F17Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(18))
+        ui->ele4F18Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F18Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(19))
+        ui->ele4F19Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F19Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[3]->checkFloor(20))
+        ui->ele4F20Button->setStyleSheet("background-color: red");
+    else
+        ui->ele4F20Button->setStyleSheet("background-color: rgb(225,225,225)");
     //处理五号电梯
-
+    if(_elevator[4]->checkFloor(1))
+        ui->ele5F1Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F1Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(2))
+        ui->ele5F2Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F2Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(3))
+        ui->ele5F3Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F3Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(4))
+        ui->ele5F4Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F4Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(5))
+        ui->ele5F5Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F5Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(6))
+        ui->ele5F6Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F6Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(7))
+        ui->ele5F7Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F7Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(8))
+        ui->ele5F8Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F8Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(9))
+        ui->ele5F9Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F9Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(10))
+        ui->ele5F10Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F10Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(11))
+        ui->ele5F11Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F11Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(12))
+        ui->ele5F12Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F12Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(13))
+        ui->ele5F13Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F13Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(14))
+        ui->ele5F14Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F14Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(15))
+        ui->ele5F15Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F15Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(16))
+        ui->ele5F16Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F16Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(17))
+        ui->ele5F17Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F17Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(18))
+        ui->ele5F18Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F18Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(19))
+        ui->ele5F19Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F19Button->setStyleSheet("background-color: rgb(225,225,225)");
+    if(_elevator[4]->checkFloor(20))
+        ui->ele5F20Button->setStyleSheet("background-color: red");
+    else
+        ui->ele5F20Button->setStyleSheet("background-color: rgb(225,225,225)");
 }
 
 
