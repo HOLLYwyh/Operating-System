@@ -38,6 +38,37 @@ Elevator::Elevator(QWidget *parent)
     connect(colorTime,SIGNAL(timeout()),this,SLOT(checkColor()));//定时器和更新函数建立联系
     colorTime->setTimerType(Qt::PreciseTimer);
     colorTime->start(100);
+    //唤醒电梯
+    wakeUp=new QTimer();
+    connect(wakeUp,SIGNAL(timeout()),this,SLOT(updateWake()));//定时器和更新函数建立联系
+    wakeUp->setTimerType(Qt::PreciseTimer);
+    wakeUp->start(100);
+    //电梯计时器
+    updateElevatorOne=new QTimer();
+    connect(updateElevatorOne,SIGNAL(timeout()),this,SLOT(updateEle1()));//定时器和更新函数建立联系
+    updateElevatorOne->setTimerType(Qt::PreciseTimer);
+    updateElevatorOne->start(1000);
+
+   updateElevatorTwo=new QTimer();
+    connect(updateElevatorTwo,SIGNAL(timeout()),this,SLOT(updateEle2()));//定时器和更新函数建立联系
+    updateElevatorTwo->setTimerType(Qt::PreciseTimer);
+    updateElevatorTwo->start(1000);
+
+    updateElevatorThree=new QTimer();
+    connect(updateElevatorThree,SIGNAL(timeout()),this,SLOT(updateEle3()));//定时器和更新函数建立联系
+    updateElevatorThree->setTimerType(Qt::PreciseTimer);
+    updateElevatorThree->start(1000);
+
+    updateElevatorFour=new QTimer();
+    connect(updateElevatorFour,SIGNAL(timeout()),this,SLOT(updateELe4()));//定时器和更新函数建立联系
+    updateElevatorFour->setTimerType(Qt::PreciseTimer);
+    updateElevatorFour->start(1000);
+
+    updateElevatorFive=new QTimer();
+    connect(updateElevatorFive,SIGNAL(timeout()),this,SLOT(updateEle5()));//定时器和更新函数建立联系
+    updateElevatorFive->setTimerType(Qt::PreciseTimer);
+    updateElevatorFive->start(1000);
+
 }
 
 Elevator::~Elevator()
@@ -50,39 +81,746 @@ Elevator::~Elevator()
     }
     delete realTime;  //删除定时器
     delete colorTime;  //删除颜色定时器
+    delete wakeUp;
+    delete updateElevatorOne;
+    delete updateElevatorTwo;
+    delete updateElevatorThree;
+    delete updateElevatorFour;
+    delete updateElevatorFive;
 }
 
 
-
-
 /*槽函数相关*/
-//定时器槽函数
+//唤醒空闲电梯
+void Elevator::updateWake()
+{
+    //这里的电梯唤醒算法非常重要
+    //电梯内以及同层楼
+    for(int i=0;i<ELEVATOR_NUM;i++)
+    {
+        if(_elevator[i]->getStatus()==FREE)
+        {
+            //电梯内唤醒上行
+            for(int j=_elevator[i]->getFloor()+1;j<MAX_FLOORS;j++)
+            {
+                if(_elevator[i]->checkFloor(j))
+                {
+                   _elevator[i]->setStatus(UP);
+                    break;
+                }
+            }
+        }
+        if(_elevator[i]->getStatus()==FREE)
+        {
+            //电梯内唤醒下行
+            for(int j=1;j<_elevator[i]->getFloor();j++) //判断下行
+            {
+                if(_elevator[i]->checkFloor(j))
+                {
+                   _elevator[i]->setStatus(DOWN);
+                    break;
+                }
+            }
+        }
+        if(_elevator[i]->getStatus()==FREE)
+        {
+            //同层楼上行唤醒
+            if(_upWaitFloors[_elevator[i]->getFloor()])
+            {
+               _elevator[i]->setStatus(UP);
+               break;
+            }
+        }
+
+        if(_elevator[i]->getStatus()==FREE)
+        {
+            //同层楼下行唤醒
+            if(_downWaitFloors[_elevator[i]->getFloor()])
+            {
+               _elevator[i]->setStatus(DOWN);
+               break;
+            }
+        }
+    }
+
+    for(int j=1;j<MAX_FLOORS;j++)
+    {
+        int nearestElevator=0;
+        int minFloor=INT_MAX;
+        bool  flag=false; //是否需要换向
+        bool tag=false;
+        if(_upWaitFloors[j])  //当前有楼层等待
+        {
+            for(int k=0;k<ELEVATOR_NUM;k++)
+            {
+                if((_elevator[k]->getStatus()==UP)&&(_elevator[k]->getFloor()<j))//上行并且比当前楼层低
+                {
+                    if(j-_elevator[k]->getFloor()<minFloor)
+                    {
+                        minFloor=j-_elevator[k]->getFloor();
+                        nearestElevator=k;
+                        flag=false;
+                    }
+                }
+                else if((_elevator[k]->getStatus()==FREE))
+                {
+                    if(abs(j-_elevator[k]->getFloor())<minFloor)
+                    {
+                        flag=(j>_elevator[k]->getFloor())?false:true;
+                        minFloor=abs(j-_elevator[k]->getFloor());
+                        nearestElevator=k;
+                    }
+                }
+                if(_elevator[k]->getExtend())
+                {
+                    tag=true;
+                }
+            }
+
+           if(flag)
+           {
+               if(!tag)
+               {
+                   _elevator[nearestElevator]->setExtend(true);
+                   _elevator[nearestElevator]->setStatus(DOWN);
+               }
+
+           }
+           else
+           {
+             _elevator[nearestElevator]->setStatus(UP);
+           }
+           break;
+        }
+    }
+
+    for(int j=1;j<MAX_FLOORS;j++)
+    {
+        int nearestElevator=0;
+        int minFloor=INT_MAX;
+        bool flag=false;  //是否需要换向
+        bool tag=false;   //是否已经有电梯换向
+
+       if(_downWaitFloors[j])  //当前有楼层等待
+       {
+          for(int k=0;k<ELEVATOR_NUM;k++)
+          {
+              if((_elevator[k]->getStatus()==DOWN)&&(_elevator[k]->getFloor()>j))
+              {
+                   if(_elevator[k]->getFloor()-j<minFloor)
+                   {
+                       minFloor=_elevator[k]->getFloor()-j;
+                       nearestElevator=k;
+                       flag=false;
+                    }
+              }
+              if((_elevator[k]->getStatus()==FREE))
+              {
+                 if(abs(_elevator[k]->getFloor()-j)<minFloor)
+                 {
+                    flag=(_elevator[k]->getFloor()>j)?false:true;
+                    minFloor=abs(_elevator[k]->getFloor()-j);
+                    nearestElevator=k;
+                  }
+              }
+              if(_elevator[k]->getExtend())
+              {
+                  tag=true;
+              }
+           }
+          if(flag)
+          {
+              if(!tag)
+              {
+                  _elevator[nearestElevator]->setExtend(true);
+                  _elevator[nearestElevator]->setStatus(UP);
+              }
+           }
+          else
+          {
+              _elevator[nearestElevator]->setStatus(DOWN);
+          }
+          break;
+       }
+     }
+
+}
+
+//更新电梯1
+void Elevator::updateEle1()
+{
+    if(_elevator[0]->getStop())
+    {
+        //电梯停靠
+        _elevator[0]->setStop(false);  //更改电梯停靠状态
+    }
+    else
+    {
+        int floor=_elevator[0]->getFloor();
+        int flag=true;             //是否需要切换运行状态
+        if(_elevator[0]->getStatus()==UP)//当前运行时上升状态
+        {
+            for(int i=_elevator[0]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_elevator[0]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[0]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_upWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+
+            }
+            if(_elevator[0]->getExtend())
+            {
+                for(int i=_elevator[0]->getFloor()+1;i<MAX_FLOORS;i++)
+                {
+                    if(_downWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[0]->setStatus(FREE);
+                _elevator[0]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=min(floor+1,FLOORS);
+                _elevator[0]->setFloor(floor);
+                 ui->lcdOne->display(floor);
+                if(floor==FLOORS)
+                {
+                    _elevator[0]->setStatus(DOWN); //由上升变成下降
+                }
+            }
+        }
+        else if(_elevator[0]->getStatus()==DOWN)//当前是下降状态
+        {
+            for(int i=_elevator[0]->getFloor()-1;i>0;i--)
+            {
+                if(_elevator[0]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[0]->getFloor()-1;i>0;i--)
+            {
+                if(_downWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[0]->getExtend())
+            {
+                for(int i=_elevator[0]->getFloor()-1;i>0;i--)
+                {
+                    if(_upWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[0]->setStatus(FREE);
+                _elevator[0]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=max(floor-1,1);
+                _elevator[0]->setFloor(floor);
+                 ui->lcdOne->display(floor);
+                if(floor==1)
+                {
+                    _elevator[0]->setStatus(UP); //由上升变成下降
+                }
+
+            }
+        }
+        //空闲状态 无事发生
+    }
+}
+//更新电梯2
+void Elevator::updateEle2()
+{
+    if(_elevator[1]->getStop())
+    {
+        //电梯停靠
+        _elevator[1]->setStop(false);  //更改电梯停靠状态
+    }
+    else
+    {
+        int floor=_elevator[1]->getFloor();
+        int flag=true;             //是否需要切换运行状态
+        if(_elevator[1]->getStatus()==UP)//当前运行时上升状态
+        {
+            for(int i=_elevator[1]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_elevator[1]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[1]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_upWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[1]->getExtend())
+            {
+                for(int i=_elevator[1]->getFloor()+1;i<MAX_FLOORS;i++)
+                {
+                    if(_downWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[1]->setStatus(FREE);
+                _elevator[1]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=min(floor+1,FLOORS);
+                _elevator[1]->setFloor(floor);
+                 ui->lcdTwo->display(floor);
+                if(floor==FLOORS)
+                {
+                    _elevator[1]->setStatus(DOWN); //由上升变成下降
+                }
+            }
+        }
+        else if(_elevator[1]->getStatus()==DOWN)//当前是下降状态
+        {
+            for(int i=_elevator[1]->getFloor()-1;i>0;i--)
+            {
+                if(_elevator[1]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[1]->getFloor()-1;i>0;i--)
+            {
+                if(_downWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[1]->getExtend())
+            {
+                for(int i=_elevator[1]->getFloor()-1;i>0;i--)
+                {
+                    if(_upWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[1]->setStatus(FREE);
+                _elevator[1]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=max(floor-1,1);
+                _elevator[1]->setFloor(floor);
+                 ui->lcdTwo->display(floor);
+                if(floor==1)
+                {
+                    _elevator[1]->setStatus(UP); //由上升变成下降
+                }
+
+            }
+        }
+        //空闲状态 无事发生
+    }
+}
+//更新电梯3
+void Elevator::updateEle3()
+{
+    if(_elevator[2]->getStop())
+    {
+        //电梯停靠
+        _elevator[2]->setStop(false);  //更改电梯停靠状态
+    }
+    else
+    {
+        int floor=_elevator[2]->getFloor();
+        int flag=true;             //是否需要切换运行状态
+        if(_elevator[2]->getStatus()==UP)//当前运行时上升状态
+        {
+            for(int i=_elevator[2]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_elevator[2]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[2]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_upWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[2]->getExtend())
+            {
+                for(int i=_elevator[2]->getFloor()+1;i<MAX_FLOORS;i++)
+                {
+                    if(_downWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[2]->setStatus(FREE);
+                _elevator[2]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=min(floor+1,FLOORS);
+                _elevator[2]->setFloor(floor);
+                 ui->lcdThree->display(floor);
+                if(floor==FLOORS)
+                {
+                    _elevator[2]->setStatus(DOWN); //由上升变成下降
+                }
+            }
+        }
+        else if(_elevator[2]->getStatus()==DOWN)//当前是下降状态
+        {
+            for(int i=_elevator[2]->getFloor()-1;i>0;i--)
+            {
+                if(_elevator[2]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[2]->getFloor()-1;i>0;i--)
+            {
+                if(_downWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[2]->getExtend())
+            {
+                for(int i=_elevator[2]->getFloor()-1;i>0;i--)
+                {
+                    if(_upWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[2]->setStatus(FREE);
+                _elevator[2]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=max(floor-1,1);
+                _elevator[2]->setFloor(floor);
+                 ui->lcdThree->display(floor);
+                if(floor==1)
+                {
+                    _elevator[2]->setStatus(UP); //由上升变成下降
+                }
+
+            }
+        }
+        //空闲状态 无事发生
+    }
+}
+//更新电梯4
+void Elevator::updateELe4()
+{
+    if(_elevator[3]->getStop())
+    {
+        //电梯停靠
+        _elevator[3]->setStop(false);  //更改电梯停靠状态
+    }
+    else
+    {
+        int floor=_elevator[3]->getFloor();
+        int flag=true;             //是否需要切换运行状态
+        if(_elevator[3]->getStatus()==UP)//当前运行时上升状态
+        {
+            for(int i=_elevator[3]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_elevator[3]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[3]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_upWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[3]->getExtend())
+            {
+                for(int i=_elevator[3]->getFloor()+1;i<MAX_FLOORS;i++)
+                {
+                    if(_downWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[3]->setStatus(FREE);
+                _elevator[3]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=min(floor+1,FLOORS);
+                _elevator[3]->setFloor(floor);
+                 ui->lcdFour->display(floor);
+                if(floor==FLOORS)
+                {
+                    _elevator[3]->setStatus(DOWN); //由上升变成下降
+                }
+            }
+        }
+        else if(_elevator[3]->getStatus()==DOWN)//当前是下降状态
+        {
+            for(int i=_elevator[3]->getFloor()-1;i>0;i--)
+            {
+                if(_elevator[3]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[3]->getFloor()-1;i>0;i--)
+            {
+                if(_downWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[3]->getExtend())
+            {
+                for(int i=_elevator[3]->getFloor()-1;i>0;i--)
+                {
+                    if(_upWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[3]->setStatus(FREE);
+                _elevator[3]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=max(floor-1,1);
+                _elevator[3]->setFloor(floor);
+                 ui->lcdFour->display(floor);
+                if(floor==1)
+                {
+                    _elevator[3]->setStatus(UP); //由上升变成下降
+                }
+
+            }
+        }
+        //空闲状态 无事发生
+    }
+}
+//更新电梯5
+void Elevator::updateEle5()
+{
+    if(_elevator[4]->getStop())
+    {
+        //电梯停靠
+        _elevator[4]->setStop(false);  //更改电梯停靠状态
+    }
+    else
+    {
+        int floor=_elevator[4]->getFloor();
+        int flag=true;             //是否需要切换运行状态
+        if(_elevator[4]->getStatus()==UP)//当前运行时上升状态
+        {
+            for(int i=_elevator[4]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_elevator[4]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[4]->getFloor()+1;i<MAX_FLOORS;i++)
+            {
+                if(_upWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[4]->getExtend())
+            {
+                for(int i=_elevator[4]->getFloor()+1;i<MAX_FLOORS;i++)
+                {
+                    if(_downWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[4]->setStatus(FREE);
+                _elevator[4]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=min(floor+1,FLOORS);
+                _elevator[4]->setFloor(floor);
+                 ui->lcdFive->display(floor);
+                if(floor==FLOORS)
+                {
+                    _elevator[4]->setStatus(DOWN); //由上升变成下降
+                }
+            }
+        }
+        else if(_elevator[4]->getStatus()==DOWN)//当前是下降状态
+        {
+            for(int i=_elevator[4]->getFloor()-1;i>0;i--)
+            {
+                if(_elevator[4]->checkFloor(i))
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            for(int i=_elevator[4]->getFloor()-1;i>0;i--)
+            {
+                if(_downWaitFloors[i])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(_elevator[4]->getExtend())
+            {
+                for(int i=_elevator[4]->getFloor()-1;i>0;i--)
+                {
+                    if(_upWaitFloors[i])
+                    {
+                        flag=false;
+                        break;
+                    }
+
+                }
+            }
+            if(flag)  //没有等待电梯了
+            {
+                _elevator[4]->setStatus(FREE);
+                _elevator[4]->setExtend(false);
+                return;
+            }
+            else
+            {
+                floor=max(floor-1,1);
+                _elevator[4]->setFloor(floor);
+                 ui->lcdFive->display(floor);
+                if(floor==1)
+                {
+                    _elevator[4]->setStatus(UP); //由上升变成下降
+                }
+
+            }
+        }
+        //空闲状态 无事发生
+    }
+}
+//定时器槽函数,可能还需要修改
 void Elevator::checkState()
 {
+    //控制电梯停靠
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
         if(_elevator[i]->getStatus()==UP)
         {
-            if(_upWaitFloors[_elevator[i]->getFloor()]) //到达当前楼层
+            if((_upWaitFloors[_elevator[i]->getFloor()])||(_elevator[i]->checkFloor(_elevator[i]->getFloor())))
             {
-              //开门，需要重新写
                 _upWaitFloors[_elevator[i]->getFloor()]=false;
-                return;
+                _elevator[i]->clearFloor(_elevator[i]->getFloor());
+                _elevator[i]->setStop(true);
             }
         }
         else if(_elevator[i]->getStatus()==DOWN)
         {
-            if(_downWaitFloors[_elevator[i]->getFloor()]) //到达当前楼层
+            if((_downWaitFloors[_elevator[i]->getFloor()])||(_elevator[i]->checkFloor(_elevator[i]->getFloor())))
             {
-              //开门，需要重新写
+
                 _downWaitFloors[_elevator[i]->getFloor()]=false;
-                return;
+                _elevator[i]->clearFloor(_elevator[i]->getFloor());
+                _elevator[i]->setStop(true);
             }
         }
     }
 }
 
-//调整电梯按钮
+//调整电梯按钮颜色
 void Elevator::checkColor()
 {
     //处理楼外上升按钮
@@ -241,10 +979,15 @@ void Elevator::checkColor()
     else
         ui->f20DownButton->setStyleSheet("background-color: rgb(225,225,225)");
     //处理一号电梯
+
     //处理二号电梯
+
     //处理三号电梯
+
     //处理四号电梯
+
     //处理五号电梯
+
 }
 
 

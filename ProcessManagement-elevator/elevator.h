@@ -24,6 +24,12 @@ private:
     bool _downWaitFloors[MAX_FLOORS];       //下降等待队列
     QTimer *realTime;    //用于检查
     QTimer *colorTime;   //调整按钮颜色
+    QTimer *wakeUp;      //唤醒电梯
+    QTimer *updateElevatorOne;  //更新一号电梯
+    QTimer *updateElevatorTwo; //更新二号电梯
+    QTimer *updateElevatorThree; //更新三号电梯
+    QTimer *updateElevatorFour; //更新四号电梯
+    QTimer *updateElevatorFive; //更新五号电梯
 
 public:
     Elevator(QWidget *parent = nullptr);
@@ -35,6 +41,12 @@ private slots:
     //定时器槽函数
     void checkState();
     void checkColor();
+    void updateWake();
+    void updateEle1();
+    void updateEle2();
+    void updateEle3();
+    void updateELe4();
+    void updateEle5();
     //按下报警键槽函数
     void on_ele1AertButton_clicked();
     void on_ele2AlertButton_clicked();

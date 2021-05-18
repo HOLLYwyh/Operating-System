@@ -4,6 +4,8 @@ Container::Container()
 {
     _status = FREE;  //空闲
     _floor = 1;      //默认在1楼
+    _stop = false;    //默认不需要停靠
+    _extend=false;    //默认不需要考虑另一列
     memset(_Floors,0,sizeof(_Floors));
 }
 
@@ -13,12 +15,12 @@ void Container::addFloor(int floor)
     _Floors[floor]=true;
 }
 
-
-//电梯自动更新运行状态    ---之后还需要详细说明
-void Container::changeStatus()
+//删除电梯楼层数
+void Container::clearFloor(int floor)
 {
-
+    _Floors[floor]=false;
 }
+
 
 //设置电梯状态
 void Container::setStatus(int status)
