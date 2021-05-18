@@ -6,6 +6,7 @@ Container::Container()
     _floor = 1;      //默认在1楼
     _stop = false;    //默认不需要停靠
     _extend=false;    //默认不需要考虑另一列
+    _closeDoor=true;  //默认关门
     memset(_Floors,0,sizeof(_Floors));
 }
 

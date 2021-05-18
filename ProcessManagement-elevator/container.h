@@ -23,6 +23,8 @@ public:
     void setExtend(bool extend){_extend=extend;};
     bool getExtend(){return _extend;};
     void setFloor(int floor){_floor=floor;}; //改变电梯当前楼层
+    bool getCloseDoor(){return _closeDoor;};
+    void setCloseDoor(bool flag){_closeDoor=flag;}; //更改电梯状态
 
 private:
     int _status;                 //表示电梯当前的运行状态
@@ -30,6 +32,7 @@ private:
     bool _Floors[MAX_FLOORS];           //需要到达的楼层
     bool _stop;                        //是否需要停靠
     bool _extend;                       //是否需要考虑另一方向的按钮
+    bool _closeDoor;                   //当前是否关门
 };
 
 #endif // CONTAINER_H

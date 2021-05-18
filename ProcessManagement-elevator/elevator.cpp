@@ -27,12 +27,14 @@ Elevator::Elevator(QWidget *parent)
     //初始化上下等待电梯
     memset(_upWaitFloors,false,sizeof(_upWaitFloors));
     memset(_downWaitFloors,false,sizeof(_upWaitFloors));
+    //初始化电梯门
+
     //设置定时器
     //check计时器
     realTime = new QTimer();
     connect(realTime,SIGNAL(timeout()),this,SLOT(checkState()));//定时器和更新函数建立联系
     realTime->setTimerType(Qt::PreciseTimer);
-    realTime->start(1000);
+    realTime->start(100);
     //颜色计时器
     colorTime=new QTimer();
     connect(colorTime,SIGNAL(timeout()),this,SLOT(checkColor()));//定时器和更新函数建立联系
@@ -262,7 +264,14 @@ void Elevator::updateEle1()
     if(_elevator[0]->getStop())
     {
         //电梯停靠
-        _elevator[0]->setStop(false);  //更改电梯停靠状态
+        if(!_elevator[0]->getCloseDoor())  //当前的门是开的
+        {
+            return;
+        }
+        else
+        {
+          _elevator[0]->setStop(false);  //更改电梯停靠状态
+        }
     }
     else
     {
@@ -313,6 +322,8 @@ void Elevator::updateEle1()
                 {
                     _elevator[0]->setStatus(DOWN); //由上升变成下降
                 }
+                //这里是电梯动画
+
             }
         }
         else if(_elevator[0]->getStatus()==DOWN)//当前是下降状态
@@ -374,7 +385,14 @@ void Elevator::updateEle2()
     if(_elevator[1]->getStop())
     {
         //电梯停靠
-        _elevator[1]->setStop(false);  //更改电梯停靠状态
+        if(!_elevator[1]->getCloseDoor())  //当前的门是开的
+        {
+            return;
+        }
+        else
+        {
+          _elevator[1]->setStop(false);  //更改电梯停靠状态
+        }
     }
     else
     {
@@ -485,7 +503,14 @@ void Elevator::updateEle3()
     if(_elevator[2]->getStop())
     {
         //电梯停靠
-        _elevator[2]->setStop(false);  //更改电梯停靠状态
+        if(!_elevator[2]->getCloseDoor())  //当前的门是开的
+        {
+            return;
+        }
+        else
+        {
+          _elevator[2]->setStop(false);  //更改电梯停靠状态
+        }
     }
     else
     {
@@ -596,7 +621,14 @@ void Elevator::updateELe4()
     if(_elevator[3]->getStop())
     {
         //电梯停靠
-        _elevator[3]->setStop(false);  //更改电梯停靠状态
+        if(!_elevator[3]->getCloseDoor())  //当前的门是开的
+        {
+            return;
+        }
+        else
+        {
+          _elevator[3]->setStop(false);  //更改电梯停靠状态
+        }
     }
     else
     {
@@ -707,7 +739,14 @@ void Elevator::updateEle5()
     if(_elevator[4]->getStop())
     {
         //电梯停靠
-        _elevator[4]->setStop(false);  //更改电梯停靠状态
+        if(!_elevator[4]->getCloseDoor())  //当前的门是开的
+        {
+            return;
+        }
+        else
+        {
+          _elevator[4]->setStop(false);  //更改电梯停靠状态
+        }
     }
     else
     {
@@ -823,6 +862,7 @@ void Elevator::checkState()
                 _upWaitFloors[_elevator[i]->getFloor()]=false;
                 _elevator[i]->clearFloor(_elevator[i]->getFloor());
                 _elevator[i]->setStop(true);
+                _elevator[i]->setCloseDoor(false);
             }
         }
         else if(_elevator[i]->getStatus()==DOWN)
@@ -833,6 +873,7 @@ void Elevator::checkState()
                 _downWaitFloors[_elevator[i]->getFloor()]=false;
                 _elevator[i]->clearFloor(_elevator[i]->getFloor());
                 _elevator[i]->setStop(true);
+                _elevator[i]->setCloseDoor(false);
             }
         }
     }
@@ -1628,11 +1669,11 @@ void Elevator::on_ele1F20Button_clicked()
 }
 void Elevator::on_ele1OpenButton_clicked()
 {
-
+    _elevator[0]->setCloseDoor(false);
 }
 void Elevator::on_ele1CloseButton_clicked()
 {
-
+    _elevator[0]->setCloseDoor(true);
 }
 
 //2号电梯相关
@@ -1738,12 +1779,12 @@ void Elevator::on_ele2F20Button_clicked()
 
 void Elevator::on_ele2OpenButton_clicked()
 {
-
+    _elevator[1]->setCloseDoor(false);
 }
 
 void Elevator::on_ele2CloseButton_clicked()
 {
-
+    _elevator[1]->setCloseDoor(true);
 }
 
 //3号电梯相关
@@ -1850,12 +1891,12 @@ void Elevator::on_ele3F20Button_clicked()
 
 void Elevator::on_ele3OpenButton_clicked()
 {
-
+    _elevator[2]->setCloseDoor(false);
 }
 
 void Elevator::on_ele3CloseButton_clicked()
 {
-
+    _elevator[2]->setCloseDoor(true);
 }
 
 //4号电梯相关
@@ -1962,12 +2003,12 @@ void Elevator::on_ele4F20Button_clicked()
 
 void Elevator::on_ele4OpenButton_clicked()
 {
-
+    _elevator[3]->setCloseDoor(false);
 }
 
 void Elevator::on_ele4CloseButton_clicked()
 {
-
+    _elevator[3]->setCloseDoor(true);
 }
 
 //5号电梯相关
@@ -2074,12 +2115,12 @@ void Elevator::on_ele5F20Button_clicked()
 
 void Elevator::on_ele5OpenButton_clicked()
 {
-
+    _elevator[4]->setCloseDoor(false);
 }
 
 void Elevator::on_ele5CloseButton_clicked()
 {
-
+    _elevator[4]->setCloseDoor(true);
 }
 
 //电梯外按钮
