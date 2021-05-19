@@ -261,7 +261,11 @@ void Elevator::updateEle1()
 {
     if(_isDamage[0])
         return;
-    if(_elevator[0]->getStop())
+    if(!_elevator[0]->getCloseDoor())
+    {
+        return;
+    }
+    /*if(_elevator[0]->getStop())
     {
         //电梯停靠
         if(!_elevator[0]->getCloseDoor())  //当前的门是开的
@@ -272,7 +276,7 @@ void Elevator::updateEle1()
         {
           _elevator[0]->setStop(false);  //更改电梯停靠状态
         }
-    }
+    }*/
     else
     {
         int floor=_elevator[0]->getFloor();
@@ -323,6 +327,10 @@ void Elevator::updateEle1()
                     _elevator[0]->setStatus(DOWN); //由上升变成下降
                 }
                 //这里是电梯动画
+               int nowY=ui->ele1RightDoor->y();
+               nowY-=35;
+               ui->ele1LeftDoor->move(ui->ele1LeftDoor->x(),nowY);
+               ui->ele1RightDoor->move(ui->ele1RightDoor->x(),nowY);
 
             }
         }
@@ -371,6 +379,11 @@ void Elevator::updateEle1()
                 {
                     _elevator[0]->setStatus(UP); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele1RightDoor->y();
+               nowY+=35;
+               ui->ele1LeftDoor->move(ui->ele1LeftDoor->x(),nowY);
+               ui->ele1RightDoor->move(ui->ele1RightDoor->x(),nowY);
 
             }
         }
@@ -382,7 +395,11 @@ void Elevator::updateEle2()
 {
     if(_isDamage[1])
         return;
-    if(_elevator[1]->getStop())
+    if(!_elevator[1]->getCloseDoor())
+    {
+        return;
+    }
+    /*if(_elevator[1]->getStop())
     {
         //电梯停靠
         if(!_elevator[1]->getCloseDoor())  //当前的门是开的
@@ -393,7 +410,7 @@ void Elevator::updateEle2()
         {
           _elevator[1]->setStop(false);  //更改电梯停靠状态
         }
-    }
+    }*/
     else
     {
         int floor=_elevator[1]->getFloor();
@@ -442,6 +459,11 @@ void Elevator::updateEle2()
                 {
                     _elevator[1]->setStatus(DOWN); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele2RightDoor->y();
+               nowY-=35;
+               ui->ele2LeftDoor->move(ui->ele2LeftDoor->x(),nowY);
+               ui->ele2RightDoor->move(ui->ele2RightDoor->x(),nowY);
             }
         }
         else if(_elevator[1]->getStatus()==DOWN)//当前是下降状态
@@ -489,6 +511,11 @@ void Elevator::updateEle2()
                 {
                     _elevator[1]->setStatus(UP); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele2RightDoor->y();
+               nowY+=35;
+               ui->ele2LeftDoor->move(ui->ele2LeftDoor->x(),nowY);
+               ui->ele2RightDoor->move(ui->ele2RightDoor->x(),nowY);
 
             }
         }
@@ -500,7 +527,11 @@ void Elevator::updateEle3()
 {
     if(_isDamage[2])
         return;
-    if(_elevator[2]->getStop())
+    if(!_elevator[2]->getCloseDoor())
+    {
+        return;
+    }
+    /*if(_elevator[2]->getStop())
     {
         //电梯停靠
         if(!_elevator[2]->getCloseDoor())  //当前的门是开的
@@ -511,7 +542,7 @@ void Elevator::updateEle3()
         {
           _elevator[2]->setStop(false);  //更改电梯停靠状态
         }
-    }
+    }*/
     else
     {
         int floor=_elevator[2]->getFloor();
@@ -560,6 +591,11 @@ void Elevator::updateEle3()
                 {
                     _elevator[2]->setStatus(DOWN); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele3RightDoor->y();
+               nowY-=35;
+               ui->ele3LeftDoor->move(ui->ele3LeftDoor->x(),nowY);
+               ui->ele3RightDoor->move(ui->ele3RightDoor->x(),nowY);
             }
         }
         else if(_elevator[2]->getStatus()==DOWN)//当前是下降状态
@@ -607,6 +643,11 @@ void Elevator::updateEle3()
                 {
                     _elevator[2]->setStatus(UP); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele3RightDoor->y();
+               nowY+=35;
+               ui->ele3LeftDoor->move(ui->ele3LeftDoor->x(),nowY);
+               ui->ele3RightDoor->move(ui->ele3RightDoor->x(),nowY);
 
             }
         }
@@ -618,7 +659,11 @@ void Elevator::updateELe4()
 {
     if(_isDamage[3])
         return;
-    if(_elevator[3]->getStop())
+    if(!_elevator[3]->getCloseDoor())
+    {
+        return;
+    }
+    /*if(_elevator[3]->getStop())
     {
         //电梯停靠
         if(!_elevator[3]->getCloseDoor())  //当前的门是开的
@@ -629,7 +674,7 @@ void Elevator::updateELe4()
         {
           _elevator[3]->setStop(false);  //更改电梯停靠状态
         }
-    }
+    }*/
     else
     {
         int floor=_elevator[3]->getFloor();
@@ -678,6 +723,11 @@ void Elevator::updateELe4()
                 {
                     _elevator[3]->setStatus(DOWN); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele4RightDoor->y();
+               nowY-=35;
+               ui->ele4LeftDoor->move(ui->ele4LeftDoor->x(),nowY);
+               ui->ele4RightDoor->move(ui->ele4RightDoor->x(),nowY);
             }
         }
         else if(_elevator[3]->getStatus()==DOWN)//当前是下降状态
@@ -725,6 +775,11 @@ void Elevator::updateELe4()
                 {
                     _elevator[3]->setStatus(UP); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele4RightDoor->y();
+               nowY+=35;
+               ui->ele4LeftDoor->move(ui->ele4LeftDoor->x(),nowY);
+               ui->ele4RightDoor->move(ui->ele4RightDoor->x(),nowY);
 
             }
         }
@@ -736,7 +791,11 @@ void Elevator::updateEle5()
 {
     if(_isDamage[4])
         return;
-    if(_elevator[4]->getStop())
+    if(!_elevator[4]->getCloseDoor())
+    {
+        return;
+    }
+    /*if(_elevator[4]->getStop())
     {
         //电梯停靠
         if(!_elevator[4]->getCloseDoor())  //当前的门是开的
@@ -747,7 +806,7 @@ void Elevator::updateEle5()
         {
           _elevator[4]->setStop(false);  //更改电梯停靠状态
         }
-    }
+    }*/
     else
     {
         int floor=_elevator[4]->getFloor();
@@ -796,6 +855,11 @@ void Elevator::updateEle5()
                 {
                     _elevator[4]->setStatus(DOWN); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele5RightDoor->y();
+               nowY-=35;
+               ui->ele5LeftDoor->move(ui->ele5LeftDoor->x(),nowY);
+               ui->ele5RightDoor->move(ui->ele5RightDoor->x(),nowY);
             }
         }
         else if(_elevator[4]->getStatus()==DOWN)//当前是下降状态
@@ -843,6 +907,11 @@ void Elevator::updateEle5()
                 {
                     _elevator[4]->setStatus(UP); //由上升变成下降
                 }
+                //这里是电梯动画
+               int nowY=ui->ele5RightDoor->y();
+               nowY+=35;
+               ui->ele5LeftDoor->move(ui->ele5LeftDoor->x(),nowY);
+               ui->ele5RightDoor->move(ui->ele5RightDoor->x(),nowY);
 
             }
         }
@@ -852,6 +921,8 @@ void Elevator::updateEle5()
 //定时器槽函数,可能还需要修改
 void Elevator::checkState()
 {
+    //电梯停靠之后的关门操作
+    //2号电梯到5号电梯删除stop属性
     //控制电梯停靠
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
@@ -1669,11 +1740,32 @@ void Elevator::on_ele1F20Button_clicked()
 }
 void Elevator::on_ele1OpenButton_clicked()
 {
-    _elevator[0]->setCloseDoor(false);
+    if((_elevator[0]->getStatus()==FREE)&&(_elevator[0]->getCloseDoor()))  //只有当前是空闲且关门才能开电梯
+    {
+        //开门动画
+        int xLeft=ui->ele1LeftDoor->x();
+        int xRight=ui->ele1RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele1LeftDoor->move(xLeft,ui->ele1RightDoor->y());
+        ui->ele1RightDoor->move(xRight,ui->ele1RightDoor->y());
+        _elevator[0]->setCloseDoor(false);
+    }
 }
 void Elevator::on_ele1CloseButton_clicked()
 {
-    _elevator[0]->setCloseDoor(true);
+    if(!_elevator[0]->getCloseDoor())   //如果当前电梯门是开的才能关门
+    {
+        //关门动画
+        int xLeft=ui->ele1LeftDoor->x();
+        int xRight=ui->ele1RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele1LeftDoor->move(xLeft,ui->ele1RightDoor->y());
+        ui->ele1RightDoor->move(xRight,ui->ele1RightDoor->y());
+        _elevator[0]->setCloseDoor(true);
+    }
+
 }
 
 //2号电梯相关
@@ -1681,446 +1773,439 @@ void Elevator::on_ele2F1Button_clicked()
 {
     _elevator[1]->addFloor(1);
 }
-
 void Elevator::on_ele2F2Button_clicked()
 {
     _elevator[1]->addFloor(2);
 }
-
 void Elevator::on_ele2F3Button_clicked()
 {
     _elevator[1]->addFloor(3);
 }
-
 void Elevator::on_ele2F4Button_clicked()
 {
     _elevator[1]->addFloor(4);
 }
-
 void Elevator::on_ele2F5Button_clicked()
 {
     _elevator[1]->addFloor(5);
 }
-
 void Elevator::on_ele2F6Button_clicked()
 {
     _elevator[1]->addFloor(6);
 }
-
 void Elevator::on_ele2F7Button_clicked()
 {
     _elevator[1]->addFloor(7);
 }
-
 void Elevator::on_ele2F8Button_clicked()
 {
     _elevator[1]->addFloor(8);
 }
-
 void Elevator::on_ele2F9Button_clicked()
 {
     _elevator[1]->addFloor(9);
 }
-
 void Elevator::on_ele2F10Button_clicked()
 {
     _elevator[1]->addFloor(10);
 }
-
 void Elevator::on_ele2F11Button_clicked()
 {
     _elevator[1]->addFloor(11);
 }
-
 void Elevator::on_ele2F12Button_clicked()
 {
     _elevator[1]->addFloor(12);
 }
-
 void Elevator::on_ele2F13Button_clicked()
 {
     _elevator[1]->addFloor(13);
 }
-
 void Elevator::on_ele2F14Button_clicked()
 {
     _elevator[1]->addFloor(14);
 }
-
 void Elevator::on_ele2F15Button_clicked()
 {
     _elevator[1]->addFloor(15);
 }
-
 void Elevator::on_ele2F16Button_clicked()
 {
     _elevator[1]->addFloor(16);
 }
-
 void Elevator::on_ele2F17Button_clicked()
 {
     _elevator[1]->addFloor(17);
 }
-
 void Elevator::on_ele2F18Button_clicked()
 {
     _elevator[1]->addFloor(18);
 }
-
 void Elevator::on_ele2F19Button_clicked()
 {
     _elevator[1]->addFloor(19);
 }
-
 void Elevator::on_ele2F20Button_clicked()
 {
     _elevator[1]->addFloor(20);
 }
-
 void Elevator::on_ele2OpenButton_clicked()
 {
-    _elevator[1]->setCloseDoor(false);
+    if((_elevator[1]->getStatus()==FREE)&&(_elevator[1]->getCloseDoor()))  //只有当前是空闲且关门才能开电梯
+    {
+        //开门动画
+        int xLeft=ui->ele2LeftDoor->x();
+        int xRight=ui->ele2RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele2LeftDoor->move(xLeft,ui->ele2RightDoor->y());
+        ui->ele2RightDoor->move(xRight,ui->ele2RightDoor->y());
+        _elevator[1]->setCloseDoor(false);
+    }
 }
-
 void Elevator::on_ele2CloseButton_clicked()
 {
-    _elevator[1]->setCloseDoor(true);
+    if(!_elevator[1]->getCloseDoor())   //如果当前电梯门是开的才能关门
+    {
+        //关门动画
+        int xLeft=ui->ele2LeftDoor->x();
+        int xRight=ui->ele2RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele2LeftDoor->move(xLeft,ui->ele2RightDoor->y());
+        ui->ele2RightDoor->move(xRight,ui->ele2RightDoor->y());
+        _elevator[1]->setCloseDoor(true);
+    }
 }
-
 //3号电梯相关
 
 void Elevator::on_ele3F1Button_clicked()
 {
     _elevator[2]->addFloor(1);
 }
-
 void Elevator::on_ele3F2Button_clicked()
 {
     _elevator[2]->addFloor(2);
 }
-
 void Elevator::on_ele3F3Button_clicked()
 {
     _elevator[2]->addFloor(3);
 }
-
 void Elevator::on_ele3F4Button_clicked()
 {
     _elevator[2]->addFloor(4);
 }
-
 void Elevator::on_ele3F5Button_clicked()
 {
     _elevator[2]->addFloor(5);
 }
-
 void Elevator::on_ele3F6Button_clicked()
 {
     _elevator[2]->addFloor(6);
 }
-
 void Elevator::on_ele3F7Button_clicked()
 {
     _elevator[2]->addFloor(7);
 }
-
 void Elevator::on_ele3F8Button_clicked()
 {
     _elevator[2]->addFloor(8);
 }
-
 void Elevator::on_ele3F9Button_clicked()
 {
     _elevator[2]->addFloor(9);
 }
-
 void Elevator::on_ele3F10Button_clicked()
 {
     _elevator[2]->addFloor(10);
 }
-
 void Elevator::on_ele3F11Button_clicked()
 {
     _elevator[2]->addFloor(11);
 }
-
 void Elevator::on_ele3F12Button_clicked()
 {
     _elevator[2]->addFloor(12);
 }
-
 void Elevator::on_ele3F13Button_clicked()
 {
     _elevator[2]->addFloor(13);
 }
-
 void Elevator::on_ele3F14Button_clicked()
 {
     _elevator[2]->addFloor(14);
 }
-
 void Elevator::on_ele3F15Button_clicked()
 {
     _elevator[2]->addFloor(15);
 }
-
 void Elevator::on_ele3F16Button_clicked()
 {
     _elevator[2]->addFloor(16);
 }
-
 void Elevator::on_ele3F17Button_clicked()
 {
     _elevator[2]->addFloor(17);
 }
-
 void Elevator::on_ele3F18Button_clicked()
 {
     _elevator[2]->addFloor(18);
 }
-
 void Elevator::on_ele3F19Button_clicked()
 {
     _elevator[2]->addFloor(19);
 }
-
 void Elevator::on_ele3F20Button_clicked()
 {
     _elevator[2]->addFloor(20);
 }
-
 void Elevator::on_ele3OpenButton_clicked()
 {
-    _elevator[2]->setCloseDoor(false);
+    if((_elevator[2]->getStatus()==FREE)&&(_elevator[2]->getCloseDoor()))  //只有当前是空闲且关门才能开电梯
+    {
+        //开门动画
+        int xLeft=ui->ele3LeftDoor->x();
+        int xRight=ui->ele3RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele3LeftDoor->move(xLeft,ui->ele3RightDoor->y());
+        ui->ele3RightDoor->move(xRight,ui->ele3RightDoor->y());
+        _elevator[2]->setCloseDoor(false);
+    }
 }
-
 void Elevator::on_ele3CloseButton_clicked()
 {
-    _elevator[2]->setCloseDoor(true);
+    if(!_elevator[2]->getCloseDoor())   //如果当前电梯门是开的才能关门
+    {
+        //关门动画
+        int xLeft=ui->ele3LeftDoor->x();
+        int xRight=ui->ele3RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele3LeftDoor->move(xLeft,ui->ele3RightDoor->y());
+        ui->ele3RightDoor->move(xRight,ui->ele3RightDoor->y());
+        _elevator[2]->setCloseDoor(true);
+    }
 }
-
 //4号电梯相关
 
 void Elevator::on_ele4F1Button_clicked()
 {
     _elevator[3]->addFloor(1);
 }
-
 void Elevator::on_ele4F2Button_clicked()
 {
     _elevator[3]->addFloor(2);
 }
-
 void Elevator::on_ele4F3Button_clicked()
 {
     _elevator[3]->addFloor(3);
 }
-
 void Elevator::on_ele4F4Button_clicked()
 {
     _elevator[3]->addFloor(4);
 }
-
 void Elevator::on_ele4F5Button_clicked()
 {
     _elevator[3]->addFloor(5);
 }
-
 void Elevator::on_ele4F6Button_clicked()
 {
     _elevator[3]->addFloor(6);
 }
-
 void Elevator::on_ele4F7Button_clicked()
 {
     _elevator[3]->addFloor(7);
 }
-
 void Elevator::on_ele4F8Button_clicked()
 {
     _elevator[3]->addFloor(8);
 }
-
 void Elevator::on_ele4F9Button_clicked()
 {
     _elevator[3]->addFloor(9);
 }
-
 void Elevator::on_ele4F10Button_clicked()
 {
     _elevator[3]->addFloor(10);
 }
-
 void Elevator::on_ele4F11Button_clicked()
 {
     _elevator[3]->addFloor(11);
 }
-
 void Elevator::on_ele4F12Button_clicked()
 {
     _elevator[3]->addFloor(12);
 }
-
 void Elevator::on_ele4F13Button_clicked()
 {
     _elevator[3]->addFloor(13);
 }
-
 void Elevator::on_ele4F14Button_clicked()
 {
     _elevator[3]->addFloor(14);
 }
-
 void Elevator::on_ele4F15Button_clicked()
 {
     _elevator[3]->addFloor(15);
 }
-
 void Elevator::on_ele4F16Button_clicked()
 {
     _elevator[3]->addFloor(16);
 }
-
 void Elevator::on_ele4F17Button_clicked()
 {
     _elevator[3]->addFloor(17);
 }
-
 void Elevator::on_ele4F18Button_clicked()
 {
     _elevator[3]->addFloor(18);
 }
-
 void Elevator::on_ele4F19Button_clicked()
 {
     _elevator[3]->addFloor(19);
 }
-
 void Elevator::on_ele4F20Button_clicked()
 {
     _elevator[3]->addFloor(20);
 }
-
 void Elevator::on_ele4OpenButton_clicked()
 {
-    _elevator[3]->setCloseDoor(false);
+    if((_elevator[3]->getStatus()==FREE)&&(_elevator[3]->getCloseDoor()))  //只有当前是空闲且关门才能开电梯
+    {
+        //开门动画
+        int xLeft=ui->ele4LeftDoor->x();
+        int xRight=ui->ele4RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele4LeftDoor->move(xLeft,ui->ele4RightDoor->y());
+        ui->ele4RightDoor->move(xRight,ui->ele4RightDoor->y());
+        _elevator[3]->setCloseDoor(false);
+    }
 }
-
 void Elevator::on_ele4CloseButton_clicked()
 {
-    _elevator[3]->setCloseDoor(true);
+    if(!_elevator[3]->getCloseDoor())   //如果当前电梯门是开的才能关门
+    {
+        //关门动画
+        int xLeft=ui->ele4LeftDoor->x();
+        int xRight=ui->ele4RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele4LeftDoor->move(xLeft,ui->ele4RightDoor->y());
+        ui->ele4RightDoor->move(xRight,ui->ele4RightDoor->y());
+        _elevator[3]->setCloseDoor(true);
+    }
 }
-
 //5号电梯相关
 
 void Elevator::on_ele5F1Button_clicked()
 {
     _elevator[4]->addFloor(1);
 }
-
 void Elevator::on_ele5F2Button_clicked()
 {
     _elevator[4]->addFloor(2);
 }
-
 void Elevator::on_ele5F3Button_clicked()
 {
     _elevator[4]->addFloor(3);
 }
-
 void Elevator::on_ele5F4Button_clicked()
 {
     _elevator[4]->addFloor(4);
 }
-
 void Elevator::on_ele5F5Button_clicked()
 {
     _elevator[4]->addFloor(5);
 }
-
 void Elevator::on_ele5F6Button_clicked()
 {
     _elevator[4]->addFloor(6);
 }
-
 void Elevator::on_ele5F7Button_clicked()
 {
     _elevator[4]->addFloor(7);
 }
-
 void Elevator::on_ele5F8Button_clicked()
 {
     _elevator[4]->addFloor(8);
 }
-
 void Elevator::on_ele5F9Button_clicked()
 {
     _elevator[4]->addFloor(9);
 }
-
 void Elevator::on_ele5F10Button_clicked()
 {
     _elevator[4]->addFloor(10);
 }
-
 void Elevator::on_ele5F11Button_clicked()
 {
     _elevator[4]->addFloor(11);
 }
-
 void Elevator::on_ele5F12Button_clicked()
 {
     _elevator[4]->addFloor(12);
 }
-
 void Elevator::on_ele5F13Button_clicked()
 {
     _elevator[4]->addFloor(13);
 }
-
 void Elevator::on_ele5F14Button_clicked()
 {
     _elevator[4]->addFloor(14);
 }
-
 void Elevator::on_ele5F15Button_clicked()
 {
     _elevator[4]->addFloor(15);
 }
-
 void Elevator::on_ele5F16Button_clicked()
 {
     _elevator[4]->addFloor(16);
 }
-
 void Elevator::on_ele5F17Button_clicked()
 {
     _elevator[4]->addFloor(17);
 }
-
 void Elevator::on_ele5F18Button_clicked()
 {
     _elevator[4]->addFloor(18);
 }
-
 void Elevator::on_ele5F19Button_clicked()
 {
     _elevator[4]->addFloor(19);
 }
-
 void Elevator::on_ele5F20Button_clicked()
 {
     _elevator[4]->addFloor(20);
 }
-
 void Elevator::on_ele5OpenButton_clicked()
 {
-    _elevator[4]->setCloseDoor(false);
+    if((_elevator[4]->getStatus()==FREE)&&(_elevator[4]->getCloseDoor()))  //只有当前是空闲且关门才能开电梯
+    {
+        //开门动画
+        int xLeft=ui->ele5LeftDoor->x();
+        int xRight=ui->ele5RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele5LeftDoor->move(xLeft,ui->ele5RightDoor->y());
+        ui->ele5RightDoor->move(xRight,ui->ele5RightDoor->y());
+        _elevator[4]->setCloseDoor(false);
+    }
 }
-
 void Elevator::on_ele5CloseButton_clicked()
 {
-    _elevator[4]->setCloseDoor(true);
+    if(!_elevator[4]->getCloseDoor())   //如果当前电梯门是开的才能关门
+    {
+        //关门动画
+        int xLeft=ui->ele5LeftDoor->x();
+        int xRight=ui->ele5RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele5LeftDoor->move(xLeft,ui->ele5RightDoor->y());
+        ui->ele5RightDoor->move(xRight,ui->ele5RightDoor->y());
+        _elevator[4]->setCloseDoor(true);
+    }
 }
 
 //电梯外按钮
