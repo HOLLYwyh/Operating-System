@@ -269,6 +269,15 @@ void Elevator::updateWake()
                break;
             }
         }
+        if(_elevator[i]->getStatus()==FREE)
+        {
+            //同层内部唤醒，默认是上行
+            if(_elevator[i]->checkFloor(_elevator[i]->getFloor()))
+            {
+                _elevator[i]->setStatus(UP);
+                break;
+            }
+        }
     }
     //楼内上行唤醒
     for(int j=1;j<MAX_FLOORS;j++)

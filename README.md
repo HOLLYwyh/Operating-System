@@ -22,8 +22,6 @@
 
 （4）项目截图
 
-![image-20210519234055321](C:\Users\吴英豪\AppData\Roaming\Typora\typora-user-images\image-20210519234055321.png)
-
 ## 二、项目结构
 
 项目结构树（等我有时间就画！！）
