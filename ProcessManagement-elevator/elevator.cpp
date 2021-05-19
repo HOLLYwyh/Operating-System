@@ -2,6 +2,7 @@
 #include "ui_elevator.h"
 #include "constant.h"
 
+/*与Elevator有关的公有函数*/
 Elevator::Elevator(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Elevator)
@@ -91,6 +92,62 @@ Elevator::~Elevator()
     delete updateElevatorFive;
 }
 
+//电梯开门动画
+void Elevator::openDoor(int i)
+{
+    int xLeft;
+    int xRight;
+    if(i==0)
+    {
+        xLeft=ui->ele1LeftDoor->x();
+        xRight=ui->ele1RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele1LeftDoor->move(xLeft,ui->ele1RightDoor->y());
+        ui->ele1RightDoor->move(xRight,ui->ele1RightDoor->y());
+        _elevator[0]->setCloseDoor(false);
+    }
+    else if(i==1)
+    {
+        xLeft=ui->ele2LeftDoor->x();
+        xRight=ui->ele2RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele2LeftDoor->move(xLeft,ui->ele2RightDoor->y());
+        ui->ele2RightDoor->move(xRight,ui->ele2RightDoor->y());
+        _elevator[1]->setCloseDoor(false);
+    }
+    else if(i==2)
+    {
+        xLeft=ui->ele3LeftDoor->x();
+        xRight=ui->ele3RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele3LeftDoor->move(xLeft,ui->ele3RightDoor->y());
+        ui->ele3RightDoor->move(xRight,ui->ele3RightDoor->y());
+        _elevator[2]->setCloseDoor(false);
+    }
+    else if(i==3)
+    {
+        xLeft=ui->ele4LeftDoor->x();
+        xRight=ui->ele4RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele4LeftDoor->move(xLeft,ui->ele4RightDoor->y());
+        ui->ele4RightDoor->move(xRight,ui->ele4RightDoor->y());
+        _elevator[3]->setCloseDoor(false);
+    }
+    else if(i==4)
+    {
+        xLeft=ui->ele5LeftDoor->x();
+        xRight=ui->ele5RightDoor->x();
+        xLeft-=10;
+        xRight+=10;
+        ui->ele5LeftDoor->move(xLeft,ui->ele5RightDoor->y());
+        ui->ele5RightDoor->move(xRight,ui->ele5RightDoor->y());
+        _elevator[4]->setCloseDoor(false);
+    }
+}
 
 /*槽函数相关*/
 //唤醒空闲电梯
@@ -921,19 +978,21 @@ void Elevator::updateEle5()
 //定时器槽函数,可能还需要修改
 void Elevator::checkState()
 {
-    //电梯停靠之后的关门操作
-    //2号电梯到5号电梯删除stop属性
-    //控制电梯停靠
+    //电梯到达指定楼层之后的开门动画
+    //删除stop属性相关的注释
+    //开门一段时间之后关门
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
+        bool open=false;  //判断是否需要开门
         if(_elevator[i]->getStatus()==UP)
         {
             if((_upWaitFloors[_elevator[i]->getFloor()])||(_elevator[i]->checkFloor(_elevator[i]->getFloor())))
             {
                 _upWaitFloors[_elevator[i]->getFloor()]=false;
                 _elevator[i]->clearFloor(_elevator[i]->getFloor());
-                _elevator[i]->setStop(true);
+                //_elevator[i]->setStop(true);
                 _elevator[i]->setCloseDoor(false);
+                open=true;
             }
         }
         else if(_elevator[i]->getStatus()==DOWN)
@@ -943,9 +1002,15 @@ void Elevator::checkState()
 
                 _downWaitFloors[_elevator[i]->getFloor()]=false;
                 _elevator[i]->clearFloor(_elevator[i]->getFloor());
-                _elevator[i]->setStop(true);
+                //_elevator[i]->setStop(true);
                 _elevator[i]->setCloseDoor(false);
+                open=true;
             }
+        }
+        if(open)
+        {
+            //开门
+            openDoor(i);
         }
     }
 }

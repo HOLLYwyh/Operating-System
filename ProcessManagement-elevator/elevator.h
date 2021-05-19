@@ -34,7 +34,7 @@ private:
 public:
     Elevator(QWidget *parent = nullptr);
     ~Elevator();
-
+    void openDoor(int i);  //电梯开门动画
 
 
 private slots:
