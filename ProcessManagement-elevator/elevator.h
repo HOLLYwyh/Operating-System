@@ -30,11 +30,13 @@ private:
     QTimer *updateElevatorThree; //更新三号电梯
     QTimer *updateElevatorFour; //更新四号电梯
     QTimer *updateElevatorFive; //更新五号电梯
+    QTimer *closeDoors;    //定时关门
 
 public:
     Elevator(QWidget *parent = nullptr);
     ~Elevator();
     void openDoor(int i);  //电梯开门动画
+    void closeDoor(int i);  //电梯关门动画
 
 
 private slots:
@@ -47,6 +49,7 @@ private slots:
     void updateEle3();
     void updateELe4();
     void updateEle5();
+    void updateDoors();
     //按下报警键槽函数
     void on_ele1AertButton_clicked();
     void on_ele2AlertButton_clicked();

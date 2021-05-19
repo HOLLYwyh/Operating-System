@@ -18,8 +18,6 @@ public:
     int getStatus();            //返回当前的电梯状态
     int getFloor();             //获取当前电梯所在的楼层
     bool checkFloor(int floor);  //测试当前电梯是否被按下
-    //void setStop(bool stop){_stop=stop;};  //设置停靠样式
-    //bool getStop(){return _stop;};
     void setExtend(bool extend){_extend=extend;};
     bool getExtend(){return _extend;};
     void setFloor(int floor){_floor=floor;}; //改变电梯当前楼层
@@ -30,7 +28,6 @@ private:
     int _status;                 //表示电梯当前的运行状态
     int _floor;                  //返回当前电梯所在的楼层
     bool _Floors[MAX_FLOORS];           //需要到达的楼层
-    //bool _stop;                        //是否需要停靠
     bool _extend;                       //是否需要考虑另一方向的按钮
     bool _closeDoor;                   //当前是否关门
 };

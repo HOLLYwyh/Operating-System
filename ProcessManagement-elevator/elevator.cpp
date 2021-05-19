@@ -33,44 +33,49 @@ Elevator::Elevator(QWidget *parent)
     //设置定时器
     //check计时器
     realTime = new QTimer();
-    connect(realTime,SIGNAL(timeout()),this,SLOT(checkState()));//定时器和更新函数建立联系
+    connect(realTime,SIGNAL(timeout()),this,SLOT(checkState()));
     realTime->setTimerType(Qt::PreciseTimer);
     realTime->start(100);
     //颜色计时器
     colorTime=new QTimer();
-    connect(colorTime,SIGNAL(timeout()),this,SLOT(checkColor()));//定时器和更新函数建立联系
+    connect(colorTime,SIGNAL(timeout()),this,SLOT(checkColor()));
     colorTime->setTimerType(Qt::PreciseTimer);
     colorTime->start(100);
     //唤醒电梯
     wakeUp=new QTimer();
-    connect(wakeUp,SIGNAL(timeout()),this,SLOT(updateWake()));//定时器和更新函数建立联系
+    connect(wakeUp,SIGNAL(timeout()),this,SLOT(updateWake()));
     wakeUp->setTimerType(Qt::PreciseTimer);
     wakeUp->start(100);
     //电梯计时器
     updateElevatorOne=new QTimer();
-    connect(updateElevatorOne,SIGNAL(timeout()),this,SLOT(updateEle1()));//定时器和更新函数建立联系
+    connect(updateElevatorOne,SIGNAL(timeout()),this,SLOT(updateEle1()));
     updateElevatorOne->setTimerType(Qt::PreciseTimer);
     updateElevatorOne->start(850);
 
    updateElevatorTwo=new QTimer();
-    connect(updateElevatorTwo,SIGNAL(timeout()),this,SLOT(updateEle2()));//定时器和更新函数建立联系
+    connect(updateElevatorTwo,SIGNAL(timeout()),this,SLOT(updateEle2()));
     updateElevatorTwo->setTimerType(Qt::PreciseTimer);
     updateElevatorTwo->start(850);
 
     updateElevatorThree=new QTimer();
-    connect(updateElevatorThree,SIGNAL(timeout()),this,SLOT(updateEle3()));//定时器和更新函数建立联系
+    connect(updateElevatorThree,SIGNAL(timeout()),this,SLOT(updateEle3()));
     updateElevatorThree->setTimerType(Qt::PreciseTimer);
     updateElevatorThree->start(850);
 
     updateElevatorFour=new QTimer();
-    connect(updateElevatorFour,SIGNAL(timeout()),this,SLOT(updateELe4()));//定时器和更新函数建立联系
+    connect(updateElevatorFour,SIGNAL(timeout()),this,SLOT(updateELe4()));
     updateElevatorFour->setTimerType(Qt::PreciseTimer);
     updateElevatorFour->start(850);
 
     updateElevatorFive=new QTimer();
-    connect(updateElevatorFive,SIGNAL(timeout()),this,SLOT(updateEle5()));//定时器和更新函数建立联系
+    connect(updateElevatorFive,SIGNAL(timeout()),this,SLOT(updateEle5()));
     updateElevatorFive->setTimerType(Qt::PreciseTimer);
     updateElevatorFive->start(850);
+    //关门计时器
+    closeDoors=new QTimer();
+    connect(closeDoors,SIGNAL(timeout()),this,SLOT(updateDoors()));
+    closeDoors->setTimerType(Qt::PreciseTimer);
+    closeDoors->start(4000);
 
 }
 
@@ -90,6 +95,7 @@ Elevator::~Elevator()
     delete updateElevatorThree;
     delete updateElevatorFour;
     delete updateElevatorFive;
+    delete closeDoors;
 }
 
 //电梯开门动画
@@ -146,6 +152,68 @@ void Elevator::openDoor(int i)
         ui->ele5LeftDoor->move(xLeft,ui->ele5RightDoor->y());
         ui->ele5RightDoor->move(xRight,ui->ele5RightDoor->y());
         _elevator[4]->setCloseDoor(false);
+    }
+}
+
+//电梯关门动画
+void Elevator::closeDoor(int i)
+{
+    //只有电梯没有坏的时候才会关门
+    if(_isDamage[i])
+    {
+        return ;
+    }
+    int xLeft;
+    int xRight;
+    if(i==0)
+    {
+        xLeft=ui->ele1LeftDoor->x();
+        xRight=ui->ele1RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele1LeftDoor->move(xLeft,ui->ele1RightDoor->y());
+        ui->ele1RightDoor->move(xRight,ui->ele1RightDoor->y());
+        _elevator[0]->setCloseDoor(true);
+    }
+    else if(i==1)
+    {
+        xLeft=ui->ele2LeftDoor->x();
+        xRight=ui->ele2RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele2LeftDoor->move(xLeft,ui->ele2RightDoor->y());
+        ui->ele2RightDoor->move(xRight,ui->ele2RightDoor->y());
+        _elevator[1]->setCloseDoor(true);
+    }
+    else if(i==2)
+    {
+        xLeft=ui->ele3LeftDoor->x();
+        xRight=ui->ele3RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele3LeftDoor->move(xLeft,ui->ele3RightDoor->y());
+        ui->ele3RightDoor->move(xRight,ui->ele3RightDoor->y());
+        _elevator[2]->setCloseDoor(true);
+    }
+    else if(i==3)
+    {
+        xLeft=ui->ele4LeftDoor->x();
+        xRight=ui->ele4RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele4LeftDoor->move(xLeft,ui->ele4RightDoor->y());
+        ui->ele4RightDoor->move(xRight,ui->ele4RightDoor->y());
+        _elevator[3]->setCloseDoor(true);
+    }
+    else if(i==4)
+    {
+        xLeft=ui->ele5LeftDoor->x();
+        xRight=ui->ele5RightDoor->x();
+        xLeft+=10;
+        xRight-=10;
+        ui->ele5LeftDoor->move(xLeft,ui->ele5RightDoor->y());
+        ui->ele5RightDoor->move(xRight,ui->ele5RightDoor->y());
+        _elevator[4]->setCloseDoor(true);
     }
 }
 
@@ -322,18 +390,6 @@ void Elevator::updateEle1()
     {
         return;
     }
-    /*if(_elevator[0]->getStop())
-    {
-        //电梯停靠
-        if(!_elevator[0]->getCloseDoor())  //当前的门是开的
-        {
-            return;
-        }
-        else
-        {
-          _elevator[0]->setStop(false);  //更改电梯停靠状态
-        }
-    }*/
     else
     {
         int floor=_elevator[0]->getFloor();
@@ -456,18 +512,6 @@ void Elevator::updateEle2()
     {
         return;
     }
-    /*if(_elevator[1]->getStop())
-    {
-        //电梯停靠
-        if(!_elevator[1]->getCloseDoor())  //当前的门是开的
-        {
-            return;
-        }
-        else
-        {
-          _elevator[1]->setStop(false);  //更改电梯停靠状态
-        }
-    }*/
     else
     {
         int floor=_elevator[1]->getFloor();
@@ -588,18 +632,6 @@ void Elevator::updateEle3()
     {
         return;
     }
-    /*if(_elevator[2]->getStop())
-    {
-        //电梯停靠
-        if(!_elevator[2]->getCloseDoor())  //当前的门是开的
-        {
-            return;
-        }
-        else
-        {
-          _elevator[2]->setStop(false);  //更改电梯停靠状态
-        }
-    }*/
     else
     {
         int floor=_elevator[2]->getFloor();
@@ -720,18 +752,6 @@ void Elevator::updateELe4()
     {
         return;
     }
-    /*if(_elevator[3]->getStop())
-    {
-        //电梯停靠
-        if(!_elevator[3]->getCloseDoor())  //当前的门是开的
-        {
-            return;
-        }
-        else
-        {
-          _elevator[3]->setStop(false);  //更改电梯停靠状态
-        }
-    }*/
     else
     {
         int floor=_elevator[3]->getFloor();
@@ -852,18 +872,6 @@ void Elevator::updateEle5()
     {
         return;
     }
-    /*if(_elevator[4]->getStop())
-    {
-        //电梯停靠
-        if(!_elevator[4]->getCloseDoor())  //当前的门是开的
-        {
-            return;
-        }
-        else
-        {
-          _elevator[4]->setStop(false);  //更改电梯停靠状态
-        }
-    }*/
     else
     {
         int floor=_elevator[4]->getFloor();
@@ -975,42 +983,36 @@ void Elevator::updateEle5()
         //空闲状态 无事发生
     }
 }
-//定时器槽函数,可能还需要修改
+//定时器槽函数
 void Elevator::checkState()
 {
-    //电梯到达指定楼层之后的开门动画
-    //删除stop属性相关的注释
-    //开门一段时间之后关门
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
-        bool open=false;  //判断是否需要开门
         if(_elevator[i]->getStatus()==UP)
         {
             if((_upWaitFloors[_elevator[i]->getFloor()])||(_elevator[i]->checkFloor(_elevator[i]->getFloor())))
             {
+                if(_elevator[i]->getCloseDoor())//如果这个时候门是关的，就开门
+                {
+                   openDoor(i);
+                }
                 _upWaitFloors[_elevator[i]->getFloor()]=false;
                 _elevator[i]->clearFloor(_elevator[i]->getFloor());
-                //_elevator[i]->setStop(true);
                 _elevator[i]->setCloseDoor(false);
-                open=true;
             }
         }
         else if(_elevator[i]->getStatus()==DOWN)
         {
             if((_downWaitFloors[_elevator[i]->getFloor()])||(_elevator[i]->checkFloor(_elevator[i]->getFloor())))
             {
-
+                if(_elevator[i]->getCloseDoor())//如果这个时候门是关的，就开门
+                {
+                   openDoor(i);
+                }
                 _downWaitFloors[_elevator[i]->getFloor()]=false;
                 _elevator[i]->clearFloor(_elevator[i]->getFloor());
-                //_elevator[i]->setStop(true);
                 _elevator[i]->setCloseDoor(false);
-                open=true;
             }
-        }
-        if(open)
-        {
-            //开门
-            openDoor(i);
         }
     }
 }
@@ -1580,6 +1582,18 @@ void Elevator::checkColor()
         ui->ele5F20Button->setStyleSheet("background-color: rgb(225,225,225)");
 }
 
+//定时关门
+void Elevator::updateDoors()
+{
+    for(int i=0;i<ELEVATOR_NUM;i++)
+    {
+        //每隔一段时间进行一次检测，若电梯门是开的，则关门
+        if(!_elevator[i]->getCloseDoor())
+        {
+            closeDoor(i);
+        }
+    }
+}
 
 //一号电梯按下报警键
 void Elevator::on_ele1AertButton_clicked()
