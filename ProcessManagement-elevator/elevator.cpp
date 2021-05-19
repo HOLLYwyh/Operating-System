@@ -270,6 +270,7 @@ void Elevator::updateWake()
             }
         }
     }
+    //楼内上行唤醒
     for(int j=1;j<MAX_FLOORS;j++)
     {
         int nearestElevator=0;
@@ -319,12 +320,13 @@ void Elevator::updateWake()
            }
            else
            {
+            if(_elevator[nearestElevator]->getStatus()!=DOWN)
              _elevator[nearestElevator]->setStatus(UP);
            }
            break;
         }
     }
-
+    //楼外下行唤醒
     for(int j=1;j<MAX_FLOORS;j++)
     {
         int nearestElevator=0;
@@ -373,6 +375,7 @@ void Elevator::updateWake()
            }
           else
           {
+              if(_elevator[nearestElevator]->getStatus()!=UP)
               _elevator[nearestElevator]->setStatus(DOWN);
           }
           break;
@@ -988,6 +991,10 @@ void Elevator::checkState()
 {
     for(int i=0;i<ELEVATOR_NUM;i++)
     {
+        if(_isDamage[i])
+        {
+            continue;
+        }
         if(_elevator[i]->getStatus()==UP)
         {
             if((_upWaitFloors[_elevator[i]->getFloor()])||(_elevator[i]->checkFloor(_elevator[i]->getFloor())))
