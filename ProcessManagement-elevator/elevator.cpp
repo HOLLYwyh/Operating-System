@@ -279,7 +279,7 @@ void Elevator::updateWake()
             }
         }
     }
-    //楼内上行唤醒
+    //楼外上行唤醒
     for(int j=1;j<MAX_FLOORS;j++)
     {
         int nearestElevator=0;
