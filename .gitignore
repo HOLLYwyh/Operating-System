@@ -74,4 +74,6 @@ Thumbs.db
 # Some Debug Files
 /build-elevator-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/
 /build-elevator-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/
+/build-elevator-Desktop_Qt_5_14_2_MinGW_64_bit-Release/
+/build-elevator-Desktop_Qt_5_14_2_MinGW_32_bit-Release/
 
