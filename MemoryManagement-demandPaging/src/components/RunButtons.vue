@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button class="one-step">单步执行</button>
-    <button class="sequential-steps">连续执行</button>
-    <button class="reset">重置</button>
+    <button class="one-step border-2 border-black rounded-sm bg-blue-300 py-3 px-6 hover:bg-red-500 font-serif font-bold">单步执行</button>
+    <button class="sequential-steps border-black border-2 rounded-sm bg-blue-300 py-3 px-6 hover:bg-red-500 font-serif font-bold">连续执行</button>
+    <button class="reset border-2 border-black rounded-sm bg-blue-300 py-3 px-6 hover:bg-red-500 font-serif font-bold">重置</button>
   </div>
 </template>
 
@@ -16,12 +16,12 @@ export default {
 .one-step{
   position: fixed;
   top:650px;
-  left:550px;
+  left:525px;
 }
 .sequential-steps{
   position: fixed;
   top:650px;
-  left:750px;
+  left:725px;
 }
 .reset{
   position: fixed;

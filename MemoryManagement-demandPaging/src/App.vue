@@ -4,6 +4,7 @@
     <Memory/>
     <RunButtons/>
     <SideBar/>
+    <Words/>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import Logs from "./components/Logs.vue";
 import Memory from "./components/Memory";
 import RunButtons from "./components/RunButtons";
 import SideBar from './components/SideBar.vue';
+import Words from "./components/Words";
 
 export default {
   name: 'App',
@@ -20,7 +22,8 @@ export default {
     Logs,
     Memory,
     RunButtons,
-    SideBar
+    SideBar,
+    Words
   }
 }
 </script>

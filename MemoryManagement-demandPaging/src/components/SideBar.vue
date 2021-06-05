@@ -21,13 +21,13 @@
         <li class="word-2 font-mono font-bold">
             缺页总数：
         </li>
-        <li class="number font-mono font-bold">
+        <li class="number font-mono font-bold text-purple-400 text-2xl">
           50
         </li>
         <li class="word-3 font-mono font-bold">
             缺页率：
         </li>
-        <li class="percentage font-mono font-bold">
+        <li class="percentage font-mono font-bold text-purple-400 text-2xl">
           100%
         </li>
       </ul>
