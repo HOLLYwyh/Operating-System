@@ -1,4 +1,4 @@
-# memorymanagement-demandpaging
+# Memorymanagement-Demandpaging
 
 ## Project setup
 ```
