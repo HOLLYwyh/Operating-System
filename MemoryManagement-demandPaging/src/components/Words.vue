@@ -5,19 +5,28 @@
     <div class="word3 font-bold font-serif">内存块3</div>
     <div class="word4 font-bold font-serif">内存块4</div>
     <div class="font-bold font-serif page1">页号:</div>
-    <div class="order1 font-mono text-purple-400 text-2xl font-bold">1</div>
+    <div class="order1 font-mono text-purple-400 text-2xl font-bold">{{pageOne}}</div>
     <div class="font-bold font-serif page2">页号:</div>
-    <div class="order2 font-mono text-purple-400 text-2xl font-bold">2</div>
+    <div class="order2 font-mono text-purple-400 text-2xl font-bold">{{pageTwo}}</div>
     <div class="font-bold font-serif page3 ">页号:</div>
-    <div class="order3 font-mono text-purple-400 text-2xl font-bold">3</div>
+    <div class="order3 font-mono text-purple-400 text-2xl font-bold">{{pageThree}}</div>
     <div class="font-bold font-serif page4">页号:</div>
-    <div class="order4 font-mono text-purple-400 text-2xl font-bold">4</div>
+    <div class="order4 font-mono text-purple-400 text-2xl font-bold">{{pageFour}}</div>
   </div>
 </template>
 
 <script>
+import Global from "./Global";
 export default {
-  name: "Words"
+  name: "Words",
+  data:()=>{
+    return{
+      pageOne : Global.pageOne,
+      pageTwo : Global.pageTwo,
+      pageThree : Global.pageThree,
+      pageFour : Global.pageFour
+    }
+  }
 }
 </script>
 

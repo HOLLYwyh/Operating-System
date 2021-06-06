@@ -16,13 +16,13 @@
             缺页总数：
         </li>
         <li class="number font-mono font-bold text-purple-400 text-2xl">
-          50
+          {{lackPageNumber}}
         </li>
         <li class="word-3 font-mono font-bold">
             缺页率：
         </li>
         <li class="percentage font-mono font-bold text-purple-400 text-2xl">
-          100%
+          {{lackPagePercentage}}
         </li>
       </ul>
       <button id="button1" @click="setAlgorithm(1)" class="button-1  border-2 border-black transform hover:scale-110 motion-reduce:transform-none p-4 border-r-4 border-purple-400 font-bold hover:border-purple-700">
@@ -40,6 +40,12 @@ import Global from "./Global";
 
 export default {
   name: 'SideBar',
+  data:()=>{
+    return {
+      lackPageNumber : Global.lackPageNumber,
+      lackPagePercentage: Global.lackPagePercentage
+    }
+  },
   methods:{
     setAlgorithm(method){
       if(method===Global.LRU){  //是LRU算法
