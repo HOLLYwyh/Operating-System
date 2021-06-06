@@ -25,10 +25,10 @@
           100%
         </li>
       </ul>
-      <button id="button1" @click="test(1)" class="button-1 border-2 border-black transform hover:scale-110 motion-reduce:transform-none p-4 border-r-4 border-purple-400 font-bold hover:border-purple-700 hover:bg-purple-700">
+      <button id="button1" @click="setAlgorithm(1)" class="button-1  border-2 border-black transform hover:scale-110 motion-reduce:transform-none p-4 border-r-4 border-purple-400 font-bold hover:border-purple-700">
       LRU算法
       </button>
-      <button id="button2" @click="test(2)" class="button-2 bg-purple-700 border-2 border-black transform hover:scale-110 motion-reduce:transform-none p-4 border-r-4 border-purple-400 font-bold hover:border-purple-700 hover:bg-purple-700">
+      <button id="button2" @click="setAlgorithm(2)" class="button-2  border-2 border-black transform hover:scale-110 motion-reduce:transform-none p-4 border-r-4 border-purple-400 font-bold hover:border-purple-700">
       FIFO算法
       </button>
     </div>
@@ -36,21 +36,26 @@
 </template>
 
 <script>
+import Global from "./Global";
+
 export default {
   name: 'SideBar',
   methods:{
-    test(method){
-      if(method===1)
-        alert(1);
-      else
-        alert(2);
+    setAlgorithm(method){
+      if(method===Global.LRU){  //是LRU算法
+        document.getElementById("button1").style.backgroundColor="#6D28D9";
+        document.getElementById("button2").style.backgroundColor="#F3F4F6";
+        Global.currentAlgorithm=Global.LRU;
+        Global.changeData();
+      }
+      else if(method===Global.FIFO){   //是FIFO算法
+        document.getElementById("button1").style.backgroundColor="#F3F4F6";
+        document.getElementById("button2").style.backgroundColor="#6D28D9";
+        Global.currentAlgorithm=Global.FIFO;
+      }
     }
   }
-  /*mounted:function () {
-    test();
-  }*/
 }
-
 </script>
 
 <style scoped>
@@ -65,10 +70,12 @@ button{
 .button-1{
   position: fixed;
   top:200px;
+  background-color: #F3F4F6;
 }
 .button-2{
   position: fixed;
   top:260px;
+  background-color:#6D28D9;
 }
 .project-name{
   position: fixed;
