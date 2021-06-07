@@ -68,6 +68,9 @@ export default {
       this.outPage = "--";
       this.finishedNumber = 0;
       this.notFinishedNumber = 320;
+      for(let i=0;i<Global.TotalOrdersNumber;i++) {
+        Global.isChecked[i] = false ;
+      }
     },
     updateLogs(){
       this.currentPageNumber = Global.currentPageNumber;
@@ -79,8 +82,8 @@ export default {
       this.needDispatch = Global.needDispatch;
       this.inPage = Global.inPage;
       this.outPage = Global.outPage;
-      this.finishedNumber = 0;
-      this.notFinishedNumber = 320;
+      this.finishedNumber = Global.finishedNumber;
+      this.notFinishedNumber = (Global.TotalOrdersNumber - Global.finishedNumber);
     },
     setLog(){   //监听并更新Logs区域的值
       if(Global.currentStatus === Global.Reset) {
