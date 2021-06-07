@@ -7,9 +7,10 @@
 const LRU = 1;   //LRU算法
 const FIFO = 2;  // FIFO算法
 const Stop = 3;  //当前停止状态
-const Run = 4;   //当前为运行状态
-const Reset = 5; //重置
-let currentStatus = Stop;   //当前状态为停止
+const OneStepRun = 4;   //当前为运行状态
+const ContinuouslyRun = 5;  //连续运行
+const Reset = 6;       //重置/初始状态
+let currentStatus = Reset;   //当前状态为停止
 let currentAlgorithm = FIFO;  //当前算法
 let lackPageNumber = 0;   //缺页数
 let lackPagePercentage = "0%" ; //缺页率
@@ -35,8 +36,9 @@ export default {
   LRU,
   FIFO,
   Stop,
-  Run,
   Reset,
+  OneStepRun,
+  ContinuouslyRun,
   currentStatus,
   currentAlgorithm,
   lackPageNumber,
