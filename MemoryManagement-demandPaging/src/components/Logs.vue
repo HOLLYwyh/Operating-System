@@ -73,10 +73,10 @@ export default {
       }
     },
     updateLogs(){
-      this.currentPageNumber = Global.currentPageNumber;
+      this.currentPageNumber = Global.currentOrder;   //测试
       this.currentOffset = Global.currentOffset;
       this.currentLocation = Global.currentLocation;
-      this.nextPageNumber = Global.nextPageNumber;
+      this.nextPageNumber = Global.nextOrder;    //测试
       this.nextOffset = Global.nextOffset;
       this.nextLocation = Global.nextLocation;
       this.needDispatch = Global.needDispatch;

@@ -16,7 +16,8 @@ const TotalOrdersNumber = 320; //总指令数
 const Threshold = 300; //阈值
 let currentStatus = Reset;   //当前状态为停止
 let currentAlgorithm = FIFO;  //当前算法
-let currentOrder = -1;
+let currentOrder = Math.floor(Math.random()*320);   //当前执行的指令
+let nextOrder = -1;    //下一条要执行的指令
 let lackPageNumber = 0;   //缺页数
 let lackPagePercentage = "0%" ; //缺页率
 let pageOne = "--";  //一号内存块
@@ -54,6 +55,7 @@ export default {
   currentStatus,
   currentAlgorithm,
   currentOrder,
+  nextOrder,
   lackPageNumber,
   lackPagePercentage,
   pageOne,

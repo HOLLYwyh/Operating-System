@@ -66,52 +66,69 @@ export default {
         Global.outPage = "--"; //需要调出的页
         Global.finishedNumber = 0;  //已经完成的指令数
         Global.notFinishedNumber = 320; //未完成的指令数
-        Global.currentOrder = -1;
+        Global.currentOrder = Math.floor(Math.random()*320);
+        Global.nextOrder = -1;
         this.isContinuouslyRun = false;
       }
     },
     getOrder(){
-      if(Global.currentOrder === -1){  //随机选择一条指令，这里还没有写
-        Global.currentOrder = Math.floor(Math.random()*320);
+      if(Global.nextOrder === -1){  //最开始的指令
+        if((Global.currentOrder<=Global.SequenceOne)||(Global.currentOrder>=Global.SequenceTwo)){
+          Global.nextOrder = Global.currentOrder+1;
+        }
+        else{
+          Global.nextOrder = Math.floor(Math.random()*320);
+        }
         Global.isChecked[Global.currentOrder] = true;
         Global.finishedNumber ++;
         console.log(Global.currentOrder);
       }
       else if(Global.finishedNumber>=Global.Threshold){//大于阈值,强制顺序执行
+        Global.currentOrder = Global.nextOrder;
+        Global.isChecked[Global.currentOrder] = true;
+        Global.finishedNumber ++;
         for(let i=0; i<Global.TotalOrdersNumber;i++){
           if(!Global.isChecked[i]){
-            Global.currentOrder = i;
-            Global.isChecked[i] = true;
-            Global.finishedNumber ++;
+            Global.nextOrder = i;
             break;
           }
         }
         console.log(Global.currentOrder);
       }
-      else if((Global.currentOrder === Global.TotalOrdersNumber-1)&&(Global.finishedNumber!==Global.TotalOrdersNumber)){  //到结尾但是没有执行完
+      else if((Global.nextOrder === Global.TotalOrdersNumber-1)&&(Global.finishedNumber!==Global.TotalOrdersNumber)){  //到结尾但是没有执行完
         //随机生成一条
         let temp = Math.floor(Math.random()*320);
         while(Global.isChecked[temp]){
           temp = Math.floor(Math.random()*320);
         }
-        Global.currentOrder = temp;
-        Global.isChecked[temp] = true;
+        Global.currentOrder =Global.nextOrder;
+        Global.isChecked[Global.currentOrder] = true;
+        Global.nextOrder = temp;
         Global.finishedNumber ++;
+
         console.log(Global.currentOrder);
       }
-      else if((Global.currentOrder<=Global.SequenceOne)||(Global.currentOrder>=Global.SequenceTwo)){  //前后的顺序指令
+      else if((Global.nextOrder<=Global.SequenceOne)||(Global.nextOrder>=Global.SequenceTwo)){  //前后的顺序指令
         let tag = false;
-        for(let i = Global.currentOrder+1;i<Global.TotalOrdersNumber;i++){
+        for(let i = Global.nextOrder+1;i<Global.TotalOrdersNumber;i++){
           if(!Global.isChecked[i]){
-            Global.currentOrder = i;
-            Global.isChecked[i] = true;
+            Global.currentOrder= Global.nextOrder;
+            Global.isChecked[Global.currentOrder] = true;
+            Global.nextOrder = i;
             Global.finishedNumber ++;
             tag = true;
             break;
           }
         }
-        if(!tag){
-          Global.currentOrder = Global.TotalOrdersNumber-1; //强行放到最后一个
+        if(!tag){   //强行进行跳转
+          let temp = Math.floor(Math.random()*320);
+          while(Global.isChecked[temp]){
+            temp = Math.floor(Math.random()*320);
+          }
+          Global.currentOrder = Global.nextOrder;
+          Global.isChecked[Global.currentOrder] = true;
+          Global.nextOrder = temp;
+          Global.finishedNumber ++;
         }
         console.log(Global.currentOrder);
       }
@@ -120,8 +137,9 @@ export default {
         while(Global.isChecked[temp]){
           temp = Math.floor(Math.random()*320);
         }
-        Global.currentOrder = temp;
-        Global.isChecked[temp] = true;
+        Global.currentOrder = Global.nextOrder;
+        Global.isChecked[Global.currentOrder] = true;
+        Global.nextOrder = temp;
         Global.finishedNumber ++;
         console.log(Global.currentOrder);
       }
@@ -148,9 +166,11 @@ export default {
       this.LRUMethod();
     },
     FIFOMethod(){
+
     console.log("FIFO");
     },
     LRUMethod(){
+
     console.log("LRU");
     }
   },
