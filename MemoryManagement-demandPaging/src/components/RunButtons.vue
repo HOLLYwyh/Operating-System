@@ -8,38 +8,25 @@
 
 <script>
 import Global from "./Global";
-import SideBar from "./SideBar";
-import Words from "./Words";
-import Logs from "./Logs";
 export default {
   name: "RunButtons",
   methods : {
     oneStepRun(){
-      if(Global.currentStatus===Global.Stop) {  //需要额外启动
-        console.log(1);   //先做简单测试再加Timer
+      Global.currentStatus = Global.OneStepRun;
+      if(Global.currentAlgorithm === Global.LRU){
+        this.LRU();
       }
-      else if (Global.currentStatus ===Global.OneStepRun){
-        console.log(2);
-      }
-      else if (Global.currentSatus ===Global.ContinuouslyRun){
-        console.log(3);
-      }
-      else if(Global.currentStatus ===Global.Reset){
-        console.log(4);
+      else{
+        this.FIFO();
       }
     },
     continuouslyRun(){
-      if(Global.currentStatus===Global.Stop) {  //需要额外启动
-        console.log(1);
+      Global.currentStatus = Global.ContinuouslyRun;
+      if(Global.currentAlgorithm === Global.LRU){
+        this.LRU();
       }
-      else if (Global.currentStatus ===Global.OneStepRun){
-        console.log(2);
-      }
-      else if (Global.currentSatus ===Global.ContinuouslyRun){
-        console.log(3);
-      }
-      else if(Global.currentStatus ===Global.Reset){
-        console.log(4);
+      else{
+        this.FIFO();
       }
     },
     reset(){
@@ -50,33 +37,33 @@ export default {
       }
       //重置值
       else {
-        Global.currentSatus = Global.Reset;  //恢复初始状态
-        SideBar.data().lackPageNumber = Global.lackPageNumber;
-        SideBar.data().lackPagePercentage = Global.lackPagePercentage;
-        Logs.currentPageNumber = Global.currentPageNumber;
-        Logs.currentOffset = Global.currentOffset;
-        Logs.currentLocation = Global.currentLocation;
-        Logs.nextPageNumber = Global.nextPageNumber;
-        Logs.nextOffset = Global.nextOffset;
-        Logs.nextLocation = Global.nextLocation;
-        Logs.needDispatch = Global.needDispatch;
-        Logs.inPage = Global.inPage;
-        Logs.outPage = Global.outPage;
-        Logs.finishedNumber = Global.finishedNumber;
-        Logs.notFinishedNumber = Global.notFinishedNumber;
-        Words.pageOne = Global.pageOne;
-        Words.pageTwo =  Global.pageTwo;
-        Words.pageThree = Global.pageThree;
-        Words.pageFour = Global.pageFour;
+        Global.currentStatus = Global.Reset;  //恢复初始状态
+        Global.lackPageNumber = 0;   //缺页数
+        Global.lackPagePercentage = "0%" ; //缺页率
+        Global.pageOne = "--";  //一号内存块
+        Global.pageTwo = "--";  //二号内存块
+        Global.pageThree = "--"; //三号内存块
+        Global.pageFour = "--";  //四号内存块
+        Global.currentPageNumber = "--" //当前页号
+        Global.currentOffset = "--"; //当前页内偏移量
+        Global.currentLocation = "--"; //当前指令地址
+        Global.nextPageNumber = "--";//下一条页号
+        Global.nextOffset = "--";  //下一条页面偏移量
+        Global.nextLocation = "--";  //下一条指令的地址
+        Global.needDispatch = "否"; //是否需要调度
+        Global.inPage = "--"; //需要调进的页
+        Global.outPage = "--"; //需要调出的页
+        Global.finishedNumber = 0;  //已经完成的指令数
+        Global.notFinishedNumber = 320; //未完成的指令数
         console.log("Reset");
       }
     },
     FIFO(){   //执行FIFO算法
-
+    console.log(" FIFO");
     },
     LRU(){  //执行LRU算法
-
-    }
+    console.log(" LRU");
+    },
   }
 }
 </script>

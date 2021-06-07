@@ -56,11 +56,43 @@ export default {
     }
   },
   methods:{
-    setLog(){
+    initLogs(){
+      this.currentPageNumber = "--";
+      this.currentOffset = "--";
+      this.currentLocation = "--";
+      this.nextPageNumber = "--";
+      this.nextOffset = "--";
+      this.nextLocation = "--";
+      this.needDispatch = "否";
+      this.inPage = "--";
+      this.outPage = "--";
+      this.finishedNumber = 0;
+      this.notFinishedNumber = 320;
+    },
+    updateLogs(){
+      this.currentPageNumber = Global.currentPageNumber;
+      this.currentOffset = Global.currentOffset;
+      this.currentLocation = Global.currentLocation;
+      this.nextPageNumber = Global.nextPageNumber;
+      this.nextOffset = Global.nextOffset;
+      this.nextLocation = Global.nextLocation;
+      this.needDispatch = Global.needDispatch;
+      this.inPage = Global.inPage;
+      this.outPage = Global.outPage;
+      this.finishedNumber = 0;
+      this.notFinishedNumber = 320;
+    },
+    setLog(){   //监听并更新Logs区域的值
+      if(Global.currentStatus === Global.Reset) {
+        this.initLogs();
+      }
+      else{
+        this.updateLogs();
+      }
     }
   },
   mounted(){
-    this.timer = setInterval(this.setLog,100);
+    this.timer = setInterval(this.setLog,200);
   },
   beforeDestroy() {
     clearInterval(this.timer)

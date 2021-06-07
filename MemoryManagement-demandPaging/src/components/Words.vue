@@ -24,8 +24,37 @@ export default {
       pageOne : Global.pageOne,
       pageTwo : Global.pageTwo,
       pageThree : Global.pageThree,
-      pageFour : Global.pageFour
+      pageFour : Global.pageFour,
+      timer : ""
     }
+  },
+  methods:{
+    initWords(){
+      this.pageOne = "--";
+      this.pageTwo = "--";
+      this.pageThree = "--";
+      this.pageFour = "--";
+    },
+    updateWords(){
+      this.pageOne = Global.pageOne;
+      this.pageTwo = Global.pageTwo;
+      this.pageThree = Global.pageThree;
+      this.pageFour = Global.pageFour;
+    },
+    setWords(){
+    if(Global.currentStatus === Global.Reset){
+      this.initWords();
+      }
+    else{
+      this.updateWords();
+      }
+    }
+  },
+  mounted(){
+    this.timer = setInterval(this.setWords,200);
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 }
 </script>

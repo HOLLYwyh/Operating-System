@@ -43,7 +43,8 @@ export default {
   data:()=>{
     return {
       lackPageNumber : Global.lackPageNumber,
-      lackPagePercentage: Global.lackPagePercentage
+      lackPagePercentage: Global.lackPagePercentage,
+      timer:""
     }
   },
   methods:{
@@ -52,14 +53,35 @@ export default {
         document.getElementById("button1").style.backgroundColor="#6D28D9";
         document.getElementById("button2").style.backgroundColor="#F3F4F6";
         Global.currentAlgorithm=Global.LRU;
-        Global.changeData();
       }
       else if(method===Global.FIFO){   //是FIFO算法
         document.getElementById("button1").style.backgroundColor="#F3F4F6";
         document.getElementById("button2").style.backgroundColor="#6D28D9";
         Global.currentAlgorithm=Global.FIFO;
       }
+    },
+    initSideBar(){
+      this.lackPagePercentage = "0%";
+      this.lackPageNumber = 0;
+    },
+    updateSideBar(){
+      this.lackPagePercentage = Global.lackPagePercentage;
+      this.lackPageNumber = Global.lackPageNumber;
+    },
+    setSideBar(){
+      if(Global.currentStatus === Global.Reset){
+        this.initSideBar();
+      }
+      else{
+        this.updateSideBar();
+      }
     }
+  },
+  mounted(){
+    this.timer = setInterval(this.setSideBar,200);
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 }
 </script>
