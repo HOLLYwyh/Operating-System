@@ -33,10 +33,17 @@ export default {
     updateMemory(){
       this.initMemory();
       this.liArray = document.getElementsByTagName("li");
-      for(let i=0;i<Global.TotalMemoryBlocks;i++){
-        if(Global.offsetQueue[i]!==-1){
-            this.liArray[this.firstBlock+i*10+Global.offsetQueue[i]].style.backgroundColor = "#EF4444";
-        }
+      if(Global.pageOne ===Global.currentPageNumber){
+        this.liArray[this.firstBlock+Global.currentOffset].style.backgroundColor = "#EF4444";
+      }
+      else if(Global.pageTwo ===Global.currentPageNumber){
+        this.liArray[this.firstBlock+10+Global.currentOffset].style.backgroundColor = "#EF4444";
+      }
+      else if(Global.pageThree ===Global.currentPageNumber){
+        this.liArray[this.firstBlock+20+Global.currentOffset].style.backgroundColor = "#EF4444";
+      }
+      else if(Global.pageFour ===Global.currentPageNumber){
+        this.liArray[this.firstBlock+30+Global.currentOffset].style.backgroundColor = "#EF4444";
       }
     },
     setMemory(){

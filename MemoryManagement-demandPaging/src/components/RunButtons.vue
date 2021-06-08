@@ -19,12 +19,7 @@ export default {
   methods : {
     oneStepRun(){
       Global.currentStatus = Global.OneStepRun;
-      if(Global.currentAlgorithm === Global.LRU){
-        this.LRU();
-      }
-      else{
-        this.FIFO();
-      }
+      this.runMethod();
     },
     setContinue(){
       this.isContinuouslyRun = true;
@@ -32,12 +27,7 @@ export default {
     },
     continuouslyRun(){
     if(this.isContinuouslyRun){
-        if(Global.currentAlgorithm === Global.LRU){
-          this.LRU();
-        }
-        else{
-          this.FIFO();
-        }
+      this.runMethod();
       }
     },
     reset(){
@@ -86,7 +76,6 @@ export default {
         }
         Global.isChecked[Global.currentOrder] = true;
         Global.finishedNumber ++;
-        console.log(Global.currentOrder);
       }
       else if(Global.finishedNumber>=Global.Threshold){//大于阈值,强制顺序执行
         Global.currentOrder = Global.nextOrder;
@@ -98,7 +87,6 @@ export default {
             break;
           }
         }
-        console.log(Global.currentOrder);
       }
       else if((Global.nextOrder === Global.TotalOrdersNumber-1)&&(Global.finishedNumber!==Global.TotalOrdersNumber)){  //到结尾但是没有执行完
         //随机生成一条
@@ -110,7 +98,6 @@ export default {
         Global.isChecked[Global.currentOrder] = true;
         Global.nextOrder = temp;
         Global.finishedNumber ++;
-        console.log(Global.currentOrder);
       }
       else if((Global.nextOrder<=Global.SequenceOne)||(Global.nextOrder>=Global.SequenceTwo)){  //前后的顺序指令
         let tag = false;
@@ -134,7 +121,6 @@ export default {
           Global.nextOrder = temp;
           Global.finishedNumber ++;
         }
-        console.log(Global.currentOrder);
       }
       else{   //中间的跳转指令
         let temp = Math.floor(Math.random()*320);
@@ -145,131 +131,21 @@ export default {
         Global.isChecked[Global.currentOrder] = true;
         Global.nextOrder = temp;
         Global.finishedNumber ++;
-        console.log(Global.currentOrder);
       }
     },
-    FIFO(){   //执行FIFO算法
+    runMethod(){
       if(Global.finishedNumber === Global.TotalOrdersNumber){
-        console.log(Global.finishedNumber);
-        console.log("finished");
         Global.currentStatus =Global.Stop;
         return;
       }
-      console.log(Global.finishedNumber);
       this.getOrder();
       Global.currentPageNumber = Math.floor(Global.currentOrder/10);
       Global.currentOffset = Global.currentOrder%10;
       Global.nextPageNumber = Math.floor(Global.nextOrder/10);
       Global.nextOffset = Global.nextOrder%10;
-      this.FIFOMethod();
+      this.runAlgorithm();
     },
-    LRU(){  //执行LRU算法
-      if(Global.finishedNumber === Global.TotalOrdersNumber){
-        console.log("finished");
-        Global.currentStatus =Global.Stop;
-        return;
-      }
-      console.log(Global.finishedNumber);
-      this.getOrder();
-      Global.currentPageNumber = Math.floor(Global.currentOrder/10);
-      Global.currentOffset = Global.currentOrder%10;
-      Global.nextPageNumber = Math.floor(Global.nextOrder/10);
-      Global.nextOffset = Global.nextOrder%10;
-      this.LRUMethod();
-    },
-    FIFOMethod(){
-    console.log("FIFO");
-    let free = false;  //表示需要进入新的一个页
-    let isIn = false;  //表示指令所在的页已经进入内存
-    let freeTarget = -1;
-    let isInTarget = -1;
-    for(let i=0;i<Global.TotalMemoryBlocks;i++){
-      if(Global.OrderQueue[i]===Global.currentPageNumber){
-        isIn = true;
-        isInTarget = i;
-        break;
-      }
-    }
-    if(isIn){ //已经进入页面不需要调度
-      Global.needDispatch = "否";
-      Global.inPage = "--";
-      Global.outPage = "--";
-      Global.succeedPageNumber++;
-      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
-      Global.offsetQueue[isInTarget] = Global.currentOffset;
-    }
-    if(!isIn){
-      for(let i=0;i<Global.TotalMemoryBlocks;i++){
-        if(Global.OrderQueue[i]===-1){
-          free = true;
-          Global.OrderQueue[i] = Global.currentPageNumber;
-          freeTarget = i;
-          break;
-        }
-      }
-    }
-    if(free){  //有空闲的位置，需要调度
-      Global.needDispatch = "是";
-      Global.inPage = Global.currentPageNumber;
-      Global.outPage = "--";
-      Global.lackPageNumber++;
-      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
-      switch (freeTarget){
-        case 0:{
-          Global.pageOne = Global.currentPageNumber;
-          Global.offsetQueue[0] = Global.currentOffset;
-          break;
-        }
-        case 1:{
-          Global.pageTwo = Global.currentPageNumber;
-          Global.offsetQueue[1] = Global.currentOffset;
-          break;
-        }
-        case 2:{
-          Global.pageThree = Global.currentPageNumber;
-          Global.offsetQueue[2] = Global.currentOffset;
-          break;
-        }
-        case 3:{
-          Global.pageFour = Global.currentPageNumber;
-          Global.offsetQueue[3] = Global.currentOffset;
-          break;
-        }
-    }
-    }
-    if((!isIn)&&(!free)){   //需要调度
-      Global.needDispatch = "是";
-      Global.lackPageNumber++;
-      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
-      Global.outPage = Global.OrderQueue.shift();
-      Global.inPage = Global.currentPageNumber;
-      Global.OrderQueue.push(Global.inPage);
-      switch(Global.outPage){
-        case Global.pageOne:{
-          Global.pageOne = Global.OrderQueue[3];
-          Global.offsetQueue[0] = Global.currentOffset;
-          break;
-        }
-        case Global.pageTwo:{
-          Global.pageTwo = Global.OrderQueue[3];
-          Global.offsetQueue[1] = Global.currentOffset;
-          break;
-        }
-        case Global.pageThree:{
-          Global.pageThree = Global.OrderQueue[3];
-          Global.offsetQueue[2] = Global.currentOffset;
-          break;
-        }
-        case Global.pageFour:{
-          Global.pageFour = Global.OrderQueue[3];
-          Global.offsetQueue[3] = Global.currentOffset;
-          break;
-        }
-      }
-      }
-    },
-    LRUMethod(){
-      console.log("FIFO");
+    runAlgorithm(){
       let free = false;  //表示需要进入新的一个页
       let isIn = false;  //表示指令所在的页已经进入内存
       let freeTarget = -1;
@@ -302,7 +178,6 @@ export default {
           Global.pointerTwo = Global.pointerOne;
           Global.pointerOne = isInTarget;
         }
-        Global.offsetQueue[isInTarget] = Global.currentOffset;
       }
       if(!isIn){
         for(let i=0;i<Global.TotalMemoryBlocks;i++){
@@ -324,21 +199,18 @@ export default {
           case 0:{
             Global.pageOne = Global.currentPageNumber;
             Global.pointerOne = 0;
-            Global.offsetQueue[0] = Global.currentOffset;
             break;
           }
           case 1:{
             Global.pageTwo = Global.currentPageNumber;
             Global.pointerTwo = Global.pointerOne;
             Global.pointerOne = 1;
-            Global.offsetQueue[1] = Global.currentOffset;
             break;
           }
           case 2:{
             Global.pageThree = Global.currentPageNumber;
             Global.pointerThree = Global.pointerTwo;
             Global.pointerTwo = Global.pointerOne;
-            Global.offsetQueue[2] = Global.currentOffset;
             Global.pointerOne = 2;
             break;
           }
@@ -347,46 +219,87 @@ export default {
             Global.pointerFour = Global.pointerThree;
             Global.pointerThree = Global.pointerTwo;
             Global.pointerTwo = Global.pointerOne;
-            Global.offsetQueue[3] = Global.currentOffset;
             Global.pointerOne = 3;
             break;
           }
         }
       }
       if((!isIn)&&(!free)){   //需要调度
-        Global.needDispatch = "是";
-        Global.lackPageNumber++;
-        Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
-        Global.outPage = Global.OrderQueue[Global.pointerFour];
-        Global.inPage = Global.currentPageNumber;
-        Global.OrderQueue[Global.pointerFour] = Global.currentPageNumber;
-        switch(Global.outPage){
-          case Global.pageOne:{
-            Global.pageOne = Global.inPage;
-            Global.offsetQueue[0] = Global.currentOffset;
-            break;
+        if(Global.currentAlgorithm === Global.LRU) {  //真正区分LRU和FIFO的地方
+          Global.needDispatch = "是";
+          Global.lackPageNumber++;
+          Global.lackPagePercentage = ((Global.lackPageNumber / (Global.lackPageNumber + Global.succeedPageNumber)) * 100).toFixed(2) + "%";
+          Global.outPage = Global.OrderQueue[Global.pointerFour];
+          Global.inPage = Global.currentPageNumber;
+          Global.OrderQueue[Global.pointerFour] = Global.currentPageNumber;
+          switch (Global.outPage) {
+            case Global.pageOne: {
+              Global.pageOne = Global.inPage;
+              break;
+            }
+            case Global.pageTwo: {
+              Global.pageTwo = Global.inPage;
+              break;
+            }
+            case Global.pageThree: {
+              Global.pageThree = Global.inPage;
+              break;
+            }
+            case Global.pageFour: {
+              Global.pageFour = Global.inPage;
+              break;
+            }
           }
-          case Global.pageTwo:{
-            Global.pageTwo = Global.inPage;
-            Global.offsetQueue[1] = Global.currentOffset;
-            break;
+          let temp = Global.pointerFour;
+          Global.pointerFour = Global.pointerThree;
+          Global.pointerThree = Global.pointerTwo;
+          Global.pointerTwo = Global.pointerOne;
+          Global.pointerOne = temp;
+        }
+        else if(Global.currentAlgorithm === Global.FIFO){
+          Global.needDispatch = "是";
+          Global.lackPageNumber++;
+          Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+          Global.outPage = Global.OrderQueue.shift();
+          Global.inPage = Global.currentPageNumber;
+          Global.OrderQueue.push(Global.inPage);
+          switch(Global.outPage){
+            case Global.pageOne:{
+              Global.pageOne = Global.OrderQueue[3];
+              break;
+            }
+            case Global.pageTwo:{
+              Global.pageTwo = Global.OrderQueue[3];
+              break;
+            }
+            case Global.pageThree:{
+              Global.pageThree = Global.OrderQueue[3];
+              break;
+            }
+            case Global.pageFour:{
+              Global.pageFour = Global.OrderQueue[3];
+              break;
+            }
           }
-          case Global.pageThree:{
-            Global.pageThree = Global.inPage;
-            Global.offsetQueue[2] = Global.currentOffset;
-            break;
+          if(Global.pointerOne === 3){
+            Global.pointerOne = 3;
           }
-          case Global.pageFour:{
-            Global.pageFour = Global.inPage;
-           Global.offsetQueue[3] = Global.currentOffset;
-            break;
+          else if(Global.pointerTwo ===3){
+            Global.pointerTwo = Global.pointerOne;
+            Global.pointerOne = 3;
+          }
+          else if(Global.pointerThree ===3){
+            Global.pointerThree = Global.pointerTwo;
+            Global.pointerTwo = Global.pointerOne;
+            Global.pointerOne = 3;
+          }
+          else if(Global.pointerFour ===3){
+            Global.pointerFour = Global.pointerThree;
+            Global.pointerThree = Global.pointerTwo;
+            Global.pointerTwo = Global.pointerOne;
+            Global.pointerOne = 3;
           }
         }
-        let temp = Global.pointerFour;
-        Global.pointerFour= Global.pointerThree;
-        Global.pointerThree = Global.pointerTwo;
-        Global.pointerTwo = Global.pointerOne;
-        Global.pointerOne = temp;
       }
     }
   },

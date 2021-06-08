@@ -10,8 +10,8 @@ const Stop = 3;  //当前停止状态
 const OneStepRun = 4;   //当前为运行状态
 const ContinuouslyRun = 5;  //连续运行
 const Reset = 6;       //重置/初始状态
-const SequenceOne = 40;
-const SequenceTwo = 279;
+const SequenceOne = 35;
+const SequenceTwo = 284;
 const TotalOrdersNumber = 320; //总指令数
 const Threshold = 300; //阈值
 const TotalMemoryBlocks = 4;  //内存块的个数
@@ -43,7 +43,6 @@ let finishedNumber = 0;  //已经完成的指令数
 let notFinishedNumber = 320; //未完成的指令数
 let isChecked = new Array(320);  //访问指令
 let OrderQueue = new Array(4);    //FIFO队列
-let offsetQueue = new Array(4);    //偏移量列表
 
 
 export default {
@@ -87,7 +86,6 @@ export default {
   notFinishedNumber,
   isChecked,
   OrderQueue,
-  offsetQueue,
 }
 </script>
 

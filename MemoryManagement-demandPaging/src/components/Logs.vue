@@ -74,9 +74,6 @@ export default {
       for(let i=0;i<Global.TotalMemoryBlocks;i++){ //FIFO队列初始化
         Global.OrderQueue[i] = -1;
       }
-      for(let i=0;i<Global.TotalMemoryBlocks;i++){ //FIFO队列初始化
-        Global.offsetQueue[i] = -1;
-      }
     },
     updateLogs(){
       this.currentPageNumber = Global.currentPageNumber;
