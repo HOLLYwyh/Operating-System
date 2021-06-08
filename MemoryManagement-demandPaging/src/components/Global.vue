@@ -10,8 +10,8 @@ const Stop = 3;  //当前停止状态
 const OneStepRun = 4;   //当前为运行状态
 const ContinuouslyRun = 5;  //连续运行
 const Reset = 6;       //重置/初始状态
-const SequenceOne = 79;
-const SequenceTwo = 239;
+const SequenceOne = 40;
+const SequenceTwo = 279;
 const TotalOrdersNumber = 320; //总指令数
 const Threshold = 300; //阈值
 const TotalMemoryBlocks = 4;  //内存块的个数
@@ -22,6 +22,10 @@ let nextOrder = -1;    //下一条要执行的指令
 let succeedPageNumber = 0;  //请求页成功的数量
 let lackPageNumber = 0;   //缺页数
 let lackPagePercentage = "0%" ; //缺页率
+let pointerOne = -1;   //以下四个均表示优先级指针
+let pointerTwo = -1;
+let pointerThree = -1;
+let pointerFour = -1;
 let pageOne = "--";  //一号内存块
 let pageTwo = "--";  //二号内存块
 let pageThree = "--"; //三号内存块
@@ -39,8 +43,7 @@ let finishedNumber = 0;  //已经完成的指令数
 let notFinishedNumber = 320; //未完成的指令数
 let isChecked = new Array(320);  //访问指令
 let OrderQueue = new Array(4);    //FIFO队列
-
-
+let offsetQueue = new Array(4);    //偏移量列表
 
 
 export default {
@@ -63,6 +66,10 @@ export default {
   lackPageNumber,
   succeedPageNumber,
   lackPagePercentage,
+  pointerOne,
+  pointerTwo,
+  pointerThree,
+  pointerFour,
   pageOne,
   pageTwo,
   pageThree,
@@ -80,6 +87,7 @@ export default {
   notFinishedNumber,
   isChecked,
   OrderQueue,
+  offsetQueue,
 }
 </script>
 

@@ -52,6 +52,10 @@ export default {
         Global.succeedPageNumber = 0;  //请求页成功数
         Global.lackPageNumber = 0;   //缺页数
         Global.lackPagePercentage = "0%" ; //缺页率
+        Global.pointerOne = -1;
+        Global.pointerTwo = -1;
+        Global.pointerThree = -1;
+        Global.pointerFour = -1;
         Global.pageOne = "--";  //一号内存块
         Global.pageTwo = "--";  //二号内存块
         Global.pageThree = "--"; //三号内存块
@@ -191,8 +195,8 @@ export default {
       Global.inPage = "--";
       Global.outPage = "--";
       Global.succeedPageNumber++;
-      //这里可能要在最终显示的时候添加东西
-      console.log(isInTarget);
+      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+      Global.offsetQueue[isInTarget] = Global.currentOffset;
     }
     if(!isIn){
       for(let i=0;i<Global.TotalMemoryBlocks;i++){
@@ -204,7 +208,7 @@ export default {
         }
       }
     }
-    if(free){  //有空闲的位置，不需要调度
+    if(free){  //有空闲的位置，需要调度
       Global.needDispatch = "是";
       Global.inPage = Global.currentPageNumber;
       Global.outPage = "--";
@@ -213,18 +217,22 @@ export default {
       switch (freeTarget){
         case 0:{
           Global.pageOne = Global.currentPageNumber;
+          Global.offsetQueue[0] = Global.currentOffset;
           break;
         }
         case 1:{
           Global.pageTwo = Global.currentPageNumber;
+          Global.offsetQueue[1] = Global.currentOffset;
           break;
         }
         case 2:{
           Global.pageThree = Global.currentPageNumber;
+          Global.offsetQueue[2] = Global.currentOffset;
           break;
         }
         case 3:{
           Global.pageFour = Global.currentPageNumber;
+          Global.offsetQueue[3] = Global.currentOffset;
           break;
         }
     }
@@ -239,109 +247,151 @@ export default {
       switch(Global.outPage){
         case Global.pageOne:{
           Global.pageOne = Global.OrderQueue[3];
+          Global.offsetQueue[0] = Global.currentOffset;
           break;
         }
         case Global.pageTwo:{
           Global.pageTwo = Global.OrderQueue[3];
+          Global.offsetQueue[1] = Global.currentOffset;
           break;
         }
         case Global.pageThree:{
           Global.pageThree = Global.OrderQueue[3];
+          Global.offsetQueue[2] = Global.currentOffset;
           break;
         }
         case Global.pageFour:{
           Global.pageFour = Global.OrderQueue[3];
+          Global.offsetQueue[3] = Global.currentOffset;
           break;
         }
       }
       }
     },
     LRUMethod(){
-    console.log("LRU");
-    let free = false;  //表示需要进入新的一个页
-    let isIn = false;  //表示指令所在的页已经进入内存
-    let freeTarget = -1;
-    let isInTarget = -1;
-    for(let i=0;i<Global.TotalMemoryBlocks;i++){
-    if(Global.OrderQueue[i]===Global.currentPageNumber){
-       isIn = true;
-       isInTarget = i;
-       break;
-      }
-    }
-    if(isIn){ //已经进入页面不需要调度
-      Global.needDispatch = "否";
-      Global.inPage = "--";
-      Global.outPage = "--";
-      Global.succeedPageNumber++;
-      //这里可能要在最终显示的时候添加东西
-      console.log(isInTarget);
-    }
-     if(!isIn){
+      console.log("FIFO");
+      let free = false;  //表示需要进入新的一个页
+      let isIn = false;  //表示指令所在的页已经进入内存
+      let freeTarget = -1;
+      let isInTarget = -1;
       for(let i=0;i<Global.TotalMemoryBlocks;i++){
-        if(Global.OrderQueue[i]===-1){
-          free = true;
-          Global.OrderQueue[i] = Global.currentPageNumber;
-          freeTarget = i;
+        if(Global.OrderQueue[i]===Global.currentPageNumber){
+          isIn = true;
+          isInTarget = i;
           break;
         }
       }
-    }
-    if(free){  //有空闲的位置，不需要调度
-      Global.needDispatch = "是";
-      Global.inPage = Global.currentPageNumber;
-      Global.outPage = "--";
-      Global.lackPageNumber++;
-      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
-      switch (freeTarget){
-        case 0:{
-          Global.pageOne = Global.currentPageNumber;
-          break;
+      if(isIn){ //已经进入页面不需要调度
+        Global.needDispatch = "否";
+        Global.inPage = "--";
+        Global.outPage = "--";
+        Global.succeedPageNumber++;
+        Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+        if(isInTarget ===Global.pointerTwo){
+          Global.pointerTwo = Global.pointerOne;
+          Global.pointerOne = isInTarget;
         }
-        case 1:{
-          Global.pageTwo = Global.currentPageNumber;
-          break;
+        else if(isInTarget === Global.pointerThree){
+          Global.pointerThree = Global.pointerTwo;
+          Global.pointerTwo = Global.pointerOne;
+          Global.pointerOne = isInTarget;
         }
-        case 2:{
-          Global.pageThree = Global.currentPageNumber;
-          break;
+        else if(isInTarget === Global.pointerFour){
+          Global.pointerFour = Global.pointerThree;
+          Global.pointerThree = Global.pointerTwo;
+          Global.pointerTwo = Global.pointerOne;
+          Global.pointerOne = isInTarget;
         }
-        case 3:{
-          Global.pageFour = Global.currentPageNumber;
-          break;
+        Global.offsetQueue[isInTarget] = Global.currentOffset;
+      }
+      if(!isIn){
+        for(let i=0;i<Global.TotalMemoryBlocks;i++){
+          if(Global.OrderQueue[i]===-1){
+            free = true;
+            Global.OrderQueue[i] = Global.currentPageNumber;
+            freeTarget = i;
+            break;
+          }
         }
       }
-    }
-    if((!isIn)&&(!free)){   //需要调度
-      Global.needDispatch = "是";
-      Global.lackPageNumber++;
-      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
-      Global.outPage = Global.OrderQueue.shift();
-      Global.inPage = Global.currentPageNumber;
-      Global.OrderQueue.push(Global.inPage);
-      switch(Global.outPage){
-        case Global.pageOne:{
-          Global.pageOne = Global.OrderQueue[3];
-          break;
-        }
-        case Global.pageTwo:{
-          Global.pageTwo = Global.OrderQueue[3];
-          break;
-        }
-        case Global.pageThree:{
-          Global.pageThree = Global.OrderQueue[3];
-          break;
-        }
-        case Global.pageFour:{
-          Global.pageFour = Global.OrderQueue[3];
-          break;
+      if(free){  //有空闲的位置，需要调度
+        Global.needDispatch = "是";
+        Global.inPage = Global.currentPageNumber;
+        Global.outPage = "--";
+        Global.lackPageNumber++;
+        Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+        switch (freeTarget){
+          case 0:{
+            Global.pageOne = Global.currentPageNumber;
+            Global.pointerOne = 0;
+            Global.offsetQueue[0] = Global.currentOffset;
+            break;
+          }
+          case 1:{
+            Global.pageTwo = Global.currentPageNumber;
+            Global.pointerTwo = Global.pointerOne;
+            Global.pointerOne = 1;
+            Global.offsetQueue[1] = Global.currentOffset;
+            break;
+          }
+          case 2:{
+            Global.pageThree = Global.currentPageNumber;
+            Global.pointerThree = Global.pointerTwo;
+            Global.pointerTwo = Global.pointerOne;
+            Global.offsetQueue[2] = Global.currentOffset;
+            Global.pointerOne = 2;
+            break;
+          }
+          case 3:{
+            Global.pageFour = Global.currentPageNumber;
+            Global.pointerFour = Global.pointerThree;
+            Global.pointerThree = Global.pointerTwo;
+            Global.pointerTwo = Global.pointerOne;
+            Global.offsetQueue[3] = Global.currentOffset;
+            Global.pointerOne = 3;
+            break;
+          }
         }
       }
-    }
+      if((!isIn)&&(!free)){   //需要调度
+        Global.needDispatch = "是";
+        Global.lackPageNumber++;
+        Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+        Global.outPage = Global.OrderQueue[Global.pointerFour];
+        Global.inPage = Global.currentPageNumber;
+        Global.OrderQueue[Global.pointerFour] = Global.currentPageNumber;
+        switch(Global.outPage){
+          case Global.pageOne:{
+            Global.pageOne = Global.inPage;
+            Global.offsetQueue[0] = Global.currentOffset;
+            break;
+          }
+          case Global.pageTwo:{
+            Global.pageTwo = Global.inPage;
+            Global.offsetQueue[1] = Global.currentOffset;
+            break;
+          }
+          case Global.pageThree:{
+            Global.pageThree = Global.inPage;
+            Global.offsetQueue[2] = Global.currentOffset;
+            break;
+          }
+          case Global.pageFour:{
+            Global.pageFour = Global.inPage;
+           Global.offsetQueue[3] = Global.currentOffset;
+            break;
+          }
+        }
+        let temp = Global.pointerFour;
+        Global.pointerFour= Global.pointerThree;
+        Global.pointerThree = Global.pointerTwo;
+        Global.pointerTwo = Global.pointerOne;
+        Global.pointerOne = temp;
+      }
     }
   },
   mounted(){
-    this.timer = setInterval(this.continuouslyRun,100);
+    this.timer = setInterval(this.continuouslyRun,200);
   },
   beforeDestroy() {
     clearInterval(this.timer)

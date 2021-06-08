@@ -12,6 +12,12 @@
         <li class="word-1">
           请选择置换算法：
         </li>
+        <li class="word-4 font-mono font-bold" >
+            命中总数：
+        </li>
+        <li class="succeed-number font-mono font-bold text-purple-400 text-2xl">
+          {{succeedPageNumber}}
+        </li>
         <li class="word-2 font-mono font-bold">
             缺页总数：
         </li>
@@ -44,6 +50,7 @@ export default {
     return {
       lackPageNumber : Global.lackPageNumber,
       lackPagePercentage: Global.lackPagePercentage,
+      succeedPageNumber : Global.succeedPageNumber,
       timer:""
     }
   },
@@ -63,10 +70,12 @@ export default {
     initSideBar(){
       this.lackPagePercentage = "0%";
       this.lackPageNumber = 0;
+      this.succeedPageNumber =0;
     },
     updateSideBar(){
       this.lackPagePercentage = Global.lackPagePercentage;
       this.lackPageNumber = Global.lackPageNumber;
+      this.succeedPageNumber = Global.succeedPageNumber;
     },
     setSideBar(){
       if(Global.currentStatus === Global.Reset){
@@ -122,21 +131,31 @@ button{
 .word-2{
   position: fixed;
   left:50px;
-  top:400px;
+  top:500px;
 }
 .word-3{
   position: fixed;
   left:50px;
-  top:500px;
+  top:600px;
 }
-.number{
+.word-4{
+  position: fixed;
+  left:50px;
+  top:400px;
+}
+.succeed-number{
   position: fixed;
   left:50px;
   top:450px;
 }
-.percentage{
+.number{
   position: fixed;
   left:50px;
   top:550px;
+}
+.percentage{
+  position: fixed;
+  left:50px;
+  top:650px;
 }
 </style>

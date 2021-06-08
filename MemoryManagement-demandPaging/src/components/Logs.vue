@@ -69,10 +69,13 @@ export default {
       this.finishedNumber = 0;
       this.notFinishedNumber = 320;
       for(let i=0;i<Global.TotalOrdersNumber;i++) {   //执行总数初始化
-        Global.isChecked[i] = false ;
+        Global.isChecked[i] = false;
       }
       for(let i=0;i<Global.TotalMemoryBlocks;i++){ //FIFO队列初始化
         Global.OrderQueue[i] = -1;
+      }
+      for(let i=0;i<Global.TotalMemoryBlocks;i++){ //FIFO队列初始化
+        Global.offsetQueue[i] = -1;
       }
     },
     updateLogs(){
