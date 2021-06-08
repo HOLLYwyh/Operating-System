@@ -3,7 +3,7 @@
     <!--这是一个侧边栏 -->
     <div>
       <ul  class="log-bar bg-gray-100">
-        <li class="font-bold font-serif text-center">当前执行的指令</li>
+        <li class="font-bold font-serif text-center">当前即将执行的指令</li>
         <li class="font-serif">页号:</li>
         <li class="font-mono text-purple-400 text-2xl font-bold text-center">{{currentPageNumber}}</li>
         <li class="font-serif">页内偏移:</li>
@@ -68,17 +68,22 @@ export default {
       this.outPage = "--";
       this.finishedNumber = 0;
       this.notFinishedNumber = 320;
-      for(let i=0;i<Global.TotalOrdersNumber;i++) {
+      for(let i=0;i<Global.TotalOrdersNumber;i++) {   //执行总数初始化
         Global.isChecked[i] = false ;
+      }
+      for(let i=0;i<Global.TotalMemoryBlocks;i++){ //FIFO队列初始化
+        Global.OrderQueue[i] = -1;
       }
     },
     updateLogs(){
-      this.currentPageNumber = Global.currentOrder;   //测试
+      this.currentPageNumber = Global.currentPageNumber;
       this.currentOffset = Global.currentOffset;
-      this.currentLocation = Global.currentLocation;
-      this.nextPageNumber = Global.nextOrder;    //测试
-      this.nextOffset = Global.nextOffset;
-      this.nextLocation = Global.nextLocation;
+      this.currentLocation = Global.currentOrder;
+
+      this.nextPageNumber =(Global.finishedNumber === Global.TotalOrdersNumber)? "--": Global.nextPageNumber;
+      this.nextOffset = (Global.finishedNumber === Global.TotalOrdersNumber)? "--": Global.nextOffset;
+      this.nextLocation = (Global.finishedNumber === Global.TotalOrdersNumber)? "--": Global.nextOrder;
+
       this.needDispatch = Global.needDispatch;
       this.inPage = Global.inPage;
       this.outPage = Global.outPage;

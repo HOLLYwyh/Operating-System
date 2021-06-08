@@ -49,6 +49,7 @@ export default {
       //重置值
       else {
         Global.currentStatus = Global.Reset;  //恢复初始状态
+        Global.succeedPageNumber = 0;  //请求页成功数
         Global.lackPageNumber = 0;   //缺页数
         Global.lackPagePercentage = "0%" ; //缺页率
         Global.pageOne = "--";  //一号内存块
@@ -105,7 +106,6 @@ export default {
         Global.isChecked[Global.currentOrder] = true;
         Global.nextOrder = temp;
         Global.finishedNumber ++;
-
         console.log(Global.currentOrder);
       }
       else if((Global.nextOrder<=Global.SequenceOne)||(Global.nextOrder>=Global.SequenceTwo)){  //前后的顺序指令
@@ -153,6 +153,10 @@ export default {
       }
       console.log(Global.finishedNumber);
       this.getOrder();
+      Global.currentPageNumber = Math.floor(Global.currentOrder/10);
+      Global.currentOffset = Global.currentOrder%10;
+      Global.nextPageNumber = Math.floor(Global.nextOrder/10);
+      Global.nextOffset = Global.nextOrder%10;
       this.FIFOMethod();
     },
     LRU(){  //执行LRU算法
@@ -163,15 +167,177 @@ export default {
       }
       console.log(Global.finishedNumber);
       this.getOrder();
+      Global.currentPageNumber = Math.floor(Global.currentOrder/10);
+      Global.currentOffset = Global.currentOrder%10;
+      Global.nextPageNumber = Math.floor(Global.nextOrder/10);
+      Global.nextOffset = Global.nextOrder%10;
       this.LRUMethod();
     },
     FIFOMethod(){
-
     console.log("FIFO");
+    let free = false;  //表示需要进入新的一个页
+    let isIn = false;  //表示指令所在的页已经进入内存
+    let freeTarget = -1;
+    let isInTarget = -1;
+    for(let i=0;i<Global.TotalMemoryBlocks;i++){
+      if(Global.OrderQueue[i]===Global.currentPageNumber){
+        isIn = true;
+        isInTarget = i;
+        break;
+      }
+    }
+    if(isIn){ //已经进入页面不需要调度
+      Global.needDispatch = "否";
+      Global.inPage = "--";
+      Global.outPage = "--";
+      Global.succeedPageNumber++;
+      //这里可能要在最终显示的时候添加东西
+      console.log(isInTarget);
+    }
+    if(!isIn){
+      for(let i=0;i<Global.TotalMemoryBlocks;i++){
+        if(Global.OrderQueue[i]===-1){
+          free = true;
+          Global.OrderQueue[i] = Global.currentPageNumber;
+          freeTarget = i;
+          break;
+        }
+      }
+    }
+    if(free){  //有空闲的位置，不需要调度
+      Global.needDispatch = "是";
+      Global.inPage = Global.currentPageNumber;
+      Global.outPage = "--";
+      Global.lackPageNumber++;
+      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+      switch (freeTarget){
+        case 0:{
+          Global.pageOne = Global.currentPageNumber;
+          break;
+        }
+        case 1:{
+          Global.pageTwo = Global.currentPageNumber;
+          break;
+        }
+        case 2:{
+          Global.pageThree = Global.currentPageNumber;
+          break;
+        }
+        case 3:{
+          Global.pageFour = Global.currentPageNumber;
+          break;
+        }
+    }
+    }
+    if((!isIn)&&(!free)){   //需要调度
+      Global.needDispatch = "是";
+      Global.lackPageNumber++;
+      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+      Global.outPage = Global.OrderQueue.shift();
+      Global.inPage = Global.currentPageNumber;
+      Global.OrderQueue.push(Global.inPage);
+      switch(Global.outPage){
+        case Global.pageOne:{
+          Global.pageOne = Global.OrderQueue[3];
+          break;
+        }
+        case Global.pageTwo:{
+          Global.pageTwo = Global.OrderQueue[3];
+          break;
+        }
+        case Global.pageThree:{
+          Global.pageThree = Global.OrderQueue[3];
+          break;
+        }
+        case Global.pageFour:{
+          Global.pageFour = Global.OrderQueue[3];
+          break;
+        }
+      }
+      }
     },
     LRUMethod(){
-
     console.log("LRU");
+    let free = false;  //表示需要进入新的一个页
+    let isIn = false;  //表示指令所在的页已经进入内存
+    let freeTarget = -1;
+    let isInTarget = -1;
+    for(let i=0;i<Global.TotalMemoryBlocks;i++){
+    if(Global.OrderQueue[i]===Global.currentPageNumber){
+       isIn = true;
+       isInTarget = i;
+       break;
+      }
+    }
+    if(isIn){ //已经进入页面不需要调度
+      Global.needDispatch = "否";
+      Global.inPage = "--";
+      Global.outPage = "--";
+      Global.succeedPageNumber++;
+      //这里可能要在最终显示的时候添加东西
+      console.log(isInTarget);
+    }
+     if(!isIn){
+      for(let i=0;i<Global.TotalMemoryBlocks;i++){
+        if(Global.OrderQueue[i]===-1){
+          free = true;
+          Global.OrderQueue[i] = Global.currentPageNumber;
+          freeTarget = i;
+          break;
+        }
+      }
+    }
+    if(free){  //有空闲的位置，不需要调度
+      Global.needDispatch = "是";
+      Global.inPage = Global.currentPageNumber;
+      Global.outPage = "--";
+      Global.lackPageNumber++;
+      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+      switch (freeTarget){
+        case 0:{
+          Global.pageOne = Global.currentPageNumber;
+          break;
+        }
+        case 1:{
+          Global.pageTwo = Global.currentPageNumber;
+          break;
+        }
+        case 2:{
+          Global.pageThree = Global.currentPageNumber;
+          break;
+        }
+        case 3:{
+          Global.pageFour = Global.currentPageNumber;
+          break;
+        }
+      }
+    }
+    if((!isIn)&&(!free)){   //需要调度
+      Global.needDispatch = "是";
+      Global.lackPageNumber++;
+      Global.lackPagePercentage = ((Global.lackPageNumber/(Global.lackPageNumber+Global.succeedPageNumber))*100).toFixed(2) +"%";
+      Global.outPage = Global.OrderQueue.shift();
+      Global.inPage = Global.currentPageNumber;
+      Global.OrderQueue.push(Global.inPage);
+      switch(Global.outPage){
+        case Global.pageOne:{
+          Global.pageOne = Global.OrderQueue[3];
+          break;
+        }
+        case Global.pageTwo:{
+          Global.pageTwo = Global.OrderQueue[3];
+          break;
+        }
+        case Global.pageThree:{
+          Global.pageThree = Global.OrderQueue[3];
+          break;
+        }
+        case Global.pageFour:{
+          Global.pageFour = Global.OrderQueue[3];
+          break;
+        }
+      }
+    }
     }
   },
   mounted(){

@@ -14,10 +14,12 @@ const SequenceOne = 79;
 const SequenceTwo = 239;
 const TotalOrdersNumber = 320; //总指令数
 const Threshold = 300; //阈值
+const TotalMemoryBlocks = 4;  //内存块的个数
 let currentStatus = Reset;   //当前状态为停止
 let currentAlgorithm = FIFO;  //当前算法
 let currentOrder = Math.floor(Math.random()*320);   //当前执行的指令
 let nextOrder = -1;    //下一条要执行的指令
+let succeedPageNumber = 0;  //请求页成功的数量
 let lackPageNumber = 0;   //缺页数
 let lackPagePercentage = "0%" ; //缺页率
 let pageOne = "--";  //一号内存块
@@ -36,6 +38,7 @@ let outPage = "--"; //需要调出的页
 let finishedNumber = 0;  //已经完成的指令数
 let notFinishedNumber = 320; //未完成的指令数
 let isChecked = new Array(320);  //访问指令
+let OrderQueue = new Array(4);    //FIFO队列
 
 
 
@@ -52,11 +55,13 @@ export default {
   SequenceTwo,
   TotalOrdersNumber,
   Threshold,
+  TotalMemoryBlocks,
   currentStatus,
   currentAlgorithm,
   currentOrder,
   nextOrder,
   lackPageNumber,
+  succeedPageNumber,
   lackPagePercentage,
   pageOne,
   pageTwo,
@@ -73,7 +78,8 @@ export default {
   outPage,
   finishedNumber,
   notFinishedNumber,
-  isChecked
+  isChecked,
+  OrderQueue,
 }
 </script>
 
