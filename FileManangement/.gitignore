@@ -70,3 +70,10 @@ Thumbs.db
 # --------
 *.dll
 *.exe
+
+# Some Debug Files
+/bin
+/obj
+/Properties
+*.csproj
+App.config
