@@ -8,9 +8,9 @@ namespace FileManangement
 {
     partial class FileTree
     {
-        Node root;
+        public Node root;
 
-        FileTree() { root = null; }
+        public FileTree() { root = new Node(); }
     }
 
     partial class FileTree
@@ -27,29 +27,40 @@ namespace FileManangement
             else   //已经有子节点
             {
                 node.rightBrother = current.leftChild.rightBrother;
-                node.rightBrother.parent = node;
+                if(node.rightBrother != null)
+                {
+                    node.rightBrother.parent = node;
+                }
                 current.leftChild = node;
             }
         }
 
         public void deleteNode(Node current)
         {
+            if(current == null)   //已经是空结点，不能删除
+            {
+                return;
+            }
             //文件夹的删除需要删除所有子女
             while (current.leftChild != null)  //删除子女
             {
                 deleteNode(current.leftChild);
             }
             //文件没有子女，只可能有兄弟
-            if (current == current.parent.leftChild)
+            if (current.rightBrother != null)
             {
-                current.rightBrother.parent = current.parent;
-                current.parent.leftChild = current.rightBrother;
+                if (current == current.parent.leftChild)
+                {
+                    current.rightBrother.parent = current.parent;
+                    current.parent.leftChild = current.rightBrother;
+                }
+                else
+                {
+                    current.rightBrother.parent = current.parent;
+                    current.parent.rightBrother = current.rightBrother;
+                }
             }
-            else
-            {
-                current.rightBrother.parent = current.parent;
-                current.parent.rightBrother = current.rightBrother;
-            }
+
         }
 
         public void clearTree()
