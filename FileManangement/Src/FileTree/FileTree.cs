@@ -28,14 +28,14 @@ namespace FileManangement
             else   //已经有子节点
             {
                 Node temp = current.leftChild;
-                if(node.fcb.fileName == temp.fcb.fileName)
+                if((node.fcb.fileName == temp.fcb.fileName)&&(node.fcb.type == temp.fcb.type))
                 {
                     node.fcb.fileName += "_副本";
                 }
                 while (temp.rightBrother!=null)
                 {
                     temp = temp.rightBrother;
-                    if (node.fcb.fileName == temp.fcb.fileName)
+                    if ((node.fcb.fileName == temp.fcb.fileName)&&(node.fcb.type == temp.fcb.type))
                     {
                         node.fcb.fileName += "_副本";
                     }
@@ -46,47 +46,45 @@ namespace FileManangement
             return node.fcb.fileName;
         }
 
-        public void deleteNode(Node current)
+        public bool deleteNode(Node current)
         {
-            if(current == null)   //已经是空结点，不能删除
+            if (current == root)  //试图删库跑路
             {
-                return;
-            }
-            //由于C#自带垃圾回收机制，我们不能手动使用delete进行删除
-            else if(current == current.parent.leftChild)
-            {
-                current.parent.leftChild = null;
+                return false;
             }
             else
             {
-                current.parent.rightBrother = null;
+                if (current == current.parent.leftChild)
+                {
+                    if(current.rightBrother == null)
+                    {
+                        current.parent.leftChild = null;
+                    }
+                    else
+                    {
+                        current.rightBrother.parent = current.parent;
+                        current.parent.leftChild = current.rightBrother;
+                    }
+                }
+                else
+                {
+                    if(current.rightBrother == null)
+                    {
+                        current.parent.rightBrother = null;
+                    }
+                    else
+                    {
+                        current.rightBrother.parent = current.parent;
+                        current.parent.rightBrother = current.rightBrother;
+                    }
+                }
+                return true;
             }
-
-            ////文件夹的删除需要删除所有子女
-            //while (current.leftChild != null)  //删除子女
-            //{
-            //    deleteNode(current.leftChild);
-            //}
-            ////文件没有子女，只可能有兄弟
-            //if (current.rightBrother != null)
-            //{
-            //    if (current == current.parent.leftChild)
-            //    {
-            //        current.rightBrother.parent = current.parent;
-            //        current.parent.leftChild = current.rightBrother;
-            //    }
-            //    else
-            //    {
-            //        current.rightBrother.parent = current.parent;
-            //        current.parent.rightBrother = current.rightBrother;
-            //    }
-            //}
-
         }
 
         public void clearTree()
         {
-            deleteNode(root.leftChild);
+            root.leftChild = null;
         }
 
         public Node getCurrentNode(string[] path,int length)
@@ -104,7 +102,56 @@ namespace FileManangement
                     node = node.leftChild;
                 }
             }
-            return node;
+            return (length<0)?null:node;
+        }
+
+        public string rename(Node currentNode,string newName)
+        {
+            if(currentNode == root)
+            {
+                return "文件系统";
+            }
+            currentNode.fcb.fileName = newName;
+            Node temp = currentNode;
+            Node test = currentNode.rightBrother;
+            string record = "1";
+            //先向回找
+            while(temp != temp.parent.leftChild)
+            {
+                temp = temp.parent;
+            }
+            while(test != null)
+            {
+                record += "0";
+                test = test.rightBrother;
+            }
+            if(currentNode.parent.leftChild != currentNode)
+            {
+                test = currentNode.parent;
+                while (test != test.parent.leftChild)
+                {
+                    record = "0" + record;
+                    test = test.parent;
+                }
+                record = "0" + record;
+            }
+            //向下寻找 
+            int i = 0;
+            while (temp != null)
+            {
+                if((temp.fcb.fileName == currentNode.fcb.fileName)&&(temp.fcb.type == currentNode.fcb.type))
+                {
+                    if(record[i] != '1')
+                    {
+                        currentNode.fcb.fileName += "_副本";
+                    }
+                    
+                }
+                i++;
+                temp = temp.rightBrother;
+            }
+
+            return currentNode.fcb.fileName;
         }
     }
 }

@@ -29,6 +29,7 @@ namespace FileManangement
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.treeView = new System.Windows.Forms.TreeView();
             this.HelpButton = new System.Windows.Forms.Button();
@@ -40,6 +41,15 @@ namespace FileManangement
             this.BackUp = new System.Windows.Forms.Button();
             this.Path = new System.Windows.Forms.Label();
             this.TopLine = new System.Windows.Forms.Label();
+            this.TreeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.OpenNode = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewNode = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewDIc = new System.Windows.Forms.ToolStripMenuItem();
+            this.RenameNode = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteNode = new System.Windows.Forms.ToolStripMenuItem();
+            this.TypeNode = new System.Windows.Forms.ToolStripMenuItem();
+            this.TreeMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView
@@ -50,6 +60,7 @@ namespace FileManangement
             this.treeView.Size = new System.Drawing.Size(200, 603);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
+            this.treeView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView_MouseClick);
             // 
             // HelpButton
             // 
@@ -135,6 +146,67 @@ namespace FileManangement
             this.TopLine.Size = new System.Drawing.Size(450, 2);
             this.TopLine.TabIndex = 9;
             // 
+            // TreeMenu
+            // 
+            this.TreeMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.TreeMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenNode,
+            this.NewNode,
+            this.RenameNode,
+            this.DeleteNode,
+            this.TypeNode});
+            this.TreeMenu.Name = "TreeMenu";
+            this.TreeMenu.Size = new System.Drawing.Size(211, 152);
+            // 
+            // OpenNode
+            // 
+            this.OpenNode.Name = "OpenNode";
+            this.OpenNode.Size = new System.Drawing.Size(210, 24);
+            this.OpenNode.Text = "打开";
+            // 
+            // NewNode
+            // 
+            this.NewNode.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NewFile,
+            this.NewDIc});
+            this.NewNode.Name = "NewNode";
+            this.NewNode.Size = new System.Drawing.Size(210, 24);
+            this.NewNode.Text = "新建";
+            // 
+            // NewFile
+            // 
+            this.NewFile.Name = "NewFile";
+            this.NewFile.Size = new System.Drawing.Size(224, 26);
+            this.NewFile.Text = "文件";
+            this.NewFile.Click += new System.EventHandler(this.NewFile_Click);
+            // 
+            // NewDIc
+            // 
+            this.NewDIc.Name = "NewDIc";
+            this.NewDIc.Size = new System.Drawing.Size(224, 26);
+            this.NewDIc.Text = "文件夹";
+            this.NewDIc.Click += new System.EventHandler(this.NewDIc_Click);
+            // 
+            // RenameNode
+            // 
+            this.RenameNode.Name = "RenameNode";
+            this.RenameNode.Size = new System.Drawing.Size(210, 24);
+            this.RenameNode.Text = "重命名";
+            this.RenameNode.Click += new System.EventHandler(this.RenameNode_Click);
+            // 
+            // DeleteNode
+            // 
+            this.DeleteNode.Name = "DeleteNode";
+            this.DeleteNode.Size = new System.Drawing.Size(210, 24);
+            this.DeleteNode.Text = "删除";
+            this.DeleteNode.Click += new System.EventHandler(this.DeleteNode_Click);
+            // 
+            // TypeNode
+            // 
+            this.TypeNode.Name = "TypeNode";
+            this.TypeNode.Size = new System.Drawing.Size(210, 24);
+            this.TypeNode.Text = "属性";
+            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(800, 600);
@@ -151,6 +223,7 @@ namespace FileManangement
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "文件管理系统";
+            this.TreeMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -167,6 +240,14 @@ namespace FileManangement
         private System.Windows.Forms.Button BackUp;
         private System.Windows.Forms.Label Path;
         private System.Windows.Forms.Label TopLine;
+        private System.Windows.Forms.ContextMenuStrip TreeMenu;
+        private System.Windows.Forms.ToolStripMenuItem OpenNode;
+        private System.Windows.Forms.ToolStripMenuItem RenameNode;
+        private System.Windows.Forms.ToolStripMenuItem DeleteNode;
+        private System.Windows.Forms.ToolStripMenuItem TypeNode;
+        private System.Windows.Forms.ToolStripMenuItem NewNode;
+        private System.Windows.Forms.ToolStripMenuItem NewFile;
+        private System.Windows.Forms.ToolStripMenuItem NewDIc;
     }
 }
 
