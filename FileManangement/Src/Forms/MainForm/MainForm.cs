@@ -15,7 +15,7 @@ namespace FileManangement
     {
         private FileTree fileTree = new FileTree();    //文件树
         private Node currentNode = new Node();         //当前结点
-        private string[] path = new string[Constant.Depth];        //数组
+        private string[] path = new string[Constant.Depth+1];        //数组
 
         public MainForm()
         {
@@ -46,6 +46,7 @@ namespace FileManangement
             TreeNode root = new TreeNode("文件系统(root)");
             treeView.Nodes.Add(root);
             treeView.SelectedNode = root;
+            Path.Text = "root";
         }
 
         private void newDictionaryFile()
@@ -144,13 +145,57 @@ namespace FileManangement
         }
     
         //主内容部分
+        private void changeLable()
+        {
+            Node temp = currentNode;
+            string lableText = "";
+            string[] str = new string[Constant.Depth+1];        //数组
+            int i = 0;
+            while(temp != fileTree.root)
+            {
+                if(temp.fcb.type == Constant.Dictionaty)
+                {
+                    str[i] = temp.fcb.fileName;
+                    i++;
+                }
+                if(temp.parent == fileTree.root)
+                {
+                    temp = temp.parent;
+                }
+                else
+                {
+                    while (temp.parent.leftChild != temp)
+                    {
+                        temp = temp.parent;
+                    }
+                    temp = temp.parent;
+                }
+            }
+            str[i] = "root";
+            for(int j=i;j>0;j--)
+            {
+                lableText += str[j];
+                lableText += ">";
+            }
+            lableText += str[0];
+
+            Path.Text = lableText;
+        }
+
         private void BackUp_Click(object sender, EventArgs e)   //返回上一级目录
         {
-            if (currentNode != fileTree.root)
+            if(currentNode == fileTree.root)
+            {
+                return;
+            }
+            while (currentNode.parent.leftChild !=currentNode)
             {
                 currentNode = currentNode.parent;
+                treeView.SelectedNode = treeView.SelectedNode.Parent;
             }
-            //这里还需要额外修改按钮的路径
+            currentNode = currentNode.parent;
+            treeView.SelectedNode = treeView.SelectedNode.Parent;
+            changeLable();
         }
 
         //树状图部分
@@ -165,8 +210,11 @@ namespace FileManangement
                 path[i] = node.Text;
                 node = node.Parent;
             }
-            currentNode = (fileTree.getCurrentNode(path, i) == null) ? fileTree.root : fileTree.getCurrentNode(path, i);
+            
+           currentNode = (fileTree.getCurrentNode(path, i) == null) ? fileTree.root : fileTree.getCurrentNode(path, i);
+            changeLable();
         }
+
 
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -214,5 +262,6 @@ namespace FileManangement
         {
             deleteTreeNode();
         }
+
     }
 }

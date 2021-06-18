@@ -49,6 +49,10 @@ namespace FileManangement
             this.RenameNode = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteNode = new System.Windows.Forms.ToolStripMenuItem();
             this.TypeNode = new System.Windows.Forms.ToolStripMenuItem();
+            this.TotalBlocks = new System.Windows.Forms.Label();
+            this.TotalNumber = new System.Windows.Forms.Label();
+            this.CurrentBlocks = new System.Windows.Forms.Label();
+            this.CurrentNumber = new System.Windows.Forms.Label();
             this.TreeMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,6 +137,7 @@ namespace FileManangement
             // Path
             // 
             this.Path.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Path.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Path.Location = new System.Drawing.Point(311, 19);
             this.Path.Name = "Path";
             this.Path.Size = new System.Drawing.Size(200, 30);
@@ -156,12 +161,12 @@ namespace FileManangement
             this.DeleteNode,
             this.TypeNode});
             this.TreeMenu.Name = "TreeMenu";
-            this.TreeMenu.Size = new System.Drawing.Size(211, 152);
+            this.TreeMenu.Size = new System.Drawing.Size(124, 124);
             // 
             // OpenNode
             // 
             this.OpenNode.Name = "OpenNode";
-            this.OpenNode.Size = new System.Drawing.Size(210, 24);
+            this.OpenNode.Size = new System.Drawing.Size(123, 24);
             this.OpenNode.Text = "打开";
             // 
             // NewNode
@@ -170,46 +175,88 @@ namespace FileManangement
             this.NewFile,
             this.NewDIc});
             this.NewNode.Name = "NewNode";
-            this.NewNode.Size = new System.Drawing.Size(210, 24);
+            this.NewNode.Size = new System.Drawing.Size(123, 24);
             this.NewNode.Text = "新建";
             // 
             // NewFile
             // 
             this.NewFile.Name = "NewFile";
-            this.NewFile.Size = new System.Drawing.Size(224, 26);
+            this.NewFile.Size = new System.Drawing.Size(137, 26);
             this.NewFile.Text = "文件";
             this.NewFile.Click += new System.EventHandler(this.NewFile_Click);
             // 
             // NewDIc
             // 
             this.NewDIc.Name = "NewDIc";
-            this.NewDIc.Size = new System.Drawing.Size(224, 26);
+            this.NewDIc.Size = new System.Drawing.Size(137, 26);
             this.NewDIc.Text = "文件夹";
             this.NewDIc.Click += new System.EventHandler(this.NewDIc_Click);
             // 
             // RenameNode
             // 
             this.RenameNode.Name = "RenameNode";
-            this.RenameNode.Size = new System.Drawing.Size(210, 24);
+            this.RenameNode.Size = new System.Drawing.Size(123, 24);
             this.RenameNode.Text = "重命名";
             this.RenameNode.Click += new System.EventHandler(this.RenameNode_Click);
             // 
             // DeleteNode
             // 
             this.DeleteNode.Name = "DeleteNode";
-            this.DeleteNode.Size = new System.Drawing.Size(210, 24);
+            this.DeleteNode.Size = new System.Drawing.Size(123, 24);
             this.DeleteNode.Text = "删除";
             this.DeleteNode.Click += new System.EventHandler(this.DeleteNode_Click);
             // 
             // TypeNode
             // 
             this.TypeNode.Name = "TypeNode";
-            this.TypeNode.Size = new System.Drawing.Size(210, 24);
+            this.TypeNode.Size = new System.Drawing.Size(123, 24);
             this.TypeNode.Text = "属性";
+            // 
+            // TotalBlocks
+            // 
+            this.TotalBlocks.AutoSize = true;
+            this.TotalBlocks.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TotalBlocks.Location = new System.Drawing.Point(658, 480);
+            this.TotalBlocks.Name = "TotalBlocks";
+            this.TotalBlocks.Size = new System.Drawing.Size(55, 15);
+            this.TotalBlocks.TabIndex = 10;
+            this.TotalBlocks.Text = "总块数";
+            // 
+            // TotalNumber
+            // 
+            this.TotalNumber.AutoSize = true;
+            this.TotalNumber.Location = new System.Drawing.Point(733, 480);
+            this.TotalNumber.Name = "TotalNumber";
+            this.TotalNumber.Size = new System.Drawing.Size(39, 15);
+            this.TotalNumber.TabIndex = 11;
+            this.TotalNumber.Text = "1024";
+            // 
+            // CurrentBlocks
+            // 
+            this.CurrentBlocks.AutoSize = true;
+            this.CurrentBlocks.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CurrentBlocks.Location = new System.Drawing.Point(658, 520);
+            this.CurrentBlocks.Name = "CurrentBlocks";
+            this.CurrentBlocks.Size = new System.Drawing.Size(71, 15);
+            this.CurrentBlocks.TabIndex = 12;
+            this.CurrentBlocks.Text = "已用块数";
+            // 
+            // CurrentNumber
+            // 
+            this.CurrentNumber.AutoSize = true;
+            this.CurrentNumber.Location = new System.Drawing.Point(747, 520);
+            this.CurrentNumber.Name = "CurrentNumber";
+            this.CurrentNumber.Size = new System.Drawing.Size(15, 15);
+            this.CurrentNumber.TabIndex = 13;
+            this.CurrentNumber.Text = "0";
             // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.CurrentNumber);
+            this.Controls.Add(this.CurrentBlocks);
+            this.Controls.Add(this.TotalNumber);
+            this.Controls.Add(this.TotalBlocks);
             this.Controls.Add(this.TopLine);
             this.Controls.Add(this.Path);
             this.Controls.Add(this.BackUp);
@@ -225,6 +272,7 @@ namespace FileManangement
             this.Text = "文件管理系统";
             this.TreeMenu.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -248,6 +296,10 @@ namespace FileManangement
         private System.Windows.Forms.ToolStripMenuItem NewNode;
         private System.Windows.Forms.ToolStripMenuItem NewFile;
         private System.Windows.Forms.ToolStripMenuItem NewDIc;
+        private System.Windows.Forms.Label TotalBlocks;
+        private System.Windows.Forms.Label TotalNumber;
+        private System.Windows.Forms.Label CurrentBlocks;
+        private System.Windows.Forms.Label CurrentNumber;
     }
 }
 
