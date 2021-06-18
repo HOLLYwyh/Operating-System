@@ -15,24 +15,35 @@ namespace FileManangement
 
     partial class FileTree
     {
-        public void insert(Node current, string fileName,int type)   //插入结点
+        public string insert(Node current, string fileName,int type)   //插入结点
         {
             FCB fcb = new FCB(fileName, type);
             Node node = new Node(fcb);
-            node.parent = current;
+
             if(current.leftChild == null)  //还没有子节点
             {
+                node.parent = current;
                 current.leftChild = node;
             }
             else   //已经有子节点
             {
-                node.rightBrother = current.leftChild.rightBrother;
-                if(node.rightBrother != null)
+                Node temp = current.leftChild;
+                if(node.fcb.fileName == temp.fcb.fileName)
                 {
-                    node.rightBrother.parent = node;
+                    node.fcb.fileName += "_副本";
                 }
-                current.leftChild = node;
+                while (temp.rightBrother!=null)
+                {
+                    temp = temp.rightBrother;
+                    if (node.fcb.fileName == temp.fcb.fileName)
+                    {
+                        node.fcb.fileName += "_副本";
+                    }
+                }
+                node.parent = temp;
+                temp.rightBrother = node;
             }
+            return node.fcb.fileName;
         }
 
         public void deleteNode(Node current)
@@ -41,31 +52,59 @@ namespace FileManangement
             {
                 return;
             }
-            //文件夹的删除需要删除所有子女
-            while (current.leftChild != null)  //删除子女
+            //由于C#自带垃圾回收机制，我们不能手动使用delete进行删除
+            else if(current == current.parent.leftChild)
             {
-                deleteNode(current.leftChild);
+                current.parent.leftChild = null;
             }
-            //文件没有子女，只可能有兄弟
-            if (current.rightBrother != null)
+            else
             {
-                if (current == current.parent.leftChild)
-                {
-                    current.rightBrother.parent = current.parent;
-                    current.parent.leftChild = current.rightBrother;
-                }
-                else
-                {
-                    current.rightBrother.parent = current.parent;
-                    current.parent.rightBrother = current.rightBrother;
-                }
+                current.parent.rightBrother = null;
             }
+
+            ////文件夹的删除需要删除所有子女
+            //while (current.leftChild != null)  //删除子女
+            //{
+            //    deleteNode(current.leftChild);
+            //}
+            ////文件没有子女，只可能有兄弟
+            //if (current.rightBrother != null)
+            //{
+            //    if (current == current.parent.leftChild)
+            //    {
+            //        current.rightBrother.parent = current.parent;
+            //        current.parent.leftChild = current.rightBrother;
+            //    }
+            //    else
+            //    {
+            //        current.rightBrother.parent = current.parent;
+            //        current.parent.rightBrother = current.rightBrother;
+            //    }
+            //}
 
         }
 
         public void clearTree()
         {
             deleteNode(root.leftChild);
+        }
+
+        public Node getCurrentNode(string[] path,int length)
+        {
+            Node node = new Node();
+            node =  root.leftChild;
+            for(int i = length;i>=0;i--)
+            {
+                while(path[i] != node.fcb.fileName)
+                {
+                    node = node.rightBrother;
+                }
+                if(i != 0)
+                {
+                    node = node.leftChild;
+                }
+            }
+            return node;
         }
     }
 }

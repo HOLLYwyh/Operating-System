@@ -47,7 +47,7 @@ namespace FileManangement
             this.treeView.Font = new System.Drawing.Font("微软雅黑 Light", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView.Location = new System.Drawing.Point(-1, -2);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(150, 603);
+            this.treeView.Size = new System.Drawing.Size(200, 603);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
@@ -103,7 +103,7 @@ namespace FileManangement
             // 
             this.CurrentPath.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CurrentPath.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CurrentPath.Location = new System.Drawing.Point(168, 24);
+            this.CurrentPath.Location = new System.Drawing.Point(205, 29);
             this.CurrentPath.Name = "CurrentPath";
             this.CurrentPath.Size = new System.Drawing.Size(100, 20);
             this.CurrentPath.TabIndex = 6;
@@ -122,7 +122,7 @@ namespace FileManangement
             // Path
             // 
             this.Path.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Path.Location = new System.Drawing.Point(283, 19);
+            this.Path.Location = new System.Drawing.Point(311, 19);
             this.Path.Name = "Path";
             this.Path.Size = new System.Drawing.Size(200, 30);
             this.Path.TabIndex = 8;
@@ -130,9 +130,9 @@ namespace FileManangement
             // TopLine
             // 
             this.TopLine.BackColor = System.Drawing.Color.DarkGray;
-            this.TopLine.Location = new System.Drawing.Point(150, 68);
+            this.TopLine.Location = new System.Drawing.Point(200, 68);
             this.TopLine.Name = "TopLine";
-            this.TopLine.Size = new System.Drawing.Size(500, 2);
+            this.TopLine.Size = new System.Drawing.Size(450, 2);
             this.TopLine.TabIndex = 9;
             // 
             // MainForm
