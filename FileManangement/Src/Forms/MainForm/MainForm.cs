@@ -37,7 +37,7 @@ namespace FileManangement
             }
         }
     
-        //右边栏部分
+        //右边栏部分以及公共部分
         private void clearPath()
         {
             for (int i = 0; i < Constant.Depth; i++)
@@ -74,6 +74,16 @@ namespace FileManangement
             CurrentNumber.Text = "0";
             map.clear();
             currentLabel = null;
+        }
+
+        private void openFile()   //打开文件，稍微麻烦一点
+        {
+
+        }
+
+        private void showProperties()   //展示属性
+        {
+
         }
 
         private void newDictionaryFile()
@@ -214,7 +224,6 @@ namespace FileManangement
                 labArray[i].Size = new Size(80, 80);
                 labArray[i].Visible = true;
                 labArray[i].Image= image;
-                labArray[i].Click += new System.EventHandler(lb_Click);
                 this.Controls.Add(labArray[i]);
                 temp = temp.rightBrother;
             }
@@ -284,119 +293,6 @@ namespace FileManangement
             ShowImages();
         }
 
-        private void lb_Click(object sender, EventArgs e)   //标签的按钮事件
-        {
-            MouseEventArgs mouseE = (MouseEventArgs)e;
-            currentLabel = sender as Label;
-
-            if (mouseE.Button == MouseButtons.Right)
-            {
-                fileMenu.Show(Cursor.Position);
-            }
-            else
-            {
-                fileMenu.Close();
-            }
-        }
-        
-        private void locateCurrentNode()
-        {
-            Node temp = currentNode;
-            Node test = currentNode;
-            //先回溯
-            if(temp != fileTree.root)
-            {
-                while (temp != temp.parent.leftChild)
-                {
-                    temp = temp.parent;
-                }
-                treeView.SelectedNode = treeView.SelectedNode.Parent;
-            }
-            else
-            {
-                temp = fileTree.root.leftChild;
-            }
-            int j = 0;
-            while (temp != null)
-            {     
-                if (temp.fcb.fileName == currentLabel.Text)  //找到了
-                {
-                    if(test !=fileTree.root)
-                    {
-                        if(test.fcb.type == labelType[j])
-                        {
-                            currentNode = temp;
-                            for (int i = 0; i < treeView.SelectedNode.Nodes.Count; i++)
-                            {
-                                if (treeView.SelectedNode.Nodes[i].Text == temp.fcb.fileName)
-                                {
-                                    treeView.SelectedNode = treeView.SelectedNode.Nodes[i];
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        currentNode = temp;
-                        for (int i = 0; i < treeView.SelectedNode.Nodes.Count; i++)
-                        {
-                            if (treeView.SelectedNode.Nodes[i].Text == temp.fcb.fileName)
-                            {
-                                treeView.SelectedNode = treeView.SelectedNode.Nodes[i];
-                                break;
-                            }
-                        }
-                        break;
-                    }
-
-                }
-                 temp = temp.rightBrother;
-                j++;
-            }
-        }
-
-        private void lb_open(object sender, EventArgs e)    //打开标签
-        {
-            locateCurrentNode();  //定位到选中的结点
-            ShowImages();         //重新修改内容
-        }
-
-        private void lb_newFile(object sender, EventArgs e)   //新建文件
-        {
-            locateCurrentNode();  //定位到选中的结点
-            newTextFile();
-            ShowImages();         //重新修改内容
-        }
-
-        private void lb_newDictionary(object sender, EventArgs e)  //新建文件夹
-        {
-            locateCurrentNode();  //定位到选中的结点
-            newDictionaryFile();
-            ShowImages();         //重新修改内容
-        }
-
-        private void lb_rename(object sender, EventArgs e)  //重命名
-        {
-            locateCurrentNode();  //定位到选中的结点
-            renameFiles();
-            ShowImages();         //重新修改内容
-        }
-
-        private void lb_delete(object sender, EventArgs e)   //删除
-        {
-            locateCurrentNode();  //定位到选中的结点
-            deleteTreeNode();
-            ShowImages();         //重新修改内容
-        }
-
-        private void lb_properties(object sender, EventArgs e)   //属性
-        {
-            locateCurrentNode();  //定位到选中的结点
-            ShowImages();         //重新修改内容
-        }
-
         
         //树状图部分
         private void click()
@@ -446,31 +342,38 @@ namespace FileManangement
         private void RenameNode_Click(object sender, EventArgs e)   //重命名
         {
             renameFiles();
+            ShowImages();
         }
 
         private void NewFile_Click(object sender, EventArgs e)
         {
             newTextFile();
+            ShowImages();
         }
 
         private void NewDIc_Click(object sender, EventArgs e)
         {
             newDictionaryFile();
+            ShowImages();
         }
 
         private void DeleteNode_Click(object sender, EventArgs e)
         {
             deleteTreeNode();
+            ShowImages();
         }
 
         private void OpenNode_Click(object sender, EventArgs e)
         {
-
+            if(currentNode.fcb.type == Constant.File)
+            {
+                openFile();
+            }
         }
 
         private void Properties_Click(object sender, EventArgs e)
         {
-
+            showProperties();
         }
 
     }
