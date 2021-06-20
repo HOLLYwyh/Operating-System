@@ -53,7 +53,7 @@ namespace FileManangement
             }
         }
 
-        public int getBlockNumber()
+        public string getBlockNumber()
         {
             int number = 0;
             for(int i = 0;i< Constant.BlocksNumber;i++)
@@ -63,7 +63,15 @@ namespace FileManangement
                     number++;
                 }
             }
-            return number;
+            return number.ToString();
+        }
+
+        public void clear()
+        {
+            for (int i = 0; i < Constant.BlocksNumber; i++)
+            {
+                map[i] = '0';
+            }
         }
     }
 }

@@ -24,20 +24,53 @@ namespace FileManangement
             {
                 node.parent = current;
                 current.leftChild = node;
+                if (node.fcb.type == Constant.File)  //如果是文本文件
+                {
+                    node.fcb.fileName += ".txt";
+                }
             }
             else   //已经有子节点
             {
                 Node temp = current.leftChild;
-                if((node.fcb.fileName == temp.fcb.fileName)&&(node.fcb.type == temp.fcb.type))
+                if (node.fcb.type == Constant.File)  //如果是文本文件
                 {
-                    node.fcb.fileName += "_副本";
+                    node.fcb.fileName += ".txt";
+                }
+                if ((node.fcb.fileName == temp.fcb.fileName)&&(node.fcb.type == temp.fcb.type))
+                {
+                    if(node.fcb.type == Constant.Dictionaty)
+                    {
+                        node.fcb.fileName += "_副本";
+                    }
+                    else
+                    {
+                        string tempStr1 = "";
+                        for (int i = 0; i < node.fcb.fileName.Length - 4; i++)
+                        {
+                            tempStr1 += node.fcb.fileName[i];
+                        }
+                        node.fcb.fileName = tempStr1 + "_副本.txt";
+                    }
+
                 }
                 while (temp.rightBrother!=null)
                 {
                     temp = temp.rightBrother;
                     if ((node.fcb.fileName == temp.fcb.fileName)&&(node.fcb.type == temp.fcb.type))
                     {
-                        node.fcb.fileName += "_副本";
+                        if (node.fcb.type == Constant.Dictionaty)
+                        {
+                            node.fcb.fileName += "_副本";
+                        }
+                        else
+                        {
+                            string tempStr1 = "";
+                            for (int i = 0; i < node.fcb.fileName.Length - 4; i++)
+                            {
+                                tempStr1 += node.fcb.fileName[i];
+                            }
+                            node.fcb.fileName = tempStr1 + "_副本.txt";
+                        }
                     }
                 }
                 node.parent = temp;
@@ -115,8 +148,12 @@ namespace FileManangement
             Node temp = currentNode;
             Node test = currentNode.rightBrother;
             string record = "1";
+            if (currentNode.fcb.type == Constant.File)  //如果是文本文件
+            {
+                currentNode.fcb.fileName += ".txt";
+            }
             //先向回找
-            while(temp != temp.parent.leftChild)
+            while (temp != temp.parent.leftChild)
             {
                 temp = temp.parent;
             }
@@ -143,7 +180,19 @@ namespace FileManangement
                 {
                     if(record[i] != '1')
                     {
-                        currentNode.fcb.fileName += "_副本";
+                        if (currentNode.fcb.type == Constant.Dictionaty)
+                        {
+                            currentNode.fcb.fileName += "_副本";
+                        }
+                        else
+                        {
+                            string tempStr1 = "";
+                            for (int k = 0; i < currentNode.fcb.fileName.Length - 4; k++)
+                            {
+                                tempStr1 += currentNode.fcb.fileName[i];
+                            }
+                            currentNode.fcb.fileName = tempStr1 + "_副本.txt";
+                        }
                     }
                     
                 }

@@ -74,6 +74,5 @@ Thumbs.db
 # Some Debug Files
 /bin
 /obj
-/Properties
 *.csproj
 App.config
