@@ -11,6 +11,7 @@ namespace FileManangement
         public string fileName;  //文件名
         public int size;      //文件大小
         public int type;      //文件夹还是普通文件
+        public string content = "";  //文件内容
 
         public FCB() { }
         public FCB(string FileName,int Type)

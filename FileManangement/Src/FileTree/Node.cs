@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,10 @@ namespace FileManangement
 {
     class Node     //文件森林的结点
     {
+        
         public Node leftChild = null;      //左孩子
         public Node rightBrother = null;                //右兄弟
+        [JsonIgnore]
         public Node parent = null;                      //父结点
         public FCB  fcb = new FCB();            //当前结点的信息
 

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using FileManangement.Properties;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace FileManangement
 {
@@ -18,8 +21,6 @@ namespace FileManangement
         private string[] path = new string[Constant.Depth+1];        //路径数组
         private BitMap map = new BitMap();                           //位图
         private Label[] labArray = new Label[Constant.BlocksNumber+1];   //图标名
-        private Label currentLabel = new Label();                     //当前的Label
-        private int[] labelType = new int[Constant.BlocksNumber + 1];
 
         public MainForm()
         {
@@ -27,14 +28,121 @@ namespace FileManangement
             currentNode = fileTree.root;
             clearPath();
 
-            //添加根结点
-            TreeNode root = new TreeNode("文件系统(root)");
-            treeView.Nodes.Add(root);
             for(int i = 0;i< Constant.BlocksNumber + 1;i++)
             {
                 labArray[i] = null;
-                labelType[i] = Constant.NoType;
             }
+
+            if(!initProject())   //如果没有初始化文件供初始化
+            {
+                //添加根结点
+                TreeNode root = new TreeNode("文件系统(root)");
+                treeView.Nodes.Add(root);
+            }
+        }
+
+        //初始化项目
+        private void mainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string fp = System.Windows.Forms.Application.StartupPath + "\\info.json";
+            File.WriteAllText(fp, JsonConvert.SerializeObject(fileTree));
+
+        }
+
+        private bool initProject()
+        {
+            string fp = Application.StartupPath + "\\info.json";
+            if (!File.Exists(fp))  // 判断是否已有相同文件 
+            {
+                return false;
+            }
+            else
+            {
+                fileTree = JsonConvert.DeserializeObject<FileTree>(File.ReadAllText(fp));  // 尖括号<>中填入对象的类名 
+                currentNode = fileTree.root;
+                Node p1 = fileTree.root;
+                Node p2 = fileTree.root;
+                initTree(ref p1,ref p2);
+                initTreeView();
+                ShowImages();
+                changeLable();
+                return true;
+            }
+           
+        }
+        private void initTree(ref Node p1, ref Node p2)
+        {
+            if(p1 == null ||p2 ==null)
+            {
+                return;
+            }
+            else
+            {
+                if (p1.rightBrother == p2)
+                {
+                    p2.parent = p1;
+                }
+                else if (p2.rightBrother == p1)
+                {
+                    p1.parent = p2;
+                }
+                else if (p1.leftChild == p2)
+                {
+                    p2.parent = p1;
+                }
+                else if (p2.leftChild == p1)
+                {
+                    p1.parent = p2;
+                }
+                initTree(ref p1, ref p2.leftChild);
+                initTree(ref p1, ref p2.rightBrother);
+                initTree(ref p1.leftChild, ref p2);
+                initTree(ref p1.leftChild, ref p2.leftChild);
+                initTree(ref p1.leftChild, ref p2.rightBrother);
+                initTree(ref p1.rightBrother, ref p2);
+                initTree(ref p1.rightBrother, ref p2.leftChild);
+                initTree(ref p1.rightBrother, ref p2.rightBrother);
+            }
+        }
+
+        private void rightInitTree(ref Node p1, ref TreeNode p2)        
+        {
+            if(p1 == null)
+            {
+                return;
+            }
+            else
+            {
+                //向右走
+                int i = 0;
+                if ((p2.Parent != null)&&(p1.rightBrother!=null))
+                {
+                    p2.Parent.Nodes.Add(p1.rightBrother.fcb.fileName);
+                    i++;
+                    TreeNode p3 = p2.Parent.Nodes[i];
+                    rightInitTree(ref p1.rightBrother, ref p3);  
+                }
+                //向下走
+                if(p1.leftChild != null)
+                {
+                    p2.Nodes.Add(p1.leftChild.fcb.fileName);
+                    TreeNode p3 = p2.Nodes[0];
+                    rightInitTree(ref p1.leftChild, ref p3);
+                }
+
+                
+            }
+        }
+
+        private void initTreeView()
+        {
+            //添加根结点
+            TreeNode root = new TreeNode("文件系统(root)");   //还没有写完
+            treeView.Nodes.Add(root);
+            Node p1 = fileTree.root;
+            TreeNode p2 = treeView.Nodes[0];
+            rightInitTree(ref p1, ref p2);
+            treeView.SelectedNode = treeView.Nodes[0];
         }
     
         //右边栏部分以及公共部分
@@ -54,7 +162,6 @@ namespace FileManangement
                 {
                     this.Controls.Remove(labArray[i]);
                     labArray[i] = null;
-                    labelType[i] = Constant.NoType;
                 }
             }
             
@@ -73,16 +180,29 @@ namespace FileManangement
             Path.Text = "root";
             CurrentNumber.Text = "0";
             map.clear();
-            currentLabel = null;
         }
 
-        private void openFile()   //打开文件，稍微麻烦一点
+        private void openFile()   //打开文件
         {
+            FileForm fileForm = new FileForm(this);
+            //FileForm fileForm = new FileForm(currentNode.fcb.content);
+            fileForm.Show();
+            if(fileForm.saveFile)
+            {
+                currentNode.fcb.content = fileForm.fileText;
+            }
 
         }
 
         private void showProperties()   //展示属性
         {
+            string layout = "";
+            layout += "文件类型： ";
+            layout += (currentNode.fcb.type == Constant.File) ?"txt文件\n":"文件夹\n";
+            layout += "文件名称： ";
+            layout += (currentNode == fileTree.root)?"文件根目录":currentNode.fcb.fileName;
+            layout += "\n";
+            MessageBox.Show(layout, "属性");
 
         }
 
@@ -215,7 +335,6 @@ namespace FileManangement
 
                 Image image = (temp.fcb.type == Constant.File) ? Properties.Resources.file : Properties.Resources.dictionary;
                 i++;
-                labelType[i] = temp.fcb.type;
                 labArray[i] = label;
                 labArray[i].Location = new Point(235 + (i % 4) * 100, 100 + (i / 4) * 100);   
                 labArray[i].Text = temp.fcb.fileName;
@@ -339,6 +458,16 @@ namespace FileManangement
             }
         }
 
+        private void treeView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            TreeMenu.Close();
+            click();
+            if (currentNode.fcb.type == Constant.File)
+            {
+                openFile();
+            }
+        }
+
         private void RenameNode_Click(object sender, EventArgs e)   //重命名
         {
             renameFiles();
@@ -375,6 +504,5 @@ namespace FileManangement
         {
             showProperties();
         }
-
     }
 }
