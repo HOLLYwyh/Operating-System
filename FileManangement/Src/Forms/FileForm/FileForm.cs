@@ -14,6 +14,8 @@ namespace FileManangement
     {
         public bool saveFile;  //是否关闭
         public string fileText;
+
+        public  setTextValue setFormTextVale;
         public FileForm()
         {
             InitializeComponent();
@@ -21,19 +23,22 @@ namespace FileManangement
             fileText = "";
         }
 
-        //public FileForm(string str)
-        //{
-        //    InitializeComponent();
-        //    saveFile = false;
-        //    fileText = "";
-        //    inputBox.Text = str;
-        //}
+        public FileForm(string str)
+        {
+            InitializeComponent();
+            saveFile = false;
+            fileText = "";
+            inputBox.Text = str;
+        }
 
         private void save_Click(object sender, EventArgs e)
         {
             saveFile = true;
             fileText = inputBox.Text;
+            setFormTextVale(fileText);
             this.Close();
         }
     }
 }
+
+public delegate void setTextValue(string textValue);  //创建一个委托实例

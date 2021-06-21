@@ -66,6 +66,7 @@ namespace FileManangement
                 initTreeView();
                 ShowImages();
                 changeLable();
+                CurrentNumber.Text = getCurrentNumber().ToString();
                 return true;
             }
            
@@ -184,14 +185,15 @@ namespace FileManangement
 
         private void openFile()   //打开文件
         {
-            FileForm fileForm = new FileForm(this);
-            //FileForm fileForm = new FileForm(currentNode.fcb.content);
-            fileForm.Show();
-            if(fileForm.saveFile)
-            {
-                currentNode.fcb.content = fileForm.fileText;
-            }
+            FileForm fileForm = new FileForm(currentNode.fcb.content);
+            fileForm.Show(this);
 
+            //添加窗口委托
+            fileForm.setFormTextVale += new setTextValue(setFormText);
+        }
+        public void setFormText(string text)   //设置文件的内容
+        {
+            currentNode.fcb.content = text;
         }
 
         private void showProperties()   //展示属性
@@ -203,7 +205,34 @@ namespace FileManangement
             layout += (currentNode == fileTree.root)?"文件根目录":currentNode.fcb.fileName;
             layout += "\n";
             MessageBox.Show(layout, "属性");
+        }
 
+        private int updateCurrentNumber(Node node)
+        {
+            int number = 0;
+            if(node == null)
+            {
+                return 0;
+            }
+            if(node.fcb.type == Constant.Dictionaty)
+            {
+                number += 2;
+            }
+            else if(node.fcb.type == Constant.File)
+            {
+                number += 1;
+            }
+            number += updateCurrentNumber(node.rightBrother);
+            number += updateCurrentNumber(node.leftChild);
+            return number;
+        }
+
+        private int getCurrentNumber()//更新现有的属性
+        {
+            int number = 0;
+            Node node = fileTree.root.leftChild;
+            number = updateCurrentNumber(node);
+            return number;
         }
 
         private void newDictionaryFile()
@@ -238,7 +267,7 @@ namespace FileManangement
                 treeView.ExpandAll();
             }
             currentNode = node;
-            CurrentNumber.Text = map.getBlockNumber();
+            CurrentNumber.Text = getCurrentNumber().ToString();
             ShowImages();
         }
 
@@ -274,7 +303,7 @@ namespace FileManangement
                 treeView.ExpandAll();
             }
             currentNode = node;
-            CurrentNumber.Text = map.getBlockNumber();
+            CurrentNumber.Text = getCurrentNumber().ToString();
             ShowImages();
         }
 
@@ -305,7 +334,7 @@ namespace FileManangement
             {
                 treeView.SelectedNode.Remove();
             }
-            CurrentNumber.Text = map.getBlockNumber();
+            CurrentNumber.Text = getCurrentNumber().ToString();
         }
 
         private void ShowImages()
@@ -503,6 +532,25 @@ namespace FileManangement
         private void Properties_Click(object sender, EventArgs e)
         {
             showProperties();
+        }
+
+        private void HelpButton_Click(object sender, EventArgs e)
+        {
+            string layout = "";
+            layout += "亲爱的用户你好! \n";
+            layout += "欢迎进入说明页面~\n";
+            layout += "本项目所具有的功能有:\n";
+            layout += "1.新建文本文件或者文件夹\n";
+            layout += "2.删除文本文件或者文件夹\n";
+            layout += "3.文本文件和文件夹的重命名\n";
+            layout += "4.修改文本文件内容，可视化地展示文件和文件夹\n";
+            layout += "5.永久保存文件内容\n\n";
+            layout += "注意事项:\n";
+            layout += "打开文件等操作均需要在左侧的文件树里进行\n";
+            layout += "即双击左侧文件数中的结点打开或者使用右键来操作结点\n";
+            layout += "暂时不支持在界面上直接点击图标或者右键图标\n";
+            layout += "这部分后续有时间的话会修改,还请谅解!\n";
+            MessageBox.Show(layout, "使用说明");
         }
     }
 }

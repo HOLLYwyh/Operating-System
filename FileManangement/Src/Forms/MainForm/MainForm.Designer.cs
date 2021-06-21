@@ -75,6 +75,7 @@ namespace FileManangement
             this.HelpButton.TabIndex = 1;
             this.HelpButton.Text = "使用说明";
             this.HelpButton.UseVisualStyleBackColor = true;
+            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
             // 
             // SideLine
             // 
