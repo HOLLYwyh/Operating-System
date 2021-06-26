@@ -20,6 +20,8 @@
 - 每个电梯没有相应请求下，则应该在原地保持不动。
 
 （4）项目截图
+###  2. 内存管理-请求调页（MemoryManagement-dmandPaging）
+###  3. 文件管理（FileManagement）
 
 ## 二、项目结构
 
