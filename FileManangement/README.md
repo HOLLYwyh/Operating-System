@@ -31,7 +31,7 @@
 
 ###  1. 页面简介
 
-![image-20210622001045279](C:\Users\吴英豪\AppData\Roaming\Typora\typora-user-images\image-20210622001045279.png)
+![image-20210622001045279](https://github.com/HOLLYwyh/Operating-System/blob/main/FileManangement/images/主页.png)
 
 - 左侧为文件系统目录结构树，以树型结构展示出了所有的文件夹以及文本文件。
 - 右侧是一些选项栏，可以进行格式化、新建文件夹等操作，同时可以看到程序目前的总块数和已用块数、
@@ -44,11 +44,11 @@
 
 - **若想通过源代码来运行程序，首先需要 .NET Framework 4.7.2 框架，其次需要安装NuGet中的Newtonsoft.Json包以确保程序可以正确保存.json文件。**
 
-  ![image-20210622002006279](C:\Users\吴英豪\AppData\Roaming\Typora\typora-user-images\image-20210622002006279.png)
+  ![image-20210622001045279](https://github.com/HOLLYwyh/Operating-System/blob/main/FileManangement/images/Nuget.png)
 
 ###  3.操作说明
 
-![image-20210622003747933](C:\Users\吴英豪\AppData\Roaming\Typora\typora-user-images\image-20210622003747933.png)
+![image-20210622001045279](https://github.com/HOLLYwyh/Operating-System/blob/main/FileManangement/images/操作说明.png)
 
 - 按下使用说明按钮，可以查看程序的使用方法。
 - 按下格式化按钮，将清空程序中的所有内容
