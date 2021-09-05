@@ -29,13 +29,13 @@ Memorymanagement-Demandpaging
 
 ### 1.   界面及使用介绍
 
-![image-20210608215444672](C:\Users\吴英豪\AppData\Roaming\Typora\typora-user-images\image-20210608215444672.png)
+![image-20210608215444672](https://github.com/HOLLYwyh/Operating-System/blob/main/MemoryManagement-demandPaging/images/1.png)
 
 - 左边栏将动态显示命中总数、缺页总数以及缺页率，用户可人为选择LRU算法运行还是FIFO算法执行
 - 右边栏为信息显示栏，主要的信息有：运行指令数、当前指令以及下一条指令的页号、偏移量、物理地址，是否需要调页等
 - 中间为运行按钮，“单步执行”表示运行一步，“连续执行”则会持续运行下去直至结束。在连续运行时按下“暂停/重置”按钮可以暂停运行，当项目暂停时（或单步执行之后）按下“暂停/重置”按钮将会重置所有指令的执行，回到原始情况。
 
-![image-20210608220719159](C:\Users\吴英豪\AppData\Roaming\Typora\typora-user-images\image-20210608220719159.png)
+![image-20210608220719159](https://github.com/HOLLYwyh/Operating-System/blob/main/MemoryManagement-demandPaging/images/2.png)
 
 ###  2.使用说明
 
