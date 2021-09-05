@@ -154,7 +154,7 @@ bool _isDamage[ELEVATOR_NUM]{false};     //表示5部电梯的损坏情况
 - 电梯内部下方是开关门键，只有当电梯停靠或空闲时按下开门键才能开门；只有电梯的门为开时才能关门。
 - 页面右侧为电梯外每一层楼的按键，分为上行按键和下行按键（其中一楼只有上行键、二十楼只有下行键）。
 
-![image-20210520083637728](https://github.com/HOLLYwyh/Operating-System/tree/main/ProcessManagement-elevator/pictures/elevator.png)
+![image-20210520083637728](https://github.com/HOLLYwyh/Operating-System/blob/main/ProcessManagement-elevator/pictures/elevator.png)
 
 ###  2. 使用说明
 
